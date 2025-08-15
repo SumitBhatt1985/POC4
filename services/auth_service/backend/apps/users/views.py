@@ -128,10 +128,8 @@ class LoginAPIView(APIView):
                 
                 # Log successful login with client IP for security monitoring
                 client_ip = self.get_client_ip(request)
-                # Sanitize username to prevent log injection
-                safe_username = user.username.replace('\n', '').replace('\r', '').replace('\t', '')
                 logger.info(
-                    f"User {safe_username} (ID: {user.id}) logged in successfully from IP: {client_ip}"
+                    f"User ID {user.id} logged in successfully from IP: {client_ip}"
                 )
                 
                 # Return clean JSON response for Angular frontend
@@ -158,12 +156,9 @@ class LoginAPIView(APIView):
         
         else:
             # Log failed login attempt for security monitoring
-            username = request.data.get('username', 'unknown')
             client_ip = self.get_client_ip(request)
-            # Sanitize username to prevent log injection
-            safe_username = str(username).replace('\n', '').replace('\r', '').replace('\t', '')
             logger.warning(
-                f"Failed login attempt for username: {safe_username} from IP: {client_ip}"
+                f"Failed login attempt from IP: {client_ip}"
             )
             
             # Return standardized error response for Angular frontend
@@ -262,10 +257,8 @@ class LogoutAPIView(APIView):
             token.blacklist()
             
             # Log successful logout
-            username = request.user.username if request.user.is_authenticated else 'unknown'
-            # Sanitize username to prevent log injection
-            safe_username = str(username).replace('\n', '').replace('\r', '').replace('\t', '')
-            logger.info(f"User {safe_username} logged out successfully")
+            user_id = request.user.id if request.user.is_authenticated else 'anonymous'
+            logger.info(f"User ID {user_id} logged out successfully")
             
             return Response({
                 'success': True,
@@ -400,7 +393,7 @@ class UserProfileAPIView(APIView):
             serializer = UserProfileSerializer(request.user)
             
             # Log profile access for security monitoring
-            logger.info(f"User {request.user.username} (ID: {request.user.id}) accessed profile")
+            logger.info(f"User ID {request.user.id} accessed profile")
             
             return Response({
                 'success': True,
@@ -484,8 +477,7 @@ class UserProfileAPIView(APIView):
                 
                 # Log successful profile update
                 logger.info(
-                    f"User {updated_user.username} (ID: {updated_user.id}) "
-                    f"updated profile: {list(request.data.keys())}"
+                    f"User ID {updated_user.id} updated profile fields: {len(request.data)} fields"
                 )
                 
                 return Response({
@@ -645,9 +637,7 @@ class SignUpAPIView(APIView):
         """
         # Log signup attempt
         client_ip = self.get_client_ip(request)
-        user_agent = request.META.get('HTTP_USER_AGENT', 'Unknown')
-        
-        logger.info(f"User signup attempt from IP: {client_ip}, User-Agent: {user_agent}")
+        logger.info(f"User signup attempt from IP: {client_ip}")
         
         try:
             # Validate request data
@@ -655,7 +645,7 @@ class SignUpAPIView(APIView):
             
             if not serializer.is_valid():
                 # Log validation errors
-                logger.warning(f"Signup validation failed from IP {client_ip}: {serializer.errors}")
+                logger.warning(f"Signup validation failed from IP {client_ip}")
                 
                 # Transform errors for consistent format
                 formatted_errors = {}
@@ -686,7 +676,7 @@ class SignUpAPIView(APIView):
             user_data = serializer.to_representation((user, profile))
             
             # Log successful signup
-            logger.info(f"User signup successful: {user.username} (ID: {user.id}, Profile: {profile.id}) from IP: {client_ip}")
+            logger.info(f"User signup successful: ID {user.id}, Profile: {profile.id} from IP: {client_ip}")
             
             return Response(
                 {

@@ -32,6 +32,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
 LOCAL_APPS = [
@@ -42,6 +43,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'apps.users.middleware.SecurityHeadersMiddleware',
+    'apps.users.middleware.RequestLoggingMiddleware',
+    'apps.users.middleware.RateLimitMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -188,17 +192,47 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+# Caching Configuration for Rate Limiting
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': config('REDIS_URL', default='redis://localhost:6379/1'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'KEY_PREFIX': 'auth_service',
+        'TIMEOUT': 300,
+    }
+}
+
+# Fallback to local memory cache if Redis is not available
+if config('USE_MEMORY_CACHE', default=False, cast=bool):
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'auth-service-cache',
+        }
+    }
+
 # Security settings for production
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
 if not DEBUG:
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_SECONDS = 31536000
-    SECURE_REDIRECT_EXEMPT = []
+    SECURE_REDIRECT_EXEMPT = ['/health/', '/ready/', '/live/', '/metrics/']
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    X_FRAME_OPTIONS = 'DENY'
+    SESSION_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Strict'
+    CSRF_COOKIE_SAMESITE = 'Strict'
+
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 
 # Logging configuration
 LOGGING = {
@@ -246,3 +280,36 @@ LOGGING = {
 
 # Create logs directory if it doesn't exist
 os.makedirs(os.path.join(BASE_DIR, 'logs'), exist_ok=True)
+
+# Microservice Configuration
+SERVICE_NAME = 'auth_service'
+SERVICE_VERSION = config('SERVICE_VERSION', default='1.0.0')
+SERVICE_ENVIRONMENT = config('ENVIRONMENT', default='development')
+
+# Health Check Configuration
+HEALTH_CHECK_ENDPOINTS = {
+    'health': '/health/',
+    'ready': '/ready/',
+    'live': '/live/',
+    'metrics': '/metrics/'
+}
+
+# Circuit Breaker Configuration
+CIRCUIT_BREAKER_SETTINGS = {
+    'failure_threshold': 5,
+    'recovery_timeout': 30,
+    'expected_exception': Exception
+}
+
+# Request Timeout Settings
+REQUEST_TIMEOUT = config('REQUEST_TIMEOUT', default=30, cast=int)
+
+# CORS Settings for microservice communication
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS', 
+    default='http://localhost:3000,http://localhost:4200',
+    cast=lambda v: [s.strip() for s in v.split(',')]
+)
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)

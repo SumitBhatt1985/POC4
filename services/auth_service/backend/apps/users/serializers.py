@@ -92,9 +92,7 @@ class LoginSerializer(serializers.Serializer):
             
             if not user:
                 # Log failed authentication attempt for security monitoring
-                # Sanitize username to prevent log injection
-                safe_username = str(username).replace('\n', '').replace('\r', '').replace('\t', '')
-                logger.warning(f"Failed login attempt for username: {safe_username}")
+                logger.warning("Failed login attempt - invalid credentials")
                 raise serializers.ValidationError(
                     {
                         'detail': 'Invalid credentials. Please check your username and password.',
@@ -104,9 +102,7 @@ class LoginSerializer(serializers.Serializer):
             
             if not user.is_active:
                 # Log attempt to login with inactive account
-                # Sanitize username to prevent log injection
-                safe_username = str(username).replace('\n', '').replace('\r', '').replace('\t', '')
-                logger.warning(f"Login attempt for inactive user: {safe_username}")
+                logger.warning(f"Login attempt for inactive user ID: {user.id}")
                 raise serializers.ValidationError(
                     {
                         'detail': 'User account is disabled.',
@@ -115,9 +111,7 @@ class LoginSerializer(serializers.Serializer):
                 )
             
             # Log successful authentication
-            # Sanitize username to prevent log injection
-            safe_username = str(username).replace('\n', '').replace('\r', '').replace('\t', '')
-            logger.info(f"Successful login for user: {safe_username} (ID: {user.id})")
+            logger.info(f"Successful login for user ID: {user.id}")
             attrs['user'] = user
             
         else:
@@ -327,7 +321,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             User: Updated user instance
         """
         # Log profile update for security monitoring
-        logger.info(f"User {instance.username} (ID: {instance.id}) updating profile")
+        logger.info(f"User ID {instance.id} updating profile")
         
         # Update fields with validation
         for attr, value in validated_data.items():
@@ -609,7 +603,7 @@ class SignUpSerializer(serializers.Serializer):
             )
             
             # Log successful user creation
-            logger.info(f"New user created: {user.username} (ID: {user.id}, Profile: {profile.id})")
+            logger.info(f"New user created: ID {user.id}, Profile: {profile.id}")
             
             return user, profile
     
