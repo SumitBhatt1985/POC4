@@ -14,7 +14,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 import logging
 
-from .models import UserProfile
+from .models import HomePageInformation, UserProfile, Feedback, UserDetails
 
 logger = logging.getLogger(__name__)
 
@@ -632,3 +632,49 @@ class SignUpSerializer(serializers.Serializer):
             'status': 'ACTIVE' if profile.status else 'INACTIVE',
             'message': 'User created successfully.'
         }
+
+class InstructionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'title', 'content']
+
+class OfflineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'title', 'content']
+
+class DownloadsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'file_name', 'content']
+
+class PublicationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'title', 'content']
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
+    
+    def create(self, validated_data):
+        # Get question scores (convert to int if needed)
+        q1 = int(validated_data.get('question1', 0) or 0)
+        q2 = int(validated_data.get('question2', 0) or 0)
+        q3 = int(validated_data.get('question3', 0) or 0)
+        q4 = int(validated_data.get('question4', 0) or 0)
+        # Calculate average
+        avg = round((q1 + q2 + q3 + q4) / 4, 2)
+        validated_data['avg_feedback'] = str(avg)  # Save as string to match model
+        # Save feedback
+        return super().create(validated_data)
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserDetails
+        fields = [
+            "id", "role", "rank", "username", "userlogin", "personal_no",
+            "designation", "ship_name", "employee_type", "establishment",
+            "nudemail", "phone_no", "mobile_no", "status"
+        ]

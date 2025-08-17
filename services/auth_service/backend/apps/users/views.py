@@ -11,12 +11,16 @@ from django.utils import timezone
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 import logging
 
-from .serializers import LoginSerializer, UserSerializer, UserProfileSerializer, SignUpSerializer
+from .serializers import LoginSerializer, UserSerializer, UserProfileSerializer, SignUpSerializer, InstructionsSerializer, OfflineSerializer, DownloadsSerializer, PublicationsSerializer, FeedbackSerializer
+from .models import HomePageInformation, Feedback, UserProfile, UserDetails
+from django.db import transaction
 
 logger = logging.getLogger(__name__)
 
@@ -512,7 +516,6 @@ class UserProfileAPIView(APIView):
                 }
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
 class SignUpAPIView(APIView):
     """
     User registration endpoint with profile fields.
@@ -740,3 +743,243 @@ class SignUpAPIView(APIView):
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
+
+class HomePageView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        tab_type = request.data.get('tab_type')
+        if not tab_type:
+            return Response({"error": "tab_type is required"}, status=status.HTTP_400_BAD_REQUEST)
+        queryset = HomePageInformation.objects.filter(tab_type=tab_type)
+        if tab_type == 'Instructions':
+            serializer = InstructionsSerializer(queryset, many=True)
+        elif tab_type == 'CMMS Offline':
+            serializer = OfflineSerializer(queryset, many=True)
+        elif tab_type == 'Downloads':
+            serializer = DownloadsSerializer(queryset, many=True)
+        elif tab_type == 'Publications':
+            serializer = PublicationsSerializer(queryset, many=True)
+        else:
+            return Response({"error": "Invalid tab_type"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data)
+    
+class FeedbackAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        feedbacks = Feedback.objects.all()
+        serializer = FeedbackSerializer(feedbacks, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = FeedbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserManagementAPIView(APIView):
+    """
+    Admin-only API for user CRUD operations.
+    GET: List all users
+    POST: Add a new user
+    PUT: Edit user
+    DELETE: Delete user
+    """
+    permission_classes = [IsAdminUser]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request, *args, **kwargs):
+        try:
+            details = UserDetails.objects.all()
+            # details = UserDetails.objects.filter(status=1)
+            data = []
+            for detail in details:
+                data.append({
+                    "id": detail.id,
+                    "user_login": detail.userlogin,
+                    "role": detail.role,
+                    "rank": detail.rank,
+                    "name": detail.username,
+                    "personal_no": detail.personal_no,
+                    "designation": detail.designation,
+                    "ship": detail.ship_name,
+                    "employee_type": detail.employee_type,
+                    "establishment": detail.establishment,
+                    "nudemail": detail.nudemail,
+                    "phone_no": detail.phone_no,
+                    "status": detail.status,
+                })
+            return Response({
+                "success": True,
+                "message": "Users fetched successfully",
+                "data": data
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            logger.error(f"Error fetching users: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "User fetch failed",
+                "errors": {"system": [{"message": str(e), "code": "server_error"}]}
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+    def post(self, request, *args, **kwargs):
+        required_fields = [
+            "userlogin", "role", "rank", "username", "personal_no", "designation",
+            "ship_name", "employee_type", "establishment", "nudemail", "phone_no", "status",
+            "password", "confirm_password"
+        ]
+
+        data = request.data
+        missing = [f for f in required_fields if f not in data]
+        if missing:
+            return Response({
+                "success": False,
+                "message": "Missing required fields",
+                "errors": {field: ["This field is required."] for field in missing}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        if data["password"] != data["confirm_password"]:
+            return Response({
+                "success": False,
+                "message": "Passwords do not match",
+                "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            with transaction.atomic():
+                user = User.objects.create_user(
+                    username=data["username"],
+                    password=data["password"]
+                )
+                profile = UserDetails.objects.create(
+                    role=data["role"],
+                    rank=data["rank"],
+                    username=data["username"],
+                    userlogin=data["personal_no"],
+                    password=data["password"],
+                    confirm_password=data["confirm_password"],
+                    personal_no=data["personal_no"],
+                    designation=data["designation"],
+                    ship_name=data["ship_name"],
+                    employee_type=data["employee_type"],
+                    establishment=data["establishment"],
+                    nudemail=data["nudemail"],
+                    phone_no=data["phone_no"],
+                    status=data["status"]
+                )
+            return Response({
+                "success": True,
+                "message": "User created successfully",
+                "data": {
+                    "id": profile.id,
+                    "user_login": profile.personal_no,
+                    "role": profile.role,
+                    "rank": profile.rank,
+                    "name": profile.username,
+                    "personal_no": profile.personal_no,
+                    "designation": profile.designation,
+                    "ship": profile.ship_name,
+                    "employee_type": profile.employee_type,
+                    "establishment": profile.establishment,
+                    "nudemail": profile.nudemail,
+                    "phone_no": profile.phone_no,
+                    "status": profile.status,
+                }
+            }, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            logger.error(f"Error creating user: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "User creation failed",
+                "errors": {"system": [{"message": str(e), "code": "server_error"}]}
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+    def put(self, request, *args, **kwargs):
+        user_id = request.data.get('id')
+        if not user_id:
+            return Response({
+                "success": False,
+                "message": "User ID is required for update",
+                "errors": {"id": ["This field is required."]}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            profile = UserDetails.objects.get(id=user_id)
+        except UserDetails.DoesNotExist:
+            return Response({
+                "success": False,
+                "message": "User not found",
+                "errors": {"id": ["User does not exist."]}
+            }, status=status.HTTP_404_NOT_FOUND)
+        data = request.data
+        # Update password if provided and matches confirm_password
+        if "password" in data and "confirm_password" in data:
+            if data["password"] != data["confirm_password"]:
+                return Response({
+                    "success": False,
+                    "message": "Passwords do not match",
+                    "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
+                }, status=status.HTTP_400_BAD_REQUEST)
+            profile.password = data["password"]
+            profile.confirm_password = data["confirm_password"]
+        for field in [
+                "role", "rank", "username", "userlogin", "personal_no", "designation", "ship_name",
+                "employee_type", "establishment", "nudemail", "phone_no", "mobile_no", "status"
+        ]:
+                if field in data:
+                    setattr(profile, field, data[field])
+        profile.save()
+        return Response({
+            "success": True,
+            "message": "User updated successfully",
+            "data": {
+            "id": profile.id,
+            "user_login": profile.userlogin,
+            "role": profile.role,
+            "rank": profile.rank,
+            "name": profile.username,
+            "personal_no": profile.personal_no,
+            "designation": profile.designation,
+            "ship": profile.ship_name,
+            "employee_type": profile.employee_type,
+            "establishment": profile.establishment,
+            "nudemail": profile.nudemail,
+            "phone_no": profile.phone_no,
+            "mobile_no": profile.mobile_no,
+            "status": profile.status,
+        }
+        }, status=status.HTTP_200_OK)
+
+
+    def delete(self, request, *args, **kwargs):
+        user_id = request.data.get('id')
+        if not user_id:
+            return Response({
+                "success": False,
+                "message": "User ID is required for deletion",
+                "errors": {"id": ["This field is required."]}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            profile = UserDetails.objects.get(id=user_id)
+            profile.status = 0
+            profile.save()
+            return Response({
+                "success": True,
+                "message": "User deleted successfully"
+            }, status=status.HTTP_200_OK)
+        except UserDetails.DoesNotExist:
+            return Response({
+                "success": False,
+                "message": "User not found",
+                "errors": {"id": ["User does not exist."]}
+            }, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            logger.error(f"Error deleting user: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "User deletion failed",
+                "errors": {"system": [{"message": str(e), "code": "server_error"}]}
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
