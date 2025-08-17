@@ -18,8 +18,15 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 import logging
 
-from .serializers import LoginSerializer, UserSerializer, UserProfileSerializer, SignUpSerializer, InstructionsSerializer, OfflineSerializer, DownloadsSerializer, PublicationsSerializer, FeedbackSerializer
-from .models import HomePageInformation, Feedback, UserProfile, UserDetails
+from .serializers import (LoginSerializer, 
+                          UserSerializer, 
+                          UserProfileSerializer, 
+                          SignUpSerializer, 
+                          InstructionsSerializer, OfflineSerializer, DownloadsSerializer, PublicationsSerializer, 
+                          FeedbackSerializer,
+                          RoleMasterSerializer)
+
+from .models import (HomePageInformation, Feedback, UserProfile, UserDetails, RoleMaster)
 from django.db import transaction
 
 logger = logging.getLogger(__name__)
@@ -779,6 +786,65 @@ class FeedbackAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class RoleMasterAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        roles = RoleMaster.objects.filter(status=1)
+        serializer = RoleMasterSerializer(roles, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = RoleMasterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class EditRoleAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def put(self, request):
+        role_id = request.data.get('role_id')   # take from body
+
+        if not role_id:
+            return Response({'error': 'role_id is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            role = RoleMaster.objects.get(role_id=role_id)
+        except RoleMaster.DoesNotExist:
+            return Response({'error': 'Role not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        # fields to update
+        name = request.data.get('name')
+        level = request.data.get('level')
+
+        if name is not None:
+            role.name = name
+        if level is not None:
+            role.level = level
+
+        role.save()
+        serializer = RoleMasterSerializer(role)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DeleteRoleAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def delete(self, request):
+        role_id = request.data.get('role_id')
+
+        if not role_id:
+            return Response({'error': 'role_id is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            role = RoleMaster.objects.get(role_id=role_id)
+        except RoleMaster.DoesNotExist:
+            return Response({'error': 'Role not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        role.status = 0
+        role.save()
+        return Response({'message': 'Role deleted (status set to 0)'}, status=status.HTTP_200_OK)
 
 class UserManagementAPIView(APIView):
     """

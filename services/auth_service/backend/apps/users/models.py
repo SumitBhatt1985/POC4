@@ -199,15 +199,14 @@ class HomePageInformation(models.Model):
 
 class Feedback(models.Model):
     module = models.CharField(max_length=90)
-    userlogin = models.IntegerField()
+
     remarks = models.CharField(max_length=900, blank=True, null=True)
     insert_datetime = models.DateTimeField(default=timezone.now)
     modified_datetime = models.DateTimeField(blank=True)
-    is_active = models.IntegerField()
     username = models.CharField(max_length=50)
+    is_active = models.IntegerField(default=1)
     personal_no = models.CharField(max_length=50, blank=True, null=True)
-    phone_no = models.CharField(max_length=20, blank=True, null=True)
-    nudid = models.CharField(max_length=20, blank=True, null=True)
+
     question1 = models.CharField(max_length=10, blank=True, null=True)
     question2 = models.CharField(max_length=10, blank=True, null=True)
     question3 = models.CharField(max_length=10, blank=True, null=True)
@@ -219,6 +218,18 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"{self.username} - Avg: {self.avg_feedback}"
+
+class RoleMaster(models.Model):
+    role_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    level = models.CharField(max_length=50)
+    status = models.IntegerField(default=1)  # Default to active (1)
+
+    class Meta:
+        db_table = 'tbl_role_master'
+
+    def __str__(self):
+        return f"{self.name} ({self.level})"
 
 class UserDetails(models.Model):
     role = models.CharField(max_length=50)
