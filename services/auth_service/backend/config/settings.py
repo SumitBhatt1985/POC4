@@ -194,6 +194,9 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+# ====================================================================
+# Old Caching Configuration for Redis
+# ====================================================================
 # Caching Configuration for Rate Limiting
 # CACHES = {
 #     'default': {
@@ -207,14 +210,65 @@ SIMPLE_JWT = {
 #     }
 # }
 
-# Fallback to local memory cache if Redis is not available
+# # Fallback to local memory cache if Redis is not available
+# if config('USE_MEMORY_CACHE', default=False, cast=bool):
+#     CACHES = {
+#         'default': {
+#             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#             'LOCATION': 'auth-service-cache',
+#         }
+#     }
+# =========================================================
+
+
+# ====================================================================
+# Caching Configuration for Redis 
+# if not installed fallback to memory cache will be used
+# ====================================================================
+# Caching Configuration for Rate Limiting
+# Try Redis first, fallback to memory cache if Redis is not available
+try:
+    import redis
+    # Test Redis connection
+    redis_client = redis.Redis.from_url(config('REDIS_URL', default='redis://localhost:6379/1'))
+    redis_client.ping()
+    
+    # Redis is available, use it
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': config('REDIS_URL', default='redis://localhost:6379/1'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            },
+            'KEY_PREFIX': 'auth_service',
+            'TIMEOUT': 300,
+        }
+    }
+    print("✅ Using Redis cache backend")
+    
+except (ImportError, redis.ConnectionError, redis.TimeoutError, Exception):
+    # Redis is not available, use memory cache
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'auth-service-cache',
+            'TIMEOUT': 300,
+        }
+    }
+    print("⚠️  Redis not available, using memory cache backend")
+
+# Manual override for memory cache if needed
 if config('USE_MEMORY_CACHE', default=False, cast=bool):
     CACHES = {
         'default': {
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
             'LOCATION': 'auth-service-cache',
+            'TIMEOUT': 300,
         }
     }
+    print("🔧 Using memory cache backend (manual override)")
+
 
 # Security settings for production
 SECURE_BROWSER_XSS_FILTER = True
