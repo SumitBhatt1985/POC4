@@ -14,7 +14,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 import logging
 
-from .models import HomePageInformation, UserProfile, Feedback, UserDetails
+from .models import HomePageInformation, UserProfile, Feedback, UserDetails, RoleMaster
 
 logger = logging.getLogger(__name__)
 
@@ -656,7 +656,17 @@ class PublicationsSerializer(serializers.ModelSerializer):
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
-        fields = '__all__'
+        fields = [
+            'personal_no',
+            'username',
+            'question1',
+            'question2',
+            'question3',
+            'question4',
+            'module',
+            'remarks',
+            'avg_feedback'
+        ]
     
     def create(self, validated_data):
         # Get question scores (convert to int if needed)
@@ -669,6 +679,12 @@ class FeedbackSerializer(serializers.ModelSerializer):
         validated_data['avg_feedback'] = str(avg)  # Save as string to match model
         # Save feedback
         return super().create(validated_data)
+
+
+class RoleMasterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoleMaster
+        fields = ['role_id', 'name', 'status']
 
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:

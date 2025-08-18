@@ -750,3 +750,5 @@ WARNING 2025-08-17 18:27:15,964 middleware 32916 29408 Slow request: POST /api/v
 INFO 2025-08-17 18:27:15,964 basehttp 32916 29408 "POST /api/v1/auth/login/ HTTP/1.1" 200 766
 INFO 2025-08-17 18:27:29,144 basehttp 32916 29408 "GET /api/v1/auth/users/manage HTTP/1.1" 301 0
 INFO 2025-08-17 18:27:29,741 basehttp 32916 38056 "GET /api/v1/auth/users/manage/ HTTP/1.1" 200 1186
+INFO 2025-08-18 09:54:02,725 autoreload 32916 27664 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-18 09:54:17,938 autoreload 30636 14928 Watching for file changes with StatReloader
