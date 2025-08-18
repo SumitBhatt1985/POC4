@@ -743,3 +743,10 @@ LINE 1: INSERT INTO "tbl_user_details" ("id", "user_id", "rank", "un...
 
 ERROR 2025-08-15 20:10:38,540 log 38056 39580 Internal Server Error: /api/v1/auth/signup/
 ERROR 2025-08-15 20:10:38,540 basehttp 38056 39580 "POST /api/v1/auth/signup/ HTTP/1.1" 500 132
+INFO 2025-08-17 18:26:47,786 autoreload 32916 27664 Watching for file changes with StatReloader
+INFO 2025-08-17 18:27:15,412 serializers 32916 29408 Successful login for user ID: 4
+INFO 2025-08-17 18:27:15,939 views 32916 29408 User ID 4 logged in successfully from IP: 127.0.0.1
+WARNING 2025-08-17 18:27:15,964 middleware 32916 29408 Slow request: POST /api/v1/auth/login/ took 2.19s
+INFO 2025-08-17 18:27:15,964 basehttp 32916 29408 "POST /api/v1/auth/login/ HTTP/1.1" 200 766
+INFO 2025-08-17 18:27:29,144 basehttp 32916 29408 "GET /api/v1/auth/users/manage HTTP/1.1" 301 0
+INFO 2025-08-17 18:27:29,741 basehttp 32916 38056 "GET /api/v1/auth/users/manage/ HTTP/1.1" 200 1186
