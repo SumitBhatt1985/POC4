@@ -6,27 +6,33 @@ with PostgreSQL backend. Optimized for Angular 18+ frontend consumption.
 """
 
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth import authenticate
 from django.db import IntegrityError
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
+from rest_framework_simplejwt.settings import api_settings
+from .authentication import CustomJWTAuthentication
+from datetime import datetime, timedelta
 import logging
 
 from .serializers import (LoginSerializer, 
                           UserSerializer, 
                           UserProfileSerializer, 
+                          UserDetailsSerializer,
                           SignUpSerializer, 
                           InstructionsSerializer, OfflineSerializer, DownloadsSerializer, PublicationsSerializer, 
                           FeedbackSerializer,
                           RoleMasterSerializer)
 
-from .models import (HomePageInformation, Feedback, UserProfile, UserDetails, RoleMaster)
+from .models import (HomePageInformation, Feedback, UserDetails, RoleMaster)
 from django.db import transaction
 
 logger = logging.getLogger(__name__)
@@ -116,68 +122,77 @@ class LoginAPIView(APIView):
                 }
             }
         """
+
+        userlogin = request.data.get('userlogin')
+        password = request.data.get('password')
+
         
-        serializer = LoginSerializer(
-            data=request.data, 
-            context={'request': request}
-        )
-        
-        if serializer.is_valid():
-            try:
-                # Get validated user from serializer (PostgreSQL query completed)
-                user = serializer.validated_data['user']
+        try:
+            user = UserDetails.objects.get(userlogin=userlogin, status='1')
+            
+            
+            
+            if check_password(password, user.password):
+                class CustomUser:
+                    def __init__(self, userlogin, role):
+                        self.userlogin = userlogin
+                        self.role = role
+                        self.id = f"{userlogin}-{role}"  # Unique identifier
+
+                    def __str__(self):
+                        return self.id
+
+                custom_user = CustomUser(user.userlogin, user.role)
+
+                # Generate token manually
+                refresh = RefreshToken()
+                refresh['userlogin'] = custom_user.userlogin
+                refresh['role'] = custom_user.role
+
                 
-                # Generate JWT tokens using SimpleJWT
-                tokens = serializer.get_tokens_for_user(user)
-                
-                # Update last login timestamp (PostgreSQL UPDATE query)
-                user.last_login = timezone.now()
-                user.save(update_fields=['last_login'])
-                
-                # Serialize user data for clean JSON response
-                user_serializer = UserSerializer(user)
-                
-                # Log successful login with client IP for security monitoring
-                client_ip = self.get_client_ip(request)
-                logger.info(
-                    f"User ID {user.id} logged in successfully from IP: {client_ip}"
+                OutstandingToken.objects.create(
+                    user=None,  # You can leave this as None or link to a dummy Django User if needed
+                    jti=refresh['jti'],
+                    token=str(refresh),
+                    created_at=datetime.utcnow(),
+                    expires_at=datetime.utcnow() + api_settings.REFRESH_TOKEN_LIFETIME
                 )
-                
-                # Return clean JSON response for Angular frontend
+
+
+                access_token = refresh.access_token
+                access_token['userlogin'] = custom_user.userlogin
+                access_token['role'] = custom_user.role
+
+                tokens = {
+                    "access": str(access_token),
+                    "refresh": str(refresh)
+                }
+
                 return Response({
-                    'success': True,
-                    'message': 'Login successful',
-                    'data': {
-                        'user': user_serializer.data,
-                        'tokens': tokens
+                    "success": True,
+                    "message": "Login successful",
+                    "data": {
+                        "user": UserDetailsSerializer(user).data,
+                        "tokens": tokens
                     }
                 }, status=status.HTTP_200_OK)
-                
-            except Exception as e:
-                # Log unexpected errors for debugging
-                logger.error(f"Unexpected error during login: {str(e)}")
+
+            else:
                 return Response({
-                    'success': False,
-                    'message': 'An error occurred during authentication',
-                    'errors': {
-                        'detail': 'Internal server error',
-                        'code': 'server_error'
-                    }
-                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
-        else:
-            # Log failed login attempt for security monitoring
-            client_ip = self.get_client_ip(request)
-            logger.warning(
-                f"Failed login attempt from IP: {client_ip}"
-            )
-            
-            # Return standardized error response for Angular frontend
+                    "success": False,
+                    "message": "Invalid credentials",
+                    "errors": {"detail": "Incorrect password"}
+                }, status=status.HTTP_401_UNAUTHORIZED)
+
+        except UserDetails.DoesNotExist:
             return Response({
-                'success': False,
-                'message': 'Authentication failed',
-                'errors': serializer.errors
-            }, status=status.HTTP_400_BAD_REQUEST)
+                "success": False,
+                "message": "Invalid credentials",
+                "errors": {"detail": "User not found"}
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
     
     def get_client_ip(self, request):
         """
@@ -217,7 +232,7 @@ class LogoutAPIView(APIView):
     Methods:
         POST: Logout user and blacklist refresh token
     """
-    
+    permission_classes = [AllowAny]  
     def post(self, request, *args, **kwargs):
         """
         Logout user by blacklisting refresh token in PostgreSQL.
@@ -265,27 +280,27 @@ class LogoutAPIView(APIView):
             
             # Blacklist token in PostgreSQL using SimpleJWT
             token = RefreshToken(refresh_token)
-            token.blacklist()
+
             
-            # Log successful logout
-            user_id = request.user.id if request.user.is_authenticated else 'anonymous'
-            logger.info(f"User ID {user_id} logged out successfully")
-            
-            return Response({
-                'success': True,
-                'message': 'Logout successful'
-            }, status=status.HTTP_200_OK)
-            
-        except TokenError as e:
-            logger.warning(f"Invalid token during logout: {str(e)}")
-            return Response({
-                'success': False,
-                'message': 'Invalid token',
-                'errors': {
-                    'detail': 'Token is invalid or expired',
-                    'code': 'invalid_token'
-                }
-            }, status=status.HTTP_400_BAD_REQUEST)
+            outstanding = OutstandingToken.objects.filter(jti=token["jti"]).first()
+            if outstanding:
+                BlacklistedToken.objects.get_or_create(token=outstanding)
+                logger.info(f"Token {token['jti']} blacklisted successfully")
+                return Response({
+                    "success": True,
+                    "message": "Logout successful"
+                }, status=status.HTTP_200_OK)
+            else:
+                logger.warning("Token not found in OutstandingToken table")
+                return Response({
+                    "success": False,
+                    "message": "Token not found",
+                    "errors": {
+                        "detail": "Token not registered",
+                        "code": "token_not_found"
+                    }
+                }, status=status.HTTP_400_BAD_REQUEST)
+
             
         except Exception as e:
             logger.error(f"Unexpected error during logout: {str(e)}")
@@ -356,6 +371,11 @@ class UserProfileAPIView(APIView):
     # Authentication is required (configured globally in settings.py)
     # permission_classes = [IsAuthenticated]  # Default from settings
     # authentication_classes = [JWTAuthentication]  # Default from settings
+
+    
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     
     def get(self, request, *args, **kwargs):
         """
@@ -400,30 +420,29 @@ class UserProfileAPIView(APIView):
         """
         
         try:
-            # Use enhanced UserProfileSerializer with computed fields
-            serializer = UserProfileSerializer(request.user)
-            
-            # Log profile access for security monitoring
-            logger.info(f"User ID {request.user.id} accessed profile")
-            
+            user = request.user 
+
+            if not isinstance(user, UserDetails):
+                return Response({
+                    "success": False,
+                    "message": "Invalid user type",
+                    "errors": {"detail": "Authenticated user is not valid"}
+                }, status=status.HTTP_401_UNAUTHORIZED)
+
+            serializer = UserDetailsSerializer(user)
             return Response({
-                'success': True,
-                'message': 'Profile retrieved successfully',
-                'data': {
-                    'user': serializer.data
-                }
+                "success": True,
+                "message": "Profile retrieved successfully",
+                "data": serializer.data
             }, status=status.HTTP_200_OK)
-            
+
         except Exception as e:
-            logger.error(f"Error retrieving user profile for user {request.user.id}: {str(e)}")
             return Response({
-                'success': False,
-                'message': 'An error occurred while retrieving profile',
-                'errors': {
-                    'detail': 'Internal server error',
-                    'code': 'server_error'
-                }
+                "success": False,
+                "message": "An error occurred while retrieving profile",
+                "errors": {"detail": str(e)}
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     
     def put(self, request, *args, **kwargs):
         """
@@ -475,8 +494,8 @@ class UserProfileAPIView(APIView):
         """
         
         try:
-            # Use enhanced UserProfileSerializer for validation and updates
-            serializer = UserProfileSerializer(
+            # Use enhanced UserDetailsSerializer for validation and updates
+            serializer = UserDetailsSerializer(
                 request.user, 
                 data=request.data, 
                 partial=True  # Allow partial updates
@@ -645,94 +664,89 @@ class SignUpAPIView(APIView):
         }
         ```
         """
-        # Log signup attempt
-        client_ip = self.get_client_ip(request)
-        logger.info(f"User signup attempt from IP: {client_ip}")
-        
+
+
+        data = request.data
+        required_fields = [
+            "userlogin", "role", "rank", "username", "personal_no", "designation",
+            "ship_name", "password", "confirm_password", "employee_type", "establishment",
+            "nudemail", "phone_no", "mobile_no", "status", "sso_user", "H", "L", "E", "X"
+        ]
+        missing = [f for f in required_fields if f not in data]
+        if missing:
+            return Response({
+                "success": False,
+                "message": "Missing required fields",
+                "errors": {field: ["This field is required."] for field in missing}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        if data["password"] != data["confirm_password"]:
+            return Response({
+                "success": False,
+                "message": "Passwords do not match",
+                "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        if UserDetails.objects.filter(userlogin=data["userlogin"]).exists():
+            return Response({
+                "success": False,
+                "message": "Userlogin already exists",
+                "errors": {"userlogin": ["This userlogin is already taken."]}
+            }, status=status.HTTP_400_BAD_REQUEST)
         try:
-            # Validate request data
-            serializer = self.serializer_class(data=request.data)
-            
-            if not serializer.is_valid():
-                # Log validation errors
-                logger.warning(f"Signup validation failed from IP {client_ip}")
-                
-                # Transform errors for consistent format
-                formatted_errors = {}
-                for field, field_errors in serializer.errors.items():
-                    formatted_errors[field] = []
-                    for error in field_errors:
-                        if isinstance(error, dict):
-                            formatted_errors[field].append(error)
-                        else:
-                            formatted_errors[field].append({
-                                'message': str(error),
-                                'code': 'validation_error'
-                            })
-                
-                return Response(
-                    {
-                        'success': False,
-                        'message': 'Validation failed',
-                        'errors': formatted_errors
-                    },
-                    status=status.HTTP_400_BAD_REQUEST
+            with transaction.atomic():
+                profile = UserDetails.objects.create(
+                    role=data["role"],
+                    rank=data["rank"],
+                    username=data["username"],
+                    userlogin=data["userlogin"],
+                    password=make_password(data["password"]),
+                    confirm_password=make_password(data["confirm_password"]),
+                    personal_no=data["personal_no"],
+                    designation=data["designation"],
+                    ship_name=data["ship_name"],
+                    employee_type=data["employee_type"],
+                    establishment=data["establishment"],
+                    nudemail=data["nudemail"],
+                    phone_no=data["phone_no"],
+                    mobile_no=data["mobile_no"],
+                    H=data["H"],
+                    L=data["L"],
+                    E=data["E"],
+                    X=data["X"],
+                    sso_user=data["sso_user"],
+                    status=data["status"]
                 )
-            
-            # Create user and profile
-            user, profile = serializer.save()
-            
-            # Generate response data
-            user_data = serializer.to_representation((user, profile))
-            
-            # Log successful signup
-            logger.info(f"User signup successful: ID {user.id}, Profile: {profile.id} from IP: {client_ip}")
-            
-            return Response(
-                {
-                    'success': True,
-                    'message': 'User created successfully',
-                    'data': {
-                        'user': user_data
-                    }
-                },
-                status=status.HTTP_201_CREATED
-            )
-            
-        except IntegrityError as e:
-            # Handle database integrity errors
-            logger.error(f"Database integrity error during signup from IP {client_ip}: {str(e)}")
-            
-            # Determine specific conflict
-            error_message = str(e).lower()
-            if 'username' in error_message:
-                field_error = {'username': [{'message': 'Username already exists', 'code': 'username_conflict'}]}
-            elif 'email' in error_message:
-                field_error = {'email': [{'message': 'Email already registered', 'code': 'email_conflict'}]}
-            else:
-                field_error = {'general': [{'message': 'Data conflict occurred', 'code': 'integrity_error'}]}
-            
-            return Response(
-                {
-                    'success': False,
-                    'message': 'Signup failed due to data conflict',
-                    'errors': field_error
-                },
-                status=status.HTTP_400_BAD_REQUEST
-            )
-            
+            return Response({
+                "success": True,
+                "message": "User created successfully",
+                "data": {
+                    "id": profile.id,
+                    "user_login": profile.userlogin,
+                    "role": profile.role,
+                    "rank": profile.rank,
+                    "name": profile.username,
+                    "personal_no": profile.personal_no,
+                    "designation": profile.designation,
+                    "ship": profile.ship_name,
+                    "employee_type": profile.employee_type,
+                    "establishment": profile.establishment,
+                    "nudemail": profile.nudemail,
+                    "phone_no": profile.phone_no,
+                    "mobile_no": profile.mobile_no,
+                    "H": profile.H,
+                    "L": profile.L,
+                    "E": profile.E,
+                    "X": profile.X,
+                    "sso_user": profile.sso_user,
+                    "status": profile.status,
+                }
+            }, status=status.HTTP_201_CREATED)
         except Exception as e:
-            # Handle unexpected errors
-            logger.error(f"Unexpected error during signup from IP {client_ip}: {str(e)}")
-            
-            return Response(
-                {
-                    'success': False,
-                    'message': 'Signup failed',
-                    'errors': {'system': [{'message': 'Internal server error occurred', 'code': 'server_error'}]}
-                },
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            logger.error(f"Error creating user: {str(e)}")
+            return Response({
+                "success": False,
+                "message": "User creation failed",
+                "errors": {"system": [{"message": str(e), "code": "server_error"}]}
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
     def get_client_ip(self, request):
         """
@@ -854,13 +868,15 @@ class UserManagementAPIView(APIView):
     PUT: Edit user
     DELETE: Delete user
     """
-    permission_classes = [IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
 
     def get(self, request, *args, **kwargs):
         try:
-            details = UserDetails.objects.all()
-            # details = UserDetails.objects.filter(status=1)
+            # details = UserDetails.objects.all()
+            details = UserDetails.objects.filter(status=1)
             data = []
             for detail in details:
                 data.append({
@@ -876,6 +892,11 @@ class UserManagementAPIView(APIView):
                     "establishment": detail.establishment,
                     "nudemail": detail.nudemail,
                     "phone_no": detail.phone_no,
+                    "sso_user": detail.sso_user,
+                    "H": detail.H,
+                    "L": detail.L,
+                    "E": detail.E,
+                    "X": detail.X,
                     "status": detail.status,
                 })
             return Response({
@@ -895,9 +916,8 @@ class UserManagementAPIView(APIView):
     def post(self, request, *args, **kwargs):
         required_fields = [
             "userlogin", "role", "rank", "username", "personal_no", "designation",
-            "ship_name", "employee_type", "establishment", "nudemail", "phone_no", "status",
-            "password", "confirm_password"
-        ]
+            "ship_name", "password", "confirm_password", "employee_type", "establishment", "nudemail", "phone_no", "status","sso_user", "H", "L", "E", "X",
+            ]
 
         data = request.data
         missing = [f for f in required_fields if f not in data]
@@ -924,8 +944,8 @@ class UserManagementAPIView(APIView):
                     rank=data["rank"],
                     username=data["username"],
                     userlogin=data["personal_no"],
-                    password=data["password"],
-                    confirm_password=data["confirm_password"],
+                    password=make_password(data["password"]),
+                    confirm_password=make_password(data["confirm_password"]),
                     personal_no=data["personal_no"],
                     designation=data["designation"],
                     ship_name=data["ship_name"],
@@ -933,6 +953,11 @@ class UserManagementAPIView(APIView):
                     establishment=data["establishment"],
                     nudemail=data["nudemail"],
                     phone_no=data["phone_no"],
+                    H=data["H"],
+                    L=data["L"],
+                    E=data["E"],
+                    X=data["X"],
+                    sso_user=data["sso_user"],
                     status=data["status"]
                 )
             return Response({
@@ -951,6 +976,11 @@ class UserManagementAPIView(APIView):
                     "establishment": profile.establishment,
                     "nudemail": profile.nudemail,
                     "phone_no": profile.phone_no,
+                    "H": profile.H,
+                    "L": profile.L,
+                    "E": profile.E,
+                    "X": profile.X,
+                    "sso_user": profile.sso_user,
                     "status": profile.status,
                 }
             }, status=status.HTTP_201_CREATED)
@@ -989,11 +1019,12 @@ class UserManagementAPIView(APIView):
                     "message": "Passwords do not match",
                     "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
                 }, status=status.HTTP_400_BAD_REQUEST)
-            profile.password = data["password"]
-            profile.confirm_password = data["confirm_password"]
+            profile.password = make_password(data["password"])
+            profile.confirm_password = make_password(data["confirm_password"])
+            
         for field in [
                 "role", "rank", "username", "userlogin", "personal_no", "designation", "ship_name",
-                "employee_type", "establishment", "nudemail", "phone_no", "mobile_no", "status"
+                "employee_type", "establishment", "nudemail", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
         ]:
                 if field in data:
                     setattr(profile, field, data[field])
@@ -1015,6 +1046,11 @@ class UserManagementAPIView(APIView):
             "nudemail": profile.nudemail,
             "phone_no": profile.phone_no,
             "mobile_no": profile.mobile_no,
+            "sso_user": profile.sso_user,
+            "H": profile.H,
+            "L": profile.L,
+            "E": profile.E,
+            "E": profile.X,
             "status": profile.status,
         }
         }, status=status.HTTP_200_OK)

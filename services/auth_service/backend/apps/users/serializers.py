@@ -14,7 +14,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 import logging
 
-from .models import HomePageInformation, UserProfile, Feedback, UserDetails, RoleMaster
+from .models import HomePageInformation, Feedback, UserDetails, RoleMaster
 
 logger = logging.getLogger(__name__)
 
@@ -192,12 +192,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
     initials = serializers.SerializerMethodField()
     
     class Meta:
-        model = User
-        fields = (
-            'id', 'username', 'email', 'first_name', 'last_name',
-            'full_name', 'initials', 'is_staff', 'is_active', 
-            'date_joined', 'last_login'
-        )
+        model = UserDetails
+        # fields = (
+        #     'id', 'username', 'email', 'first_name', 'last_name',
+        #     'full_name', 'initials', 'is_staff', 'is_active', 
+        #     'date_joined', 'last_login'
+        # )
+        fields = [
+            "id", "role", "rank", "username", "userlogin", "personal_no",
+            "designation", "ship_name", "employee_type", "establishment",
+            "nudemail", "phone_no", "sso_user", "h", "l", "e", "x", "mobile_no", "status",
+        ]
         read_only_fields = ('id', 'username', 'is_staff', 'is_active', 'date_joined', 'last_login')
         
     def get_full_name(self, obj):
@@ -689,8 +694,8 @@ class RoleMasterSerializer(serializers.ModelSerializer):
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDetails
-        fields = [
+        fields =  [
             "id", "role", "rank", "username", "userlogin", "personal_no",
             "designation", "ship_name", "employee_type", "establishment",
-            "nudemail", "phone_no", "mobile_no", "status"
+            "nudemail", "phone_no", "sso_user", "H", "L", "E", "X", "mobile_no", "status",
         ]
