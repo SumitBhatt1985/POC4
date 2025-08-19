@@ -371,7 +371,7 @@ class SignUpSerializer(serializers.Serializer):
     ```
     """
     
-    username = serializers.CharField(required=True, max_length=150)
+    name = serializers.CharField(required=True, max_length=150)
     designation_email = serializers.EmailField(required=True)
     rank = serializers.CharField(required=True, max_length=100)
     unitname = serializers.CharField(required=True, max_length=200)
@@ -546,7 +546,7 @@ class SignUpSerializer(serializers.Serializer):
         
         return {
             'userId': str(profile.id),  # Use profile UUID as primary identifier
-            'username': user.username,
+            'name': user.name,
             'email': user.email,
             'rank': profile.rank,
             'unitname': profile.unitname,
@@ -615,7 +615,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDetails
         fields =  [
-            "id", "role", "rank", "username", "userlogin", "personal_no",
+            "id", "role", "rank", "name", "userlogin", "personal_no",
             "designation", "ship_name", "employee_type", "establishment",
             "nudemail", "phone_no", "sso_user", "H", "L", "E", "X", "mobile_no", "status",
         ]

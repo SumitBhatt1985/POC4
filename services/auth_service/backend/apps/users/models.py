@@ -72,7 +72,7 @@ class UserDetails(models.Model):
     update_date = models.DateTimeField(null=True, blank=True)
     role = models.CharField(max_length=50)
     rank = models.CharField(max_length=50)
-    username = models.CharField(max_length=150)
+    name = models.CharField(max_length=150)
     userlogin = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=510)
     confirm_password = models.CharField(max_length=510)
