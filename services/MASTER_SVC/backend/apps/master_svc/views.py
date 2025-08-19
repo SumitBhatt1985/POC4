@@ -70,7 +70,11 @@ def crud_create(user, table_name, data):
 def crud_list(user, table_name):
 	check_permission(user, table_name, 'view')
 	model, serializer_class = ALLOWED_TABLES[table_name]
-	queryset = model.objects.all()
+	# Only return active records if is_active field exists
+	if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
+		queryset = model.objects.filter(is_active=True)
+	else:
+		queryset = model.objects.all()
 	serializer = serializer_class(queryset, many=True)
 	return Response(serializer.data)
 
@@ -93,9 +97,17 @@ def crud_delete(user, table_name, pk):
 	model, _ = ALLOWED_TABLES[table_name]
 	try:
 		instance = model.objects.get(pk=pk)
-		instance.delete()
-		audit_logger.info(f"DELETE {table_name} id={pk} by {getattr(user, 'username', 'unknown')}")
-		return Response({'success': True})
+		# Soft delete: set is_active to False or 0
+		if hasattr(instance, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
+			setattr(instance, 'is_active', False)
+			instance.save()
+			audit_logger.info(f"SOFT DELETE {table_name} id={pk} by {getattr(user, 'username', 'unknown')}")
+			return Response({'success': True, 'soft_deleted': True})
+		else:
+			# fallback to hard delete if no is_active field
+			instance.delete()
+			audit_logger.info(f"DELETE {table_name} id={pk} by {getattr(user, 'username', 'unknown')}")
+			return Response({'success': True, 'soft_deleted': False})
 	except model.DoesNotExist:
 		return Response({'error': 'Not found'}, status=status.HTTP_404_NOT_FOUND)
 

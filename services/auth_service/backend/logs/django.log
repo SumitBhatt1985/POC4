@@ -2254,3 +2254,4 @@ ERROR 2025-08-19 17:18:38,008 basehttp 47004 49696 "PUT /api/v1/auth/users/manag
 INFO 2025-08-19 17:19:48,491 autoreload 47004 12772 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
 INFO 2025-08-19 17:19:55,767 autoreload 27900 5772 Watching for file changes with StatReloader
 >>>>>>> c001d8381a741ee6436e96b35f3a6f2a87165b65
+INFO 2025-08-19 18:44:31,620 autoreload 23808 27860 Watching for file changes with StatReloader

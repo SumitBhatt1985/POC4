@@ -312,3 +312,4 @@ INFO 2025-08-19 16:07:52,359 autoreload 19504 7376 Watching for file changes wit
 INFO 2025-08-19 16:08:33,001 autoreload 19504 7376 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
 INFO 2025-08-19 16:08:38,179 autoreload 12760 24972 Watching for file changes with StatReloader
 INFO 2025-08-19 16:10:09,507 basehttp 12760 29164 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 70
+INFO 2025-08-19 18:44:10,328 autoreload 9944 28768 Watching for file changes with StatReloader
