@@ -765,7 +765,8 @@ class HomePageView(APIView):
         return Response(serializer.data)
     
 class FeedbackAPIView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         feedbacks = Feedback.objects.all()
@@ -780,7 +781,8 @@ class FeedbackAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RoleMasterAPIView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         roles = RoleMaster.objects.filter(status=1)
@@ -795,7 +797,8 @@ class RoleMasterAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EditRoleAPIView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def put(self, request):
         role_id = request.data.get('role_id')   # take from body
@@ -822,7 +825,8 @@ class EditRoleAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class DeleteRoleAPIView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def delete(self, request):
         role_id = request.data.get('role_id')
