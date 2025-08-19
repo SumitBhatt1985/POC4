@@ -2043,4 +2043,214 @@ WARNING 2025-08-19 15:37:14,985 middleware 27244 43348 Slow request: POST /api/v
 INFO 2025-08-19 15:37:14,987 basehttp 27244 43348 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
 WARNING 2025-08-19 15:37:30,604 middleware 27244 43348 Slow request: PUT /api/v1/auth/users/manage/ took 2.06s
 INFO 2025-08-19 15:37:30,606 basehttp 27244 43348 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 200 422
+<<<<<<< HEAD
 >>>>>>> fd435c00f85ab360a4acd93e6d221682b2d80304
+=======
+INFO 2025-08-19 16:39:07,583 autoreload 27244 44960 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 16:39:16,840 autoreload 9308 37520 Watching for file changes with StatReloader
+INFO 2025-08-19 16:39:59,112 autoreload 9308 37520 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\config\settings.py changed, reloading.
+INFO 2025-08-19 16:42:32,234 autoreload 48540 20144 Watching for file changes with StatReloader
+INFO 2025-08-19 16:43:58,752 autoreload 48540 20144 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\config\settings.py changed, reloading.
+INFO 2025-08-19 16:44:06,317 autoreload 33260 35988 Watching for file changes with StatReloader
+INFO 2025-08-19 16:48:23,949 autoreload 45796 40312 Watching for file changes with StatReloader
+INFO 2025-08-19 16:53:45,878 autoreload 45796 40312 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\config\settings.py changed, reloading.
+INFO 2025-08-19 16:53:53,993 autoreload 17756 51084 Watching for file changes with StatReloader
+INFO 2025-08-19 16:57:50,458 autoreload 31904 27716 Watching for file changes with StatReloader
+INFO 2025-08-19 16:58:24,857 autoreload 31904 27716 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 16:58:31,473 autoreload 3560 33888 Watching for file changes with StatReloader
+INFO 2025-08-19 16:58:51,019 autoreload 3560 33888 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 16:58:57,881 autoreload 38456 36116 Watching for file changes with StatReloader
+INFO 2025-08-19 16:59:21,962 autoreload 38456 36116 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 16:59:28,726 autoreload 38008 38864 Watching for file changes with StatReloader
+INFO 2025-08-19 17:00:09,098 autoreload 38008 38864 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 17:00:15,793 autoreload 43020 47864 Watching for file changes with StatReloader
+INFO 2025-08-19 17:01:09,063 autoreload 43020 47864 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 17:01:15,937 autoreload 45564 50688 Watching for file changes with StatReloader
+INFO 2025-08-19 17:01:24,354 basehttp 45564 20544 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 17:01:47,202 log 45564 20544 Unauthorized: /api/v1/auth/users/manage/
+WARNING 2025-08-19 17:01:47,203 basehttp 45564 20544 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 401 89
+WARNING 2025-08-19 17:02:45,451 log 45564 20544 Unauthorized: /api/v1/auth/users/manage/
+WARNING 2025-08-19 17:02:45,451 basehttp 45564 20544 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 401 89
+INFO 2025-08-19 17:07:11,056 autoreload 45564 50688 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 17:07:18,322 autoreload 37508 34276 Watching for file changes with StatReloader
+INFO 2025-08-19 17:07:28,793 autoreload 37508 34276 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\config\settings.py changed, reloading.
+INFO 2025-08-19 17:07:35,397 autoreload 49408 15016 Watching for file changes with StatReloader
+INFO 2025-08-19 17:07:41,885 basehttp 49408 42808 "POST /api/v1/auth/login/ HTTP/1.1" 200 1012
+WARNING 2025-08-19 17:07:57,530 log 49408 42808 Forbidden: /api/v1/auth/users/manage/
+WARNING 2025-08-19 17:07:57,531 basehttp 49408 42808 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 403 63
+INFO 2025-08-19 17:08:13,362 autoreload 49408 15016 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 17:08:20,253 autoreload 27876 38540 Watching for file changes with StatReloader
+INFO 2025-08-19 17:08:25,648 basehttp 27876 22760 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 17:08:40,034 log 27876 22760 Forbidden: /api/v1/auth/users/manage/
+WARNING 2025-08-19 17:08:40,038 basehttp 27876 22760 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 403 63
+INFO 2025-08-19 17:09:36,583 autoreload 27876 38540 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 17:09:43,532 autoreload 36348 32292 Watching for file changes with StatReloader
+INFO 2025-08-19 17:09:54,738 basehttp 36348 47020 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 17:10:09,955 log 36348 47020 Forbidden: /api/v1/auth/users/manage/
+WARNING 2025-08-19 17:10:09,955 basehttp 36348 47020 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 403 63
+INFO 2025-08-19 17:10:43,549 autoreload 36348 32292 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 17:10:50,565 autoreload 12780 49612 Watching for file changes with StatReloader
+INFO 2025-08-19 17:11:05,838 autoreload 12780 49612 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 17:11:12,757 autoreload 27892 14684 Watching for file changes with StatReloader
+INFO 2025-08-19 17:12:10,158 autoreload 36044 45040 Watching for file changes with StatReloader
+INFO 2025-08-19 17:12:39,398 autoreload 16332 38000 Watching for file changes with StatReloader
+INFO 2025-08-19 17:12:45,475 basehttp 16332 13348 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+ERROR 2025-08-19 17:13:00,555 log 16332 13348 Internal Server Error: /api/v1/auth/users/manage/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py", line 35, in authenticate
+    user = UserDetails.objects.get(userlogin=userlogin, status='1')
+           ^^^^^^^^^^^
+NameError: name 'UserDetails' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py", line 36, in authenticate
+    except UserDetails.DoesNotExist:
+           ^^^^^^^^^^^
+NameError: name 'UserDetails' is not defined
+ERROR 2025-08-19 17:13:00,582 basehttp 16332 13348 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 500 122969
+INFO 2025-08-19 17:13:29,217 autoreload 16332 38000 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 17:13:35,861 autoreload 1092 36104 Watching for file changes with StatReloader
+INFO 2025-08-19 17:13:46,682 basehttp 1092 15916 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 17:14:00,244 log 1092 15916 Forbidden: /api/v1/auth/users/manage/
+WARNING 2025-08-19 17:14:00,244 basehttp 1092 15916 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 403 63
+INFO 2025-08-19 17:16:33,859 autoreload 1092 36104 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 17:16:40,830 autoreload 20252 27568 Watching for file changes with StatReloader
+INFO 2025-08-19 17:16:49,008 autoreload 20252 27568 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 17:16:55,673 autoreload 46292 51196 Watching for file changes with StatReloader
+INFO 2025-08-19 17:17:04,006 basehttp 46292 47632 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+ERROR 2025-08-19 17:17:20,281 log 46292 47632 Internal Server Error: /api/v1/auth/users/manage/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 421, in initial
+    self.check_permissions(request)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\permissions.py", line 151, in has_permission
+    return bool(request.user and request.user.is_authenticated)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'UserDetails' object has no attribute 'is_authenticated'
+ERROR 2025-08-19 17:17:20,300 basehttp 46292 47632 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 500 109214
+INFO 2025-08-19 17:18:12,782 autoreload 47004 12772 Watching for file changes with StatReloader
+ERROR 2025-08-19 17:18:18,055 log 47004 49696 Internal Server Error: /api/v1/auth/users/manage/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 421, in initial
+    self.check_permissions(request)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\permissions.py", line 151, in has_permission
+    return bool(request.user and request.user.is_authenticated)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'UserDetails' object has no attribute 'is_authenticated'
+ERROR 2025-08-19 17:18:18,069 basehttp 47004 49696 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 500 109214
+INFO 2025-08-19 17:18:22,517 basehttp 47004 49696 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+ERROR 2025-08-19 17:18:37,994 log 47004 49696 Internal Server Error: /api/v1/auth/users/manage/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 421, in initial
+    self.check_permissions(request)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\permissions.py", line 151, in has_permission
+    return bool(request.user and request.user.is_authenticated)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'UserDetails' object has no attribute 'is_authenticated'
+ERROR 2025-08-19 17:18:38,008 basehttp 47004 49696 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 500 109214
+INFO 2025-08-19 17:19:48,491 autoreload 47004 12772 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 17:19:55,767 autoreload 27900 5772 Watching for file changes with StatReloader
+>>>>>>> c001d8381a741ee6436e96b35f3a6f2a87165b65

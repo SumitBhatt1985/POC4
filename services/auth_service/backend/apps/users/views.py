@@ -19,7 +19,7 @@ from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 from rest_framework_simplejwt.settings import api_settings
-from .authentication import CustomJWTAuthentication
+from common_auth.authentication import CustomJWTAuthentication
 from datetime import datetime, timedelta
 import logging
 
@@ -91,26 +91,36 @@ class LoginAPIView(APIView):
             
         Success Response (200):
             {
-                "success": true,
-                "message": "Login successful",
-                "data": {
-                    "user": {
-                        "id": 1,
-                        "username": "[username]",
-                        "email": "[email]",
-                        "first_name": "[first_name]",
-                        "last_name": "[last_name]",
-                        "is_staff": false,
-                        "is_active": true,
-                        "date_joined": "2024-01-01T12:00:00Z",
-                        "last_login": "2024-01-15T10:30:00Z"
-                    },
-                    "tokens": {
-                        "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
-                        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
-                    }
-                }
-            }
+    "success": true,
+    "message": "Login successful",
+    "data": {
+        "user": {
+            "id": 8,
+            "role": "admin",
+            "rank": "Captain",
+            "username": "Sam Nathan",
+            "userlogin": "Snathan",
+            "personal_no": "12345A",
+            "designation": "Operations Lead",
+            "ship_name": "INS Example",
+            "employee_type": "Permanent",
+            "establishment": "HQ",
+            "nudemail": "sam.nathan@navy.mil",
+            "phone_no": "9876556222",
+            "sso_user": "0",
+            "H": "0",
+            "L": "0",
+            "E": "0",
+            "X": "0",
+            "mobile_no": "9876556222",
+            "status": "1"
+        },
+        "tokens": {
+            "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.",
+            "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
+        }
+    }
+}
             
         Error Response (400):
             {
@@ -129,9 +139,6 @@ class LoginAPIView(APIView):
         
         try:
             user = UserDetails.objects.get(userlogin=userlogin, status='1')
-            
-            
-            
             if check_password(password, user.password):
                 class CustomUser:
                     def __init__(self, userlogin, role):
@@ -148,7 +155,7 @@ class LoginAPIView(APIView):
                 refresh = RefreshToken()
                 refresh['userlogin'] = custom_user.userlogin
                 refresh['role'] = custom_user.role
-
+                #refresh['user_id'] = user.id
                 
                 OutstandingToken.objects.create(
                     user=None,  # You can leave this as None or link to a dummy Django User if needed
@@ -879,7 +886,8 @@ class UserManagementAPIView(APIView):
                     "H": detail.H,
                     "L": detail.L,
                     "E": detail.E,
-                    "X": detail.X
+                    "X": detail.X,
+                    "status": detail.status
                 })
             return Response({
                 "success": True,
