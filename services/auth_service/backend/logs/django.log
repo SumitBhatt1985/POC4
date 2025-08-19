@@ -1897,3 +1897,16 @@ INFO 2025-08-19 14:23:06,565 autoreload 45620 27152 D:\OneDrive - Xcaliber Infot
 INFO 2025-08-19 14:23:15,835 autoreload 34940 35604 Watching for file changes with StatReloader
 >>>>>>> 2d2749ef281b9ccefd942bccbfc3650d4bd6d96d
 INFO 2025-08-19 14:27:06,811 autoreload 2264 29904 Watching for file changes with StatReloader
+INFO 2025-08-19 14:27:21,661 basehttp 2264 26112 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 14:27:36,752 log 2264 26112 Unauthorized: /api/v1/auth/logout/
+WARNING 2025-08-19 14:27:36,752 basehttp 2264 26112 "POST /api/v1/auth/logout/ HTTP/1.1" 401 172
+WARNING 2025-08-19 14:27:43,011 log 2264 26112 Unauthorized: /api/v1/auth/logout/
+WARNING 2025-08-19 14:27:43,011 basehttp 2264 26112 "POST /api/v1/auth/logout/ HTTP/1.1" 401 172
+INFO 2025-08-19 14:28:03,816 views 2264 26112 Token 20a7668293af426fa79f5b46feb1f410 blacklisted successfully
+INFO 2025-08-19 14:28:03,817 basehttp 2264 26112 "POST /api/v1/auth/logout/ HTTP/1.1" 200 46
+INFO 2025-08-19 14:39:51,701 basehttp 2264 31132 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+INFO 2025-08-19 15:31:47,988 basehttp 2264 21568 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+INFO 2025-08-19 15:36:41,199 views 2264 4420 Token bbf2d7ad8b044d25a7d809cefc7bf88a blacklisted successfully
+INFO 2025-08-19 15:36:41,207 basehttp 2264 4420 "POST /api/v1/auth/logout/ HTTP/1.1" 200 46
+INFO 2025-08-19 15:36:51,494 basehttp 2264 4420 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+INFO 2025-08-19 15:39:14,124 basehttp 2264 3196 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
