@@ -98,3 +98,7 @@ class UserDetails(models.Model):
 
     def __str__(self):
         return f"{self.user_login} ({self.name})"
+
+    @property
+    def is_authenticated(self):
+        return True
