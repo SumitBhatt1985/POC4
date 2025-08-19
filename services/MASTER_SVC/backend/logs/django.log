@@ -1,2 +1,314 @@
 # Django log file for MASTER_SVC backend
 # This file will be written by the Django logging system.
+INFO 2025-08-18 17:28:55,146 autoreload 12872 22328 Watching for file changes with StatReloader
+INFO 2025-08-18 17:29:49,354 autoreload 12872 22328 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\health.py changed, reloading.
+INFO 2025-08-18 17:29:54,241 autoreload 12988 5184 Watching for file changes with StatReloader
+INFO 2025-08-18 17:30:30,801 autoreload 12988 5184 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\health.py changed, reloading.
+INFO 2025-08-18 17:30:35,790 autoreload 29352 20960 Watching for file changes with StatReloader
+INFO 2025-08-18 17:39:28,166 autoreload 29352 20960 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 17:39:33,065 autoreload 11236 26560 Watching for file changes with StatReloader
+INFO 2025-08-18 17:39:42,084 autoreload 11236 26560 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 17:39:47,042 autoreload 15152 28360 Watching for file changes with StatReloader
+INFO 2025-08-18 17:39:51,017 autoreload 15152 28360 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 17:39:55,871 autoreload 27088 22208 Watching for file changes with StatReloader
+INFO 2025-08-18 17:39:56,834 basehttp 27088 25228 "GET /api/v1/master/index HTTP/1.1" 301 0
+INFO 2025-08-18 17:39:56,838 basehttp 27088 20244 "GET /api/v1/master/index/ HTTP/1.1" 200 49
+WARNING 2025-08-18 17:39:56,874 log 27088 20244 Not Found: /favicon.ico
+WARNING 2025-08-18 17:39:56,875 basehttp 27088 20244 "GET /favicon.ico HTTP/1.1" 404 2365
+INFO 2025-08-18 20:22:45,965 autoreload 27088 22208 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 20:22:54,399 autoreload 29068 1128 Watching for file changes with StatReloader
+INFO 2025-08-18 20:31:01,405 autoreload 29068 1128 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 20:31:06,456 autoreload 28552 30640 Watching for file changes with StatReloader
+INFO 2025-08-18 20:33:56,726 autoreload 28552 30640 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-18 20:34:01,901 autoreload 424 24544 Watching for file changes with StatReloader
+INFO 2025-08-18 20:36:02,192 autoreload 424 24544 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 20:36:07,281 autoreload 23808 17544 Watching for file changes with StatReloader
+INFO 2025-08-18 20:36:47,318 autoreload 23808 17544 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 20:36:52,516 autoreload 888 23912 Watching for file changes with StatReloader
+INFO 2025-08-18 20:42:45,121 autoreload 888 23912 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 20:42:52,698 autoreload 29440 19224 Watching for file changes with StatReloader
+INFO 2025-08-18 20:43:20,029 autoreload 29440 19224 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-18 20:43:25,111 autoreload 5580 22976 Watching for file changes with StatReloader
+INFO 2025-08-18 20:43:56,157 autoreload 5580 22976 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 20:44:01,348 autoreload 15644 31540 Watching for file changes with StatReloader
+INFO 2025-08-18 20:44:10,713 autoreload 15644 31540 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 20:44:16,132 autoreload 3360 19924 Watching for file changes with StatReloader
+INFO 2025-08-18 20:44:25,897 autoreload 3360 19924 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 20:44:31,029 autoreload 17860 20372 Watching for file changes with StatReloader
+INFO 2025-08-18 20:46:16,400 autoreload 17860 20372 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-18 20:46:21,624 autoreload 23308 21120 Watching for file changes with StatReloader
+INFO 2025-08-18 20:54:17,124 autoreload 23308 21120 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 20:54:22,551 autoreload 12372 26744 Watching for file changes with StatReloader
+INFO 2025-08-18 20:58:48,681 autoreload 12372 26744 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 20:58:53,944 autoreload 20288 25476 Watching for file changes with StatReloader
+WARNING 2025-08-18 21:18:13,141 log 20288 23700 Not Found: /api/v1/auth/login/
+WARNING 2025-08-18 21:18:13,142 basehttp 20288 23700 "POST /api/v1/auth/login/ HTTP/1.1" 404 2387
+INFO 2025-08-18 21:51:15,413 autoreload 20288 25476 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 21:51:23,014 autoreload 13052 24660 Watching for file changes with StatReloader
+INFO 2025-08-18 22:06:21,395 autoreload 13052 24660 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 22:06:26,575 autoreload 29128 29400 Watching for file changes with StatReloader
+INFO 2025-08-18 22:14:53,604 autoreload 29128 29400 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-18 22:14:58,721 autoreload 12396 24480 Watching for file changes with StatReloader
+INFO 2025-08-18 22:16:10,712 autoreload 12396 24480 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 22:16:16,067 autoreload 12528 16852 Watching for file changes with StatReloader
+INFO 2025-08-18 22:17:02,666 autoreload 12528 16852 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 22:17:07,754 autoreload 23720 23124 Watching for file changes with StatReloader
+INFO 2025-08-18 22:46:39,643 autoreload 23720 23124 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 22:46:47,165 autoreload 12868 16920 Watching for file changes with StatReloader
+INFO 2025-08-18 22:47:09,508 autoreload 12868 16920 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 22:47:14,800 autoreload 20956 30120 Watching for file changes with StatReloader
+INFO 2025-08-18 22:53:57,379 autoreload 20956 30120 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 22:54:04,034 autoreload 18844 17044 Watching for file changes with StatReloader
+INFO 2025-08-18 22:54:27,145 autoreload 18844 17044 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-18 22:54:34,296 autoreload 13184 1128 Watching for file changes with StatReloader
+INFO 2025-08-19 11:25:19,766 autoreload 13184 1128 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 11:25:57,373 autoreload 17112 5732 Watching for file changes with StatReloader
+INFO 2025-08-19 11:26:30,975 autoreload 17112 5732 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 11:26:50,522 autoreload 25776 15700 Watching for file changes with StatReloader
+INFO 2025-08-19 11:28:57,928 autoreload 25776 15700 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 11:29:05,549 autoreload 20288 31556 Watching for file changes with StatReloader
+INFO 2025-08-19 11:30:25,393 autoreload 26404 25768 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:32:02,010 log 26404 22876 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 11:32:02,011 basehttp 26404 22876 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 58
+INFO 2025-08-19 12:53:35,568 autoreload 23808 31172 Watching for file changes with StatReloader
+WARNING 2025-08-19 13:00:07,596 log 23808 13244 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 13:00:07,596 basehttp 23808 13244 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 89
+INFO 2025-08-19 14:21:55,959 autoreload 23808 31172 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:22:03,510 autoreload 28900 15028 Watching for file changes with StatReloader
+INFO 2025-08-19 14:22:23,497 autoreload 28900 15028 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:22:28,683 autoreload 14272 27824 Watching for file changes with StatReloader
+WARNING 2025-08-19 14:23:09,211 log 14272 16444 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 14:23:09,212 basehttp 14272 16444 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 58
+INFO 2025-08-19 14:23:34,029 autoreload 14272 27824 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:23:39,197 autoreload 14712 19416 Watching for file changes with StatReloader
+INFO 2025-08-19 14:24:11,643 autoreload 18268 30804 Watching for file changes with StatReloader
+WARNING 2025-08-19 14:24:22,011 log 18268 27320 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 14:24:22,012 basehttp 18268 27320 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 58
+WARNING 2025-08-19 14:24:43,733 log 18268 27320 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 14:24:43,733 basehttp 18268 27320 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 58
+INFO 2025-08-19 14:24:58,132 autoreload 18268 30804 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:25:03,338 autoreload 11600 2332 Watching for file changes with StatReloader
+INFO 2025-08-19 14:26:54,588 autoreload 22244 13464 Watching for file changes with StatReloader
+WARNING 2025-08-19 14:28:46,018 log 22244 21724 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 14:28:46,019 basehttp 22244 21724 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 89
+INFO 2025-08-19 14:34:47,015 autoreload 22244 13464 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:34:52,106 autoreload 31084 8832 Watching for file changes with StatReloader
+INFO 2025-08-19 14:35:11,380 autoreload 31084 8832 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 14:35:16,559 autoreload 4708 23836 Watching for file changes with StatReloader
+INFO 2025-08-19 14:38:09,004 autoreload 4708 23836 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 14:38:16,311 autoreload 11180 21696 Watching for file changes with StatReloader
+INFO 2025-08-19 14:38:35,950 autoreload 11180 21696 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 14:38:41,133 autoreload 16880 27028 Watching for file changes with StatReloader
+INFO 2025-08-19 14:40:09,462 autoreload 13188 2816 Watching for file changes with StatReloader
+INFO 2025-08-19 14:44:33,636 autoreload 13188 2816 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:44:38,818 autoreload 19384 16264 Watching for file changes with StatReloader
+INFO 2025-08-19 14:44:58,017 autoreload 19384 16264 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:45:03,246 autoreload 7076 15308 Watching for file changes with StatReloader
+ERROR 2025-08-19 14:45:07,450 log 7076 15152 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 422, in initial
+    self.check_throttles(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 365, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\throttling.py", line 119, in allow_request
+    self.key = self.get_cache_key(request, view)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\throttling.py", line 195, in get_cache_key
+    ident = request.user.pk
+            ^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'pk'
+ERROR 2025-08-19 14:45:07,457 basehttp 7076 15152 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 111208
+ERROR 2025-08-19 14:46:49,300 log 7076 20300 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 422, in initial
+    self.check_throttles(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 365, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\throttling.py", line 119, in allow_request
+    self.key = self.get_cache_key(request, view)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\throttling.py", line 195, in get_cache_key
+    ident = request.user.pk
+            ^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'pk'
+ERROR 2025-08-19 14:46:49,303 basehttp 7076 20300 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 111208
+ERROR 2025-08-19 14:51:55,621 log 7076 26168 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 422, in initial
+    self.check_throttles(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 365, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\throttling.py", line 119, in allow_request
+    self.key = self.get_cache_key(request, view)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\throttling.py", line 195, in get_cache_key
+    ident = request.user.pk
+            ^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'pk'
+ERROR 2025-08-19 14:52:03,472 basehttp 7076 26168 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 111208
+INFO 2025-08-19 14:52:33,270 autoreload 7076 15308 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 14:52:38,510 autoreload 26796 25716 Watching for file changes with StatReloader
+INFO 2025-08-19 14:53:02,383 autoreload 26796 25716 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 14:53:07,617 autoreload 19208 15796 Watching for file changes with StatReloader
+ERROR 2025-08-19 14:53:25,503 log 19208 14456 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 137, in post
+    return GenericListView.as_view()(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 498, in dispatch
+    request = self.initialize_request(request, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 397, in initialize_request
+    return Request(
+           ^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 154, in __init__
+    assert isinstance(request, HttpRequest), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: The `request` argument must be an instance of `django.http.HttpRequest`, not `rest_framework.request.Request`.
+ERROR 2025-08-19 14:53:25,512 basehttp 19208 14456 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 122241
+INFO 2025-08-19 14:56:46,351 autoreload 19208 15796 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:56:51,552 autoreload 24348 4024 Watching for file changes with StatReloader
+INFO 2025-08-19 14:57:05,495 autoreload 24348 4024 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 14:57:10,651 autoreload 5880 13992 Watching for file changes with StatReloader
+INFO 2025-08-19 14:57:30,239 basehttp 5880 420 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 416
+WARNING 2025-08-19 14:57:47,156 log 5880 420 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 14:57:47,156 basehttp 5880 420 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-19 14:57:56,126 basehttp 5880 420 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 416
+WARNING 2025-08-19 15:06:19,663 log 5880 15364 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-19 15:06:19,663 basehttp 5880 15364 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 25
+WARNING 2025-08-19 15:06:30,653 log 5880 15364 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-19 15:06:30,653 basehttp 5880 15364 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 25
+INFO 2025-08-19 15:06:56,657 basehttp 5880 15364 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 416
+INFO 2025-08-19 15:08:02,301 basehttp 5880 5812 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 66
+WARNING 2025-08-19 15:08:38,703 log 5880 5812 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 15:08:38,704 basehttp 5880 5812 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 58
+INFO 2025-08-19 15:09:19,135 basehttp 5880 5812 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 483
+INFO 2025-08-19 15:12:25,588 basehttp 5880 31456 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 65
+INFO 2025-08-19 15:12:42,091 basehttp 5880 31456 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 549
+WARNING 2025-08-19 15:31:37,345 log 5880 908 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 15:31:37,346 basehttp 5880 908 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-19 15:32:23,295 log 5880 908 Forbidden: /api/v1/master/wrapper/
+WARNING 2025-08-19 15:32:23,296 basehttp 5880 908 "POST /api/v1/master/wrapper/ HTTP/1.1" 403 50
+WARNING 2025-08-19 15:34:47,761 log 5880 29796 Not Found: /api/v1/master/wrapper/8/
+WARNING 2025-08-19 15:34:47,762 basehttp 5880 29796 "POST /api/v1/master/wrapper/8/ HTTP/1.1" 404 3926
+WARNING 2025-08-19 15:35:06,316 log 5880 29796 Not Found: /api/v1/master/wrapper/8
+WARNING 2025-08-19 15:35:06,317 basehttp 5880 29796 "POST /api/v1/master/wrapper/8 HTTP/1.1" 404 3923
+WARNING 2025-08-19 15:36:10,567 log 5880 24556 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 15:36:10,567 basehttp 5880 24556 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-19 15:39:47,554 basehttp 5880 27076 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 68
+INFO 2025-08-19 15:40:18,290 basehttp 5880 27076 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 552
+INFO 2025-08-19 15:58:26,451 autoreload 5880 13992 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 15:58:37,182 autoreload 26712 2412 Watching for file changes with StatReloader
+INFO 2025-08-19 15:59:01,689 autoreload 26712 2412 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 15:59:08,710 autoreload 28244 16892 Watching for file changes with StatReloader
+INFO 2025-08-19 16:00:47,845 autoreload 28244 16892 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 16:00:54,838 autoreload 29784 24288 Watching for file changes with StatReloader
+INFO 2025-08-19 16:01:16,379 autoreload 29784 24288 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 16:01:32,070 autoreload 26036 27064 Watching for file changes with StatReloader
+INFO 2025-08-19 16:02:10,564 autoreload 26036 27064 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 16:02:15,720 autoreload 21064 31236 Watching for file changes with StatReloader
+INFO 2025-08-19 16:03:23,555 autoreload 21064 31236 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-19 16:03:28,815 autoreload 25988 27824 Watching for file changes with StatReloader
+INFO 2025-08-19 16:03:48,352 autoreload 25988 27824 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-19 16:03:53,521 autoreload 2568 29396 Watching for file changes with StatReloader
+INFO 2025-08-19 16:04:09,413 autoreload 2568 29396 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-19 16:04:14,593 autoreload 28476 11572 Watching for file changes with StatReloader
+INFO 2025-08-19 16:07:47,251 autoreload 28476 11572 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 16:07:52,359 autoreload 19504 7376 Watching for file changes with StatReloader
+INFO 2025-08-19 16:08:33,001 autoreload 19504 7376 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 16:08:38,179 autoreload 12760 24972 Watching for file changes with StatReloader
+INFO 2025-08-19 16:10:09,507 basehttp 12760 29164 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 70

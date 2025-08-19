@@ -145,6 +145,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
 try:
     import redis
     redis_client = redis.Redis.from_url(config('REDIS_URL', default='redis://localhost:6379/1'))
