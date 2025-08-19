@@ -561,22 +561,22 @@ class SignUpSerializer(serializers.Serializer):
 class InstructionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomePageInformation
-        fields = ['tab_type', 'title', 'content']
+        fields = ["header_name", "section_name", "level_name"]
 
 class OfflineSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomePageInformation
-        fields = ['tab_type', 'title', 'content']
+        fields = ["header_name", "section_name", "level_name"]
 
 class DownloadsSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomePageInformation
-        fields = ['tab_type', 'file_name', 'content']
+        fields = ["header_name", "section_name", "level_name"]
 
 class PublicationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomePageInformation
-        fields = ['tab_type', 'title', 'content']
+        fields = ["header_name", "section_name", "level_name"]
 
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
