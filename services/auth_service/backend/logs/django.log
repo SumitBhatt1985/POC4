@@ -980,3 +980,16 @@ django.db.utils.ProgrammingError: permission denied for table tbl_usermgmt_feedb
 ERROR 2025-08-18 14:44:59,438 basehttp 22984 25732 "GET /api/v1/auth/feedback/ HTTP/1.1" 500 167335
 INFO 2025-08-18 14:49:21,839 autoreload 28120 2760 Watching for file changes with StatReloader
 INFO 2025-08-18 14:49:41,877 basehttp 28120 21872 "GET /api/v1/auth/feedback/ HTTP/1.1" 200 2693
+INFO 2025-08-18 17:27:30,769 autoreload 19700 31192 Watching for file changes with StatReloader
+INFO 2025-08-18 21:17:47,237 autoreload 31588 26168 Watching for file changes with StatReloader
+WARNING 2025-08-18 21:54:45,459 serializers 31588 4348 Failed login attempt - invalid credentials
+WARNING 2025-08-18 21:54:45,460 views 31588 4348 Failed login attempt from IP: 127.0.0.1
+WARNING 2025-08-18 21:54:45,461 middleware 31588 4348 Slow request: POST /api/v1/auth/login/ took 1.41s
+WARNING 2025-08-18 21:54:45,465 log 31588 4348 Bad Request: /api/v1/auth/login/
+WARNING 2025-08-18 21:54:45,466 basehttp 31588 4348 "POST /api/v1/auth/login/ HTTP/1.1" 400 168
+WARNING 2025-08-18 22:03:15,747 serializers 31588 4860 Failed login attempt - invalid credentials
+WARNING 2025-08-18 22:03:15,748 views 31588 4860 Failed login attempt from IP: 127.0.0.1
+WARNING 2025-08-18 22:03:15,749 middleware 31588 4860 Slow request: POST /api/v1/auth/login/ took 1.10s
+WARNING 2025-08-18 22:03:15,751 log 31588 4860 Bad Request: /api/v1/auth/login/
+WARNING 2025-08-18 22:03:15,752 basehttp 31588 4860 "POST /api/v1/auth/login/ HTTP/1.1" 400 168
+INFO 2025-08-18 22:05:06,491 autoreload 14944 28444 Watching for file changes with StatReloader
