@@ -1005,3 +1005,7 @@ INFO 2025-08-19 11:39:38,524 autoreload 20976 30612 Watching for file changes wi
 WARNING 2025-08-19 11:40:00,370 views 20976 31660 Failed login attempt from IP: 127.0.0.1
 WARNING 2025-08-19 11:40:00,375 log 20976 31660 Bad Request: /api/v1/auth/login/
 WARNING 2025-08-19 11:40:00,376 basehttp 20976 31660 "POST /api/v1/auth/login/ HTTP/1.1" 400 99
+INFO 2025-08-19 11:44:56,499 autoreload 20976 30612 D:\Phoenix\Defense_POC\POC4\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:45:01,460 autoreload 26184 27592 Watching for file changes with StatReloader
+INFO 2025-08-19 11:45:15,005 autoreload 26184 27592 D:\Phoenix\Defense_POC\POC4\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 11:45:20,031 autoreload 30540 9712 Watching for file changes with StatReloader
