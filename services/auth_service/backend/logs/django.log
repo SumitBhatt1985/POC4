@@ -2176,3 +2176,5 @@ INFO 2025-08-19 17:19:55,767 autoreload 27900 5772 Watching for file changes wit
 INFO 2025-08-19 17:20:03,070 basehttp 27900 46280 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
 WARNING 2025-08-19 17:20:20,517 middleware 27900 46280 Slow request: PUT /api/v1/auth/users/manage/ took 2.18s
 INFO 2025-08-19 17:20:20,519 basehttp 27900 46280 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 200 389
+INFO 2025-08-19 17:39:12,242 autoreload 27900 5772 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 17:39:20,951 autoreload 27572 35764 Watching for file changes with StatReloader
