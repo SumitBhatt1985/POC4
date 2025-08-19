@@ -667,10 +667,8 @@ class SignUpAPIView(APIView):
 
 
         data = request.data
-        required_fields = [
-            "userlogin", "role", "rank", "username", "personal_no", "designation",
-            "ship_name", "password", "confirm_password", "employee_type", "establishment",
-            "nudemail", "phone_no", "mobile_no", "status", "sso_user", "H", "L", "E", "X"
+        required_fields = ["role", "rank", "name", "personal_no", "designation",
+            "ship_name", "designation_email", "phone_no", "mobile_no"
         ]
         missing = [f for f in required_fields if f not in data]
         if missing:
@@ -679,64 +677,45 @@ class SignUpAPIView(APIView):
                 "message": "Missing required fields",
                 "errors": {field: ["This field is required."] for field in missing}
             }, status=status.HTTP_400_BAD_REQUEST)
-        if data["password"] != data["confirm_password"]:
+        # if data["password"] != data["confirm_password"]:
+        #     return Response({
+        #         "success": False,
+        #         "message": "Passwords do not match",
+        #         "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
+        #     }, status=status.HTTP_400_BAD_REQUEST)
+        if UserDetails.objects.filter(username=data["name"]).exists():
             return Response({
                 "success": False,
-                "message": "Passwords do not match",
-                "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
-            }, status=status.HTTP_400_BAD_REQUEST)
-        if UserDetails.objects.filter(userlogin=data["userlogin"]).exists():
-            return Response({
-                "success": False,
-                "message": "Userlogin already exists",
-                "errors": {"userlogin": ["This userlogin is already taken."]}
+                "message": "Username already exists",
+                "errors": {"username": ["This username is already taken."]}
             }, status=status.HTTP_400_BAD_REQUEST)
         try:
             with transaction.atomic():
                 profile = UserDetails.objects.create(
                     role=data["role"],
                     rank=data["rank"],
-                    username=data["username"],
-                    userlogin=data["userlogin"],
-                    password=make_password(data["password"]),
-                    confirm_password=make_password(data["confirm_password"]),
+                    username=data["name"],
                     personal_no=data["personal_no"],
                     designation=data["designation"],
                     ship_name=data["ship_name"],
-                    employee_type=data["employee_type"],
-                    establishment=data["establishment"],
-                    nudemail=data["nudemail"],
+                    designation_email=data["designation_email"],
                     phone_no=data["phone_no"],
-                    mobile_no=data["mobile_no"],
-                    H=data["H"],
-                    L=data["L"],
-                    E=data["E"],
-                    X=data["X"],
-                    sso_user=data["sso_user"],
-                    status=data["status"]
+                    mobile_no=data["mobile_no"]
                 )
             return Response({
                 "success": True,
                 "message": "User created successfully",
                 "data": {
                     "id": profile.id,
-                    "user_login": profile.userlogin,
                     "role": profile.role,
                     "rank": profile.rank,
                     "name": profile.username,
                     "personal_no": profile.personal_no,
                     "designation": profile.designation,
                     "ship": profile.ship_name,
-                    "employee_type": profile.employee_type,
-                    "establishment": profile.establishment,
-                    "nudemail": profile.nudemail,
+                    "designation_email": profile.designation_email,
                     "phone_no": profile.phone_no,
                     "mobile_no": profile.mobile_no,
-                    "H": profile.H,
-                    "L": profile.L,
-                    "E": profile.E,
-                    "X": profile.X,
-                    "sso_user": profile.sso_user,
                     "status": profile.status,
                 }
             }, status=status.HTTP_201_CREATED)
@@ -946,7 +925,7 @@ class UserManagementAPIView(APIView):
                 profile = UserDetails.objects.create(
                     role=data["role"],
                     rank=data["rank"],
-                    username=data["username"],
+                    username=data["name"],
                     userlogin=data["personal_no"],
                     password=make_password(data["password"]),
                     confirm_password=make_password(data["confirm_password"]),
