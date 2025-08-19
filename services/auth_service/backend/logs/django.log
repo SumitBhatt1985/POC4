@@ -1000,3 +1000,8 @@ WARNING 2025-08-19 11:32:17,541 basehttp 14944 3632 "POST /api/v1/auth/login/ HT
 WARNING 2025-08-19 11:32:56,942 views 14944 3632 Failed login attempt from IP: 127.0.0.1
 WARNING 2025-08-19 11:32:56,943 log 14944 3632 Bad Request: /api/v1/auth/login/
 WARNING 2025-08-19 11:32:56,944 basehttp 14944 3632 "POST /api/v1/auth/login/ HTTP/1.1" 400 99
+INFO 2025-08-19 11:39:31,199 autoreload 14944 28444 D:\Phoenix\Defense_POC\POC4\services\auth_service\backend\apps\users\serializers.py changed, reloading.
+INFO 2025-08-19 11:39:38,524 autoreload 20976 30612 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:40:00,370 views 20976 31660 Failed login attempt from IP: 127.0.0.1
+WARNING 2025-08-19 11:40:00,375 log 20976 31660 Bad Request: /api/v1/auth/login/
+WARNING 2025-08-19 11:40:00,376 basehttp 20976 31660 "POST /api/v1/auth/login/ HTTP/1.1" 400 99
