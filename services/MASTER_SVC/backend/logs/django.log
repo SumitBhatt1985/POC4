@@ -68,3 +68,5 @@ INFO 2025-08-19 11:26:50,522 autoreload 25776 15700 Watching for file changes wi
 INFO 2025-08-19 11:28:57,928 autoreload 25776 15700 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
 INFO 2025-08-19 11:29:05,549 autoreload 20288 31556 Watching for file changes with StatReloader
 INFO 2025-08-19 11:30:25,393 autoreload 26404 25768 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:32:02,010 log 26404 22876 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 11:32:02,011 basehttp 26404 22876 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 58

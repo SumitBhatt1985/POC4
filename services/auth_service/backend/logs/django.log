@@ -993,3 +993,10 @@ WARNING 2025-08-18 22:03:15,749 middleware 31588 4860 Slow request: POST /api/v1
 WARNING 2025-08-18 22:03:15,751 log 31588 4860 Bad Request: /api/v1/auth/login/
 WARNING 2025-08-18 22:03:15,752 basehttp 31588 4860 "POST /api/v1/auth/login/ HTTP/1.1" 400 168
 INFO 2025-08-18 22:05:06,491 autoreload 14944 28444 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:32:17,535 serializers 14944 3632 Failed login attempt - invalid credentials
+WARNING 2025-08-19 11:32:17,536 views 14944 3632 Failed login attempt from IP: 127.0.0.1
+WARNING 2025-08-19 11:32:17,540 log 14944 3632 Bad Request: /api/v1/auth/login/
+WARNING 2025-08-19 11:32:17,541 basehttp 14944 3632 "POST /api/v1/auth/login/ HTTP/1.1" 400 168
+WARNING 2025-08-19 11:32:56,942 views 14944 3632 Failed login attempt from IP: 127.0.0.1
+WARNING 2025-08-19 11:32:56,943 log 14944 3632 Bad Request: /api/v1/auth/login/
+WARNING 2025-08-19 11:32:56,944 basehttp 14944 3632 "POST /api/v1/auth/login/ HTTP/1.1" 400 99
