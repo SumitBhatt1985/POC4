@@ -75,17 +75,17 @@ class LoginAPIView(APIView):
     
     def post(self, request, *args, **kwargs):
         """
-        Authenticate user with username and password against PostgreSQL.
+        Authenticate user with name and password against PostgreSQL.
         
         Args:
-            request: HTTP request containing username and password
-            
+            request: HTTP request containing name and password
+
         Returns:
             Response: Clean JSON response optimized for Angular frontend
             
         Request Body:
             {
-                "username": "[username]",
+                "name": "[name]",
                 "password": "[password]"
             }
             
@@ -98,7 +98,7 @@ class LoginAPIView(APIView):
             "id": 8,
             "role": "admin",
             "rank": "Captain",
-            "username": "Sam Nathan",
+            "name": "Sam Nathan",
             "userlogin": "Snathan",
             "personal_no": "12345A",
             "designation": "Operations Lead",
@@ -127,7 +127,7 @@ class LoginAPIView(APIView):
                 "success": false,
                 "message": "Invalid credentials",
                 "errors": {
-                    "detail": "Invalid credentials. Please check your username and password.",
+                    "detail": "Invalid credentials. Please check your name and password.",
                     "code": "invalid_credentials"
                 }
             }
@@ -341,7 +341,7 @@ class UserProfileAPIView(APIView):
     
     interface UserProfile {
       id: number;
-      username: string;
+      name: string;
       email: string;
       first_name: string;
       last_name: string;
@@ -690,18 +690,19 @@ class SignUpAPIView(APIView):
         #         "message": "Passwords do not match",
         #         "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
         #     }, status=status.HTTP_400_BAD_REQUEST)
-        if UserDetails.objects.filter(username=data["name"]).exists():
+        if UserDetails.objects.filter(personal_no=data["personal_no"]).exists():
             return Response({
                 "success": False,
-                "message": "Username already exists",
-                "errors": {"username": ["This username is already taken."]}
+                "message": "name already exists",
+                "errors": {"name": ["This name is already taken."]}
             }, status=status.HTTP_400_BAD_REQUEST)
         try:
             with transaction.atomic():
                 profile = UserDetails.objects.create(
                     role=data["role"],
                     rank=data["rank"],
-                    username=data["name"],
+                    name=data["name"],
+                    userlogin=data["personal_no"],
                     personal_no=data["personal_no"],
                     designation=data["designation"],
                     ship_name=data["ship_name"],
@@ -716,7 +717,8 @@ class SignUpAPIView(APIView):
                     "id": profile.id,
                     "role": profile.role,
                     "rank": profile.rank,
-                    "name": profile.username,
+                    "name": profile.name,
+                    "userlogin": profile.userlogin,
                     "personal_no": profile.personal_no,
                     "designation": profile.designation,
                     "ship": profile.ship_name,
@@ -752,20 +754,22 @@ class SignUpAPIView(APIView):
         return ip
 
 class HomePageView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        tab_type = request.data.get('tab_type')
+        tab_type = request.data.get('header_name')
         if not tab_type:
             return Response({"error": "tab_type is required"}, status=status.HTTP_400_BAD_REQUEST)
-        queryset = HomePageInformation.objects.filter(tab_type=tab_type)
-        if tab_type == 'Instructions':
+        queryset = HomePageInformation.objects.filter(header_name=tab_type)
+        
+        if tab_type == 'INSTRUCTIONS':
             serializer = InstructionsSerializer(queryset, many=True)
-        elif tab_type == 'CMMS Offline':
+        elif tab_type == 'CMMS OFFLINE':
             serializer = OfflineSerializer(queryset, many=True)
-        elif tab_type == 'Downloads':
+        elif tab_type == 'DOWNLOADS':
             serializer = DownloadsSerializer(queryset, many=True)
-        elif tab_type == 'Publications':
+        elif tab_type == 'PUBLICATIONS':
             serializer = PublicationsSerializer(queryset, many=True)
         else:
             return Response({"error": "Invalid tab_type"}, status=status.HTTP_400_BAD_REQUEST)
@@ -874,7 +878,7 @@ class UserManagementAPIView(APIView):
                     "user_login": detail.userlogin,
                     "role": detail.role,
                     "rank": detail.rank,
-                    "name": detail.username,
+                    "name": detail.name,
                     "personal_no": detail.personal_no,
                     "designation": detail.designation,
                     "ship": detail.ship_name,
@@ -925,13 +929,13 @@ class UserManagementAPIView(APIView):
         try:
             with transaction.atomic():
                 user = User.objects.create_user(
-                    username=data["name"],
+                    name=data["name"],
                     password=data["password"]
                 )
                 profile = UserDetails.objects.create(
                     role=data["role"],
                     rank=data["rank"],
-                    username=data["name"],
+                    name=data["name"],
                     userlogin=data["personal_no"],
                     password=make_password(data["password"]),
                     confirm_password=make_password(data["confirm_password"]),
@@ -956,7 +960,7 @@ class UserManagementAPIView(APIView):
                     "user_login": profile.personal_no,
                     "role": profile.role,
                     "rank": profile.rank,
-                    "name": profile.username,
+                    "name": profile.name,
                     "personal_no": profile.personal_no,
                     "designation": profile.designation,
                     "ship": profile.ship_name,
@@ -1013,7 +1017,7 @@ class UserManagementAPIView(APIView):
             profile.update_date = timezone.now()
             profile.save()
         for field in [
-                "role", "rank", "username", "userlogin", "personal_no", "designation", "ship_name",
+                "role", "rank", "name", "userlogin", "personal_no", "designation", "ship_name",
                 "employee_type", "establishment", "nudemail", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
         ]:
                 if field in data:
@@ -1027,7 +1031,7 @@ class UserManagementAPIView(APIView):
             "user_login": profile.userlogin,
             "role": profile.role,
             "rank": profile.rank,
-            "name": profile.username,
+            "name": profile.name,
             "personal_no": profile.personal_no,
             "designation": profile.designation,
             "ship": profile.ship_name,

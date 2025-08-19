@@ -17,21 +17,24 @@ from django.utils import timezone
 
 class HomePageInformation(models.Model):
     TAB_CHOICES = [
-        ('instructions', 'Instructions'),
-        ('offline', 'Offline'),
-        ('downloads', 'Downloads'),
-        ('publications', 'Publications'),
+        ('instructions', 'INSTRUCTIONS'),
+        ('cmms offline', 'CMMS OFFLINE'),
+        ('downloads', 'DOWNLOADS'),
+        ('publications', 'PUBLICATIONS'),
     ]
 
-    tab_type = models.CharField(max_length=20, choices=TAB_CHOICES)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    content = models.TextField(blank=True, null=True)
+    header_id = models.CharField(max_length=255, blank=True, null=True)
+    header_name = models.CharField(max_length=255, blank=True, null=True)
+    section_id = models.CharField(max_length=255, blank=True, null=True)
+    section_name = models.CharField(max_length=255, blank=True, null=True)
+    level_id = models.CharField(max_length=255, blank=True, null=True)
+    level_name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        db_table = 'information_home_page'
+        db_table = 'tbl_cmms_headers_details'
 
     def __str__(self):
-        return f"{self.tab_type}: {self.title }"
+        return f"{self.header_name}"
 
 class Feedback(models.Model):
     module = models.CharField(max_length=90)
@@ -72,7 +75,7 @@ class UserDetails(models.Model):
     update_date = models.DateTimeField(null=True, blank=True)
     role = models.CharField(max_length=50)
     rank = models.CharField(max_length=50)
-    username = models.CharField(max_length=150)
+    name = models.CharField(max_length=150)
     userlogin = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=510)
     confirm_password = models.CharField(max_length=510)
