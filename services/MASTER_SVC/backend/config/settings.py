@@ -7,7 +7,7 @@ Production-ready settings with JWT authentication support.
 # ...copied and adapted from auth_service settings.py...
 # Change SERVICE_NAME and any app-specific settings as needed
 
-import os
+import os, sys
 from datetime import timedelta
 from decouple import config
 
