@@ -879,8 +879,7 @@ class UserManagementAPIView(APIView):
                     "H": detail.H,
                     "L": detail.L,
                     "E": detail.E,
-                    "X": detail.X,
-                    "status": detail.status,
+                    "X": detail.X
                 })
             return Response({
                 "success": True,
@@ -897,9 +896,8 @@ class UserManagementAPIView(APIView):
 
 
     def post(self, request, *args, **kwargs):
-        required_fields = [
-            "userlogin", "role", "rank", "username", "personal_no", "designation",
-            "ship_name", "password", "confirm_password", "employee_type", "establishment", "nudemail", "phone_no", "status","sso_user", "H", "L", "E", "X",
+        required_fields = ["role", "rank", "name", "personal_no", "designation",
+            "ship_name", "password", "confirm_password", "employee_type", "establishment", "nudemail", "phone_no","sso_user", "H", "L", "E", "X",
             ]
 
         data = request.data
@@ -919,7 +917,7 @@ class UserManagementAPIView(APIView):
         try:
             with transaction.atomic():
                 user = User.objects.create_user(
-                    username=data["username"],
+                    username=data["name"],
                     password=data["password"]
                 )
                 profile = UserDetails.objects.create(
@@ -940,8 +938,7 @@ class UserManagementAPIView(APIView):
                     L=data["L"],
                     E=data["E"],
                     X=data["X"],
-                    sso_user=data["sso_user"],
-                    status=data["status"]
+                    sso_user=data["sso_user"]
                 )
             return Response({
                 "success": True,
@@ -994,6 +991,7 @@ class UserManagementAPIView(APIView):
                 "errors": {"id": ["User does not exist."]}
             }, status=status.HTTP_404_NOT_FOUND)
         data = request.data
+        
         # Update password if provided and matches confirm_password
         if "password" in data and "confirm_password" in data:
             if data["password"] != data["confirm_password"]:
@@ -1004,7 +1002,8 @@ class UserManagementAPIView(APIView):
                 }, status=status.HTTP_400_BAD_REQUEST)
             profile.password = make_password(data["password"])
             profile.confirm_password = make_password(data["confirm_password"])
-            
+            profile.update_date = timezone.now()
+            profile.save()
         for field in [
                 "role", "rank", "username", "userlogin", "personal_no", "designation", "ship_name",
                 "employee_type", "establishment", "nudemail", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
@@ -1050,6 +1049,7 @@ class UserManagementAPIView(APIView):
         try:
             profile = UserDetails.objects.get(id=user_id)
             profile.status = 0
+            profile.update_date = timezone.now()
             profile.save()
             return Response({
                 "success": True,
