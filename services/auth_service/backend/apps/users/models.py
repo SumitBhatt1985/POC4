@@ -10,7 +10,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import RegexValidator
-
+from django.utils import timezone
 import uuid
 from django.utils import timezone
 
@@ -68,9 +68,8 @@ class RoleMaster(models.Model):
         return f"{self.name} ({self.level})"
 
 class UserDetails(models.Model):
-    
-    binary_validator = RegexValidator(regex='^[01]$', message='Must be 0 or 1')
 
+    update_date = models.DateTimeField(null=True, blank=True)
     role = models.CharField(max_length=50)
     rank = models.CharField(max_length=50)
     username = models.CharField(max_length=150)

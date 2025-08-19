@@ -1895,6 +1895,7 @@ INFO 2025-08-19 14:20:48,946 views 45620 48136 Token 17874771908e414b8745b44d7c0
 INFO 2025-08-19 14:20:48,946 basehttp 45620 48136 "POST /api/v1/auth/logout/ HTTP/1.1" 200 46
 INFO 2025-08-19 14:23:06,565 autoreload 45620 27152 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
 INFO 2025-08-19 14:23:15,835 autoreload 34940 35604 Watching for file changes with StatReloader
+<<<<<<< HEAD
 >>>>>>> 2d2749ef281b9ccefd942bccbfc3650d4bd6d96d
 INFO 2025-08-19 14:27:06,811 autoreload 2264 29904 Watching for file changes with StatReloader
 INFO 2025-08-19 14:27:21,661 basehttp 2264 26112 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
@@ -1910,3 +1911,136 @@ INFO 2025-08-19 15:36:41,199 views 2264 4420 Token bbf2d7ad8b044d25a7d809cefc7bf
 INFO 2025-08-19 15:36:41,207 basehttp 2264 4420 "POST /api/v1/auth/logout/ HTTP/1.1" 200 46
 INFO 2025-08-19 15:36:51,494 basehttp 2264 4420 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
 INFO 2025-08-19 15:39:14,124 basehttp 2264 3196 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+=======
+INFO 2025-08-19 15:04:05,490 autoreload 34940 35604 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 15:04:15,669 autoreload 37064 40600 Watching for file changes with StatReloader
+INFO 2025-08-19 15:06:26,863 autoreload 37064 40600 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 15:06:33,041 autoreload 26528 47020 Watching for file changes with StatReloader
+INFO 2025-08-19 15:06:50,837 autoreload 26528 47020 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 15:06:57,818 autoreload 16332 46516 Watching for file changes with StatReloader
+WARNING 2025-08-19 15:23:04,847 log 16332 39060 Unauthorized: /api/v1/auth/users/manage/
+WARNING 2025-08-19 15:23:04,847 basehttp 16332 39060 "POST /api/v1/auth/users/manage/ HTTP/1.1" 401 172
+ERROR 2025-08-19 15:23:09,469 log 16332 39060 Internal Server Error: /api/v1/auth/login/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column tbl_user_details.updated_date does not exist
+LINE 1: SELECT "tbl_user_details"."id", "tbl_user_details"."updated_...
+                                        ^
+HINT:  Perhaps you meant to reference the column "tbl_user_details.update_date".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py", line 131, in post
+    user = UserDetails.objects.get(userlogin=userlogin, status='1')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column tbl_user_details.updated_date does not exist
+LINE 1: SELECT "tbl_user_details"."id", "tbl_user_details"."updated_...
+                                        ^
+HINT:  Perhaps you meant to reference the column "tbl_user_details.update_date".
+
+ERROR 2025-08-19 15:23:09,484 basehttp 16332 39060 "POST /api/v1/auth/login/ HTTP/1.1" 500 174004
+INFO 2025-08-19 15:25:22,236 autoreload 16332 46516 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 15:25:29,427 autoreload 46832 16800 Watching for file changes with StatReloader
+INFO 2025-08-19 15:25:55,282 autoreload 46832 16800 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 15:26:02,291 autoreload 16416 42980 Watching for file changes with StatReloader
+INFO 2025-08-19 15:26:07,781 basehttp 16416 36440 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+ERROR 2025-08-19 15:26:35,671 views 16416 36440 Error creating user: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(Jitendra Bansal) already exists.
+
+WARNING 2025-08-19 15:26:35,675 middleware 16416 36440 Slow request: POST /api/v1/auth/users/manage/ took 1.39s
+ERROR 2025-08-19 15:26:35,682 log 16416 36440 Internal Server Error: /api/v1/auth/users/manage/
+ERROR 2025-08-19 15:26:35,686 basehttp 16416 36440 "POST /api/v1/auth/users/manage/ HTTP/1.1" 500 243
+ERROR 2025-08-19 15:28:03,340 views 16416 36440 Error creating user: 'name'
+WARNING 2025-08-19 15:28:03,340 middleware 16416 36440 Slow request: POST /api/v1/auth/users/manage/ took 1.26s
+ERROR 2025-08-19 15:28:03,340 log 16416 36440 Internal Server Error: /api/v1/auth/users/manage/
+ERROR 2025-08-19 15:28:03,347 basehttp 16416 36440 "POST /api/v1/auth/users/manage/ HTTP/1.1" 500 115
+WARNING 2025-08-19 15:28:59,896 log 16416 36440 Bad Request: /api/v1/auth/users/manage/
+WARNING 2025-08-19 15:28:59,896 basehttp 16416 36440 "POST /api/v1/auth/users/manage/ HTTP/1.1" 400 103
+INFO 2025-08-19 15:29:09,304 autoreload 16416 42980 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 15:29:16,748 autoreload 50632 25092 Watching for file changes with StatReloader
+ERROR 2025-08-19 15:29:21,091 views 50632 30200 Error creating user: 'username'
+ERROR 2025-08-19 15:29:21,091 log 50632 30200 Internal Server Error: /api/v1/auth/users/manage/
+ERROR 2025-08-19 15:29:21,091 basehttp 50632 30200 "POST /api/v1/auth/users/manage/ HTTP/1.1" 500 119
+INFO 2025-08-19 15:29:46,691 autoreload 50632 25092 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 15:29:54,273 autoreload 39984 16500 Watching for file changes with StatReloader
+ERROR 2025-08-19 15:30:00,244 views 39984 25776 Error creating user: duplicate key value violates unique constraint "userid_unique"
+DETAIL:  Key (userlogin)=(19556F) already exists.
+
+WARNING 2025-08-19 15:30:00,244 middleware 39984 25776 Slow request: POST /api/v1/auth/users/manage/ took 2.03s
+ERROR 2025-08-19 15:30:00,254 log 39984 25776 Internal Server Error: /api/v1/auth/users/manage/
+ERROR 2025-08-19 15:30:00,254 basehttp 39984 25776 "POST /api/v1/auth/users/manage/ HTTP/1.1" 500 226
+INFO 2025-08-19 15:32:27,951 autoreload 39984 16500 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 15:32:34,636 autoreload 27244 44960 Watching for file changes with StatReloader
+ERROR 2025-08-19 15:32:41,385 views 27244 43348 Error creating user: duplicate key value violates unique constraint "userid_unique"
+DETAIL:  Key (userlogin)=(73746C) already exists.
+
+WARNING 2025-08-19 15:32:41,385 middleware 27244 43348 Slow request: POST /api/v1/auth/users/manage/ took 1.70s
+ERROR 2025-08-19 15:32:41,385 log 27244 43348 Internal Server Error: /api/v1/auth/users/manage/
+ERROR 2025-08-19 15:32:41,394 basehttp 27244 43348 "POST /api/v1/auth/users/manage/ HTTP/1.1" 500 226
+WARNING 2025-08-19 15:33:03,844 middleware 27244 43348 Slow request: POST /api/v1/auth/users/manage/ took 2.91s
+INFO 2025-08-19 15:33:03,844 basehttp 27244 43348 "POST /api/v1/auth/users/manage/ HTTP/1.1" 201 415
+WARNING 2025-08-19 15:37:07,471 log 27244 43348 Unauthorized: /api/v1/auth/users/manage/
+WARNING 2025-08-19 15:37:07,471 basehttp 27244 43348 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 401 172
+WARNING 2025-08-19 15:37:14,985 middleware 27244 43348 Slow request: POST /api/v1/auth/login/ took 1.14s
+INFO 2025-08-19 15:37:14,987 basehttp 27244 43348 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 15:37:30,604 middleware 27244 43348 Slow request: PUT /api/v1/auth/users/manage/ took 2.06s
+INFO 2025-08-19 15:37:30,606 basehttp 27244 43348 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 200 422
+>>>>>>> fd435c00f85ab360a4acd93e6d221682b2d80304
