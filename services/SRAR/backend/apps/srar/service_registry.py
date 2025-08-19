@@ -1,0 +1,1 @@
+# SRAR service registry placeholder

@@ -1,0 +1,59 @@
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# Django
+*.sqlite3
+*.db
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.migrations/
+
+# VSCode
+.vscode/
+
+# Environments
+.env
+.env.*
+venv/
+cmms_venv/
+
+# Node
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+
+# Test
+coverage/
+htmlcov/
+*.cover
+*.py,cover
+.cache
+
+# Misc
+*.bak
+*.swp
+*.tmp
+
+# Ignore compiled Angular build
+frontend/dist/

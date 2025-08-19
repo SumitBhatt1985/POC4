@@ -8,8 +8,17 @@ import os
 from datetime import timedelta
 from decouple import config
 
+import sys
+import os
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SERVICES_DIR = os.path.abspath(os.path.join(BASE_DIR, '../..'))
+
+if SERVICES_DIR not in sys.path:
+    sys.path.insert(0, SERVICES_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-production')
@@ -37,11 +46,13 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'apps.users.middleware.SecurityHeadersMiddleware',
     'apps.users.middleware.RequestLoggingMiddleware',
@@ -93,13 +104,13 @@ DATABASES = {
 }
 
 # Fallback to SQLite for development if PostgreSQL is not available
-if config('USE_SQLITE_FALLBACK', default=False, cast=bool):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+# if config('USE_SQLITE_FALLBACK', default=False, cast=bool):
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -133,7 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Django REST Framework configuration optimized for Angular 18+ frontend
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'common_auth.authentication.CustomJWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -183,6 +195,7 @@ SIMPLE_JWT = {
     'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
     
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    "TOKEN_BLACKLIST_ENABLED": True,
     'TOKEN_TYPE_CLAIM': 'token_type',
     
     'JTI_CLAIM': 'jti',
@@ -192,27 +205,81 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+# ====================================================================
+# Old Caching Configuration for Redis
+# ====================================================================
 # Caching Configuration for Rate Limiting
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': config('REDIS_URL', default='redis://localhost:6379/1'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        },
-        'KEY_PREFIX': 'auth_service',
-        'TIMEOUT': 300,
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION': config('REDIS_URL', default='redis://localhost:6379/1'),
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         },
+#         'KEY_PREFIX': 'auth_service',
+#         'TIMEOUT': 300,
+#     }
+# }
 
-# Fallback to local memory cache if Redis is not available
+# # Fallback to local memory cache if Redis is not available
+# if config('USE_MEMORY_CACHE', default=False, cast=bool):
+#     CACHES = {
+#         'default': {
+#             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#             'LOCATION': 'auth-service-cache',
+#         }
+#     }
+# =========================================================
+
+
+# ====================================================================
+# Caching Configuration for Redis 
+# if not installed fallback to memory cache will be used
+# ====================================================================
+# Caching Configuration for Rate Limiting
+# Try Redis first, fallback to memory cache if Redis is not available
+try:
+    import redis
+    # Test Redis connection
+    redis_client = redis.Redis.from_url(config('REDIS_URL', default='redis://localhost:6379/1'))
+    redis_client.ping()
+    
+    # Redis is available, use it
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': config('REDIS_URL', default='redis://localhost:6379/1'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            },
+            'KEY_PREFIX': 'auth_service',
+            'TIMEOUT': 300,
+        }
+    }
+    print("✅ Using Redis cache backend")
+    
+except (ImportError, redis.ConnectionError, redis.TimeoutError, Exception):
+    # Redis is not available, use memory cache
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'auth-service-cache',
+            'TIMEOUT': 300,
+        }
+    }
+    print("⚠️  Redis not available, using memory cache backend")
+
+# Manual override for memory cache if needed
 if config('USE_MEMORY_CACHE', default=False, cast=bool):
     CACHES = {
         'default': {
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
             'LOCATION': 'auth-service-cache',
+            'TIMEOUT': 300,
         }
     }
+    print("🔧 Using memory cache backend (manual override)")
+
 
 # Security settings for production
 SECURE_BROWSER_XSS_FILTER = True

@@ -14,7 +14,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 import logging
 
-from .models import UserProfile
+from .models import HomePageInformation, Feedback, UserDetails, RoleMaster
 
 logger = logging.getLogger(__name__)
 
@@ -192,12 +192,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
     initials = serializers.SerializerMethodField()
     
     class Meta:
-        model = User
-        fields = (
-            'id', 'username', 'email', 'first_name', 'last_name',
-            'full_name', 'initials', 'is_staff', 'is_active', 
-            'date_joined', 'last_login'
-        )
+        model = UserDetails
+        # fields = (
+        #     'id', 'username', 'email', 'first_name', 'last_name',
+        #     'full_name', 'initials', 'is_staff', 'is_active', 
+        #     'date_joined', 'last_login'
+        # )
+        fields = [
+            "id", "role", "rank", "username", "userlogin", "personal_no",
+            "designation", "ship_name", "employee_type", "establishment",
+            "nudemail", "phone_no", "sso_user", "h", "l", "e", "x", "mobile_no", "status",
+        ]
         read_only_fields = ('id', 'username', 'is_staff', 'is_active', 'date_joined', 'last_login')
         
     def get_full_name(self, obj):
@@ -366,107 +371,18 @@ class SignUpSerializer(serializers.Serializer):
     ```
     """
     
-    # Django User model fields
-    username = serializers.CharField(
-        required=True,
-        max_length=150,
-        error_messages={
-            'required': 'Username is required.',
-            'blank': 'Username cannot be blank.',
-            'max_length': 'Username must be 150 characters or fewer.'
-        }
-    )
+    username = serializers.CharField(required=True, max_length=150)
+    designation_email = serializers.EmailField(required=True)
+    rank = serializers.CharField(required=True, max_length=100)
+    unitname = serializers.CharField(required=True, max_length=200)
+    designation = serializers.CharField(required=True, max_length=200)
+    mobileNo = serializers.RegexField(regex=r'^\+?1?\d{9,15}$', required=True)
+    personalNo = serializers.RegexField(regex=r'^\+?1?\d{9,15}$', required=True)
+    phoneNo = serializers.RegexField(regex=r'^\+?1?\d{9,15}$', required=True)
     
-    email = serializers.EmailField(
-        required=True,
-        error_messages={
-            'required': 'Email address is required.',
-            'invalid': 'Enter a valid email address.'
-        }
-    )
-    
-    password = serializers.CharField(
-        required=True,
-        write_only=True,
-        style={'input_type': 'password'},
-        error_messages={
-            'required': 'Password is required.',
-            'blank': 'Password cannot be blank.'
-        }
-    )
-    
-    confirm_password = serializers.CharField(
-        required=True,
-        write_only=True,
-        style={'input_type': 'password'},
-        error_messages={
-            'required': 'Password confirmation is required.',
-            'blank': 'Password confirmation cannot be blank.'
-        }
-    )
-    
-    # UserProfile model fields
-    rank = serializers.CharField(
-        required=True,
-        max_length=100,
-        error_messages={
-            'required': 'Rank is required.',
-            'blank': 'Rank cannot be blank.',
-            'max_length': 'Rank must be 100 characters or fewer.'
-        }
-    )
-    
-    unitname = serializers.CharField(
-        required=True,
-        max_length=200,
-        error_messages={
-            'required': 'Unit name is required.',
-            'blank': 'Unit name cannot be blank.',
-            'max_length': 'Unit name must be 200 characters or fewer.'
-        }
-    )
-    
-    designation = serializers.CharField(
-        required=True,
-        max_length=200,
-        error_messages={
-            'required': 'Designation is required.',
-            'blank': 'Designation cannot be blank.',
-            'max_length': 'Designation must be 200 characters or fewer.'
-        }
-    )
-    
-    mobileNo = serializers.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        required=True,
-        error_messages={
-            'required': 'Mobile number is required.',
-            'invalid': 'Enter a valid mobile number with country code (e.g., +919595422695).'
-        }
-    )
-    
-    personalNo = serializers.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        required=True,
-        error_messages={
-            'required': 'Personal number is required.',
-            'invalid': 'Enter a valid personal number with country code (e.g., +919863758455).'
-        }
-    )
-    
-    phoneNo = serializers.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        required=True,
-        error_messages={
-            'required': 'Phone number is required.',
-            'invalid': 'Enter a valid phone number with country code (e.g., +95867816686).'
-        }
-    )
-    
-    status = serializers.BooleanField(
-        required=False,
-        default=True
-    )
+
+  
+
     
     def validate_username(self, value):
         """
@@ -560,52 +476,61 @@ class SignUpSerializer(serializers.Serializer):
         
         return attrs
     
+    # def create(self, validated_data):
+    #     """
+    #     Create user and profile with validated data in PostgreSQL transaction.
+        
+    #     Args:
+    #         validated_data (dict): Validated data from serializer
+            
+    #     Returns:
+    #         tuple: (User instance, UserProfile instance)
+            
+    #     Raises:
+    #         Exception: If user or profile creation fails
+    #     """
+    #     # Remove confirm_password from validated data
+    #     validated_data.pop('confirm_password', None)
+        
+    #     # Extract profile data
+    #     profile_data = {
+    #         'rank': validated_data.pop('rank'),
+    #         'unitname': validated_data.pop('unitname'),
+    #         'designation': validated_data.pop('designation'),
+    #         'mobileNo': validated_data.pop('mobileNo'),
+    #         'personalNo': validated_data.pop('personalNo'),
+    #         'phoneNo': validated_data.pop('phoneNo'),
+    #         'status': validated_data.pop('status', True),
+    #     }
+        
+    #     # Use database transaction for atomicity
+    #     with transaction.atomic():
+    #         # Create User instance
+    #         user = User.objects.create_user(
+    #             username=validated_data['username'],
+    #             email=validated_data['email'],
+    #             password=validated_data['password']
+    #         )
+            
+    #         # Create UserProfile instance
+    #         profile = UserProfile.objects.create(
+    #             user=user,
+    #             **profile_data
+    #         )
+            
+    #         # Log successful user creation
+    #         logger.info(f"New user created: ID {user.id}, Profile: {profile.id}")
+            
+    #         return user, profile
+
+
+    
     def create(self, validated_data):
-        """
-        Create user and profile with validated data in PostgreSQL transaction.
-        
-        Args:
-            validated_data (dict): Validated data from serializer
-            
-        Returns:
-            tuple: (User instance, UserProfile instance)
-            
-        Raises:
-            Exception: If user or profile creation fails
-        """
-        # Remove confirm_password from validated data
-        validated_data.pop('confirm_password', None)
-        
-        # Extract profile data
-        profile_data = {
-            'rank': validated_data.pop('rank'),
-            'unitname': validated_data.pop('unitname'),
-            'designation': validated_data.pop('designation'),
-            'mobileNo': validated_data.pop('mobileNo'),
-            'personalNo': validated_data.pop('personalNo'),
-            'phoneNo': validated_data.pop('phoneNo'),
-            'status': validated_data.pop('status', True),
-        }
-        
-        # Use database transaction for atomicity
-        with transaction.atomic():
-            # Create User instance
-            user = User.objects.create_user(
-                username=validated_data['username'],
-                email=validated_data['email'],
-                password=validated_data['password']
-            )
-            
-            # Create UserProfile instance
-            profile = UserProfile.objects.create(
-                user=user,
-                **profile_data
-            )
-            
-            # Log successful user creation
-            logger.info(f"New user created: ID {user.id}, Profile: {profile.id}")
-            
-            return user, profile
+            validated_data.pop('confirm_password')
+            validated_data['password'] = make_password(validated_data['password'])
+            validated_data['status'] = '1'
+            return UserDetails.objects.create(**validated_data)
+
     
     def to_representation(self, instance):
         """
@@ -632,3 +557,65 @@ class SignUpSerializer(serializers.Serializer):
             'status': 'ACTIVE' if profile.status else 'INACTIVE',
             'message': 'User created successfully.'
         }
+
+class InstructionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'title', 'content']
+
+class OfflineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'title', 'content']
+
+class DownloadsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'file_name', 'content']
+
+class PublicationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageInformation
+        fields = ['tab_type', 'title', 'content']
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = [
+            'personal_no',
+            'username',
+            'question1',
+            'question2',
+            'question3',
+            'question4',
+            'module',
+            'remarks',
+            'avg_feedback'
+        ]
+    
+    def create(self, validated_data):
+        # Get question scores (convert to int if needed)
+        q1 = int(validated_data.get('question1', 0) or 0)
+        q2 = int(validated_data.get('question2', 0) or 0)
+        q3 = int(validated_data.get('question3', 0) or 0)
+        q4 = int(validated_data.get('question4', 0) or 0)
+        # Calculate average
+        avg = round((q1 + q2 + q3 + q4) / 4, 2)
+        validated_data['avg_feedback'] = str(avg)  # Save as string to match model
+        # Save feedback
+        return super().create(validated_data)
+
+
+class RoleMasterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoleMaster
+        fields = ['role_id', 'name', 'status']
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserDetails
+        fields =  [
+            "id", "role", "rank", "username", "userlogin", "personal_no",
+            "designation", "ship_name", "employee_type", "establishment",
+            "nudemail", "phone_no", "sso_user", "H", "L", "E", "X", "mobile_no", "status",
+        ]
