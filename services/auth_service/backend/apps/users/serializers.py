@@ -371,107 +371,18 @@ class SignUpSerializer(serializers.Serializer):
     ```
     """
     
-    # Django User model fields
-    username = serializers.CharField(
-        required=True,
-        max_length=150,
-        error_messages={
-            'required': 'Username is required.',
-            'blank': 'Username cannot be blank.',
-            'max_length': 'Username must be 150 characters or fewer.'
-        }
-    )
+    username = serializers.CharField(required=True, max_length=150)
+    designation_email = serializers.EmailField(required=True)
+    rank = serializers.CharField(required=True, max_length=100)
+    unitname = serializers.CharField(required=True, max_length=200)
+    designation = serializers.CharField(required=True, max_length=200)
+    mobileNo = serializers.RegexField(regex=r'^\+?1?\d{9,15}$', required=True)
+    personalNo = serializers.RegexField(regex=r'^\+?1?\d{9,15}$', required=True)
+    phoneNo = serializers.RegexField(regex=r'^\+?1?\d{9,15}$', required=True)
     
-    email = serializers.EmailField(
-        required=True,
-        error_messages={
-            'required': 'Email address is required.',
-            'invalid': 'Enter a valid email address.'
-        }
-    )
-    
-    password = serializers.CharField(
-        required=True,
-        write_only=True,
-        style={'input_type': 'password'},
-        error_messages={
-            'required': 'Password is required.',
-            'blank': 'Password cannot be blank.'
-        }
-    )
-    
-    confirm_password = serializers.CharField(
-        required=True,
-        write_only=True,
-        style={'input_type': 'password'},
-        error_messages={
-            'required': 'Password confirmation is required.',
-            'blank': 'Password confirmation cannot be blank.'
-        }
-    )
-    
-    # UserProfile model fields
-    rank = serializers.CharField(
-        required=True,
-        max_length=100,
-        error_messages={
-            'required': 'Rank is required.',
-            'blank': 'Rank cannot be blank.',
-            'max_length': 'Rank must be 100 characters or fewer.'
-        }
-    )
-    
-    unitname = serializers.CharField(
-        required=True,
-        max_length=200,
-        error_messages={
-            'required': 'Unit name is required.',
-            'blank': 'Unit name cannot be blank.',
-            'max_length': 'Unit name must be 200 characters or fewer.'
-        }
-    )
-    
-    designation = serializers.CharField(
-        required=True,
-        max_length=200,
-        error_messages={
-            'required': 'Designation is required.',
-            'blank': 'Designation cannot be blank.',
-            'max_length': 'Designation must be 200 characters or fewer.'
-        }
-    )
-    
-    mobileNo = serializers.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        required=True,
-        error_messages={
-            'required': 'Mobile number is required.',
-            'invalid': 'Enter a valid mobile number with country code (e.g., +919595422695).'
-        }
-    )
-    
-    personalNo = serializers.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        required=True,
-        error_messages={
-            'required': 'Personal number is required.',
-            'invalid': 'Enter a valid personal number with country code (e.g., +919863758455).'
-        }
-    )
-    
-    phoneNo = serializers.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        required=True,
-        error_messages={
-            'required': 'Phone number is required.',
-            'invalid': 'Enter a valid phone number with country code (e.g., +95867816686).'
-        }
-    )
-    
-    status = serializers.BooleanField(
-        required=False,
-        default=True
-    )
+
+  
+
     
     def validate_username(self, value):
         """
@@ -565,52 +476,61 @@ class SignUpSerializer(serializers.Serializer):
         
         return attrs
     
+    # def create(self, validated_data):
+    #     """
+    #     Create user and profile with validated data in PostgreSQL transaction.
+        
+    #     Args:
+    #         validated_data (dict): Validated data from serializer
+            
+    #     Returns:
+    #         tuple: (User instance, UserProfile instance)
+            
+    #     Raises:
+    #         Exception: If user or profile creation fails
+    #     """
+    #     # Remove confirm_password from validated data
+    #     validated_data.pop('confirm_password', None)
+        
+    #     # Extract profile data
+    #     profile_data = {
+    #         'rank': validated_data.pop('rank'),
+    #         'unitname': validated_data.pop('unitname'),
+    #         'designation': validated_data.pop('designation'),
+    #         'mobileNo': validated_data.pop('mobileNo'),
+    #         'personalNo': validated_data.pop('personalNo'),
+    #         'phoneNo': validated_data.pop('phoneNo'),
+    #         'status': validated_data.pop('status', True),
+    #     }
+        
+    #     # Use database transaction for atomicity
+    #     with transaction.atomic():
+    #         # Create User instance
+    #         user = User.objects.create_user(
+    #             username=validated_data['username'],
+    #             email=validated_data['email'],
+    #             password=validated_data['password']
+    #         )
+            
+    #         # Create UserProfile instance
+    #         profile = UserProfile.objects.create(
+    #             user=user,
+    #             **profile_data
+    #         )
+            
+    #         # Log successful user creation
+    #         logger.info(f"New user created: ID {user.id}, Profile: {profile.id}")
+            
+    #         return user, profile
+
+
+    
     def create(self, validated_data):
-        """
-        Create user and profile with validated data in PostgreSQL transaction.
-        
-        Args:
-            validated_data (dict): Validated data from serializer
-            
-        Returns:
-            tuple: (User instance, UserProfile instance)
-            
-        Raises:
-            Exception: If user or profile creation fails
-        """
-        # Remove confirm_password from validated data
-        validated_data.pop('confirm_password', None)
-        
-        # Extract profile data
-        profile_data = {
-            'rank': validated_data.pop('rank'),
-            'unitname': validated_data.pop('unitname'),
-            'designation': validated_data.pop('designation'),
-            'mobileNo': validated_data.pop('mobileNo'),
-            'personalNo': validated_data.pop('personalNo'),
-            'phoneNo': validated_data.pop('phoneNo'),
-            'status': validated_data.pop('status', True),
-        }
-        
-        # Use database transaction for atomicity
-        with transaction.atomic():
-            # Create User instance
-            user = User.objects.create_user(
-                username=validated_data['username'],
-                email=validated_data['email'],
-                password=validated_data['password']
-            )
-            
-            # Create UserProfile instance
-            profile = UserProfile.objects.create(
-                user=user,
-                **profile_data
-            )
-            
-            # Log successful user creation
-            logger.info(f"New user created: ID {user.id}, Profile: {profile.id}")
-            
-            return user, profile
+            validated_data.pop('confirm_password')
+            validated_data['password'] = make_password(validated_data['password'])
+            validated_data['status'] = '1'
+            return UserDetails.objects.create(**validated_data)
+
     
     def to_representation(self, instance):
         """

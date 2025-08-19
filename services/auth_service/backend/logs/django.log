@@ -1693,3 +1693,142 @@ django.db.utils.ProgrammingError: permission denied for table tbl_usermgmt_feedb
 ERROR 2025-08-18 14:44:59,438 basehttp 22984 25732 "GET /api/v1/auth/feedback/ HTTP/1.1" 500 167335
 INFO 2025-08-18 14:49:21,839 autoreload 28120 2760 Watching for file changes with StatReloader
 INFO 2025-08-18 14:49:41,877 basehttp 28120 21872 "GET /api/v1/auth/feedback/ HTTP/1.1" 200 2693
+INFO 2025-08-19 10:23:29,153 autoreload 44548 7232 Watching for file changes with StatReloader
+INFO 2025-08-19 10:23:34,139 basehttp 44548 51144 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 11:04:19,777 middleware 44548 51144 Slow request: POST /api/v1/auth/login/ took 1.40s
+INFO 2025-08-19 11:04:19,790 basehttp 44548 51144 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+INFO 2025-08-19 11:05:38,123 autoreload 44548 7232 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:05:47,370 autoreload 33696 41092 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:05:59,693 middleware 33696 50488 Slow request: POST /api/v1/auth/login/ took 1.71s
+INFO 2025-08-19 11:05:59,696 basehttp 33696 50488 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 11:06:20,485 log 33696 50488 Unauthorized: /api/v1/auth/feedback/
+WARNING 2025-08-19 11:06:20,486 basehttp 33696 50488 "GET /api/v1/auth/feedback/ HTTP/1.1" 401 58
+INFO 2025-08-19 11:06:50,919 basehttp 33696 50488 "GET /api/v1/auth/feedback/ HTTP/1.1" 200 2693
+INFO 2025-08-19 11:07:10,055 autoreload 33696 41092 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:07:17,009 autoreload 42916 39848 Watching for file changes with StatReloader
+INFO 2025-08-19 11:10:36,012 autoreload 42916 39848 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\config\settings.py changed, reloading.
+INFO 2025-08-19 11:10:43,538 autoreload 7744 30200 Watching for file changes with StatReloader
+INFO 2025-08-19 11:12:38,520 autoreload 7744 30200 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\serializers.py changed, reloading.
+INFO 2025-08-19 11:12:45,557 autoreload 46872 44620 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:13:47,521 log 46872 48096 Bad Request: /api/v1/auth/signup/
+WARNING 2025-08-19 11:13:47,522 basehttp 46872 48096 "POST /api/v1/auth/signup/ HTTP/1.1" 400 481
+INFO 2025-08-19 11:16:06,275 autoreload 46872 44620 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\serializers.py changed, reloading.
+INFO 2025-08-19 11:16:13,171 autoreload 12360 31612 Watching for file changes with StatReloader
+INFO 2025-08-19 11:21:07,924 autoreload 12360 31612 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:21:15,138 autoreload 26872 35124 Watching for file changes with StatReloader
+INFO 2025-08-19 11:21:34,788 autoreload 26872 35124 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:21:42,009 autoreload 34848 50432 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:21:46,573 log 34848 46864 Bad Request: /api/v1/auth/signup/
+WARNING 2025-08-19 11:21:46,573 basehttp 34848 46864 "POST /api/v1/auth/signup/ HTTP/1.1" 400 140
+INFO 2025-08-19 11:23:32,159 autoreload 34848 50432 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:23:39,467 autoreload 39852 28612 Watching for file changes with StatReloader
+INFO 2025-08-19 11:24:20,832 autoreload 39852 28612 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\serializers.py changed, reloading.
+INFO 2025-08-19 11:24:27,950 autoreload 9376 42972 Watching for file changes with StatReloader
+INFO 2025-08-19 11:24:50,814 autoreload 9376 42972 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 11:24:58,001 autoreload 44948 18972 Watching for file changes with StatReloader
+INFO 2025-08-19 11:26:08,561 autoreload 44948 18972 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:26:15,696 autoreload 38704 18060 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:26:39,093 log 38704 40624 Bad Request: /api/v1/auth/signup/
+WARNING 2025-08-19 11:26:39,095 basehttp 38704 40624 "POST /api/v1/auth/signup/ HTTP/1.1" 400 149
+INFO 2025-08-19 11:27:12,386 autoreload 38704 18060 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:27:19,509 autoreload 35908 24468 Watching for file changes with StatReloader
+ERROR 2025-08-19 11:27:27,442 log 35908 15372 Internal Server Error: /api/v1/auth/signup/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py", line 681, in post
+    if data["password"] != data["confirm_password"]:
+       ~~~~^^^^^^^^^^^^
+KeyError: 'password'
+ERROR 2025-08-19 11:27:27,462 basehttp 35908 15372 "POST /api/v1/auth/signup/ HTTP/1.1" 500 101108
+INFO 2025-08-19 11:28:11,960 autoreload 35908 24468 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:28:18,839 autoreload 34332 35712 Watching for file changes with StatReloader
+WARNING 2025-08-19 11:28:23,827 log 34332 51088 Bad Request: /api/v1/auth/signup/
+WARNING 2025-08-19 11:28:23,827 basehttp 34332 51088 "POST /api/v1/auth/signup/ HTTP/1.1" 400 114
+ERROR 2025-08-19 11:28:34,101 views 34332 51088 Error creating user: bit string length 0 does not match type bit(1)
+
+ERROR 2025-08-19 11:28:34,101 log 34332 51088 Internal Server Error: /api/v1/auth/signup/
+ERROR 2025-08-19 11:28:34,101 basehttp 34332 51088 "POST /api/v1/auth/signup/ HTTP/1.1" 500 157
+INFO 2025-08-19 11:29:14,147 autoreload 34332 35712 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:29:21,219 autoreload 47804 50928 Watching for file changes with StatReloader
+ERROR 2025-08-19 11:29:25,351 views 47804 26564 Error creating user: bit string length 0 does not match type bit(1)
+
+ERROR 2025-08-19 11:29:25,351 log 47804 26564 Internal Server Error: /api/v1/auth/signup/
+ERROR 2025-08-19 11:29:25,366 basehttp 47804 26564 "POST /api/v1/auth/signup/ HTTP/1.1" 500 157
+INFO 2025-08-19 11:34:50,688 autoreload 47804 50928 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:35:01,389 autoreload 10704 22552 Watching for file changes with StatReloader
+INFO 2025-08-19 11:37:35,640 autoreload 10704 22552 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 11:37:43,024 autoreload 48668 29052 Watching for file changes with StatReloader
+ERROR 2025-08-19 11:37:53,833 views 48668 24440 Error creating user: bit string length 0 does not match type bit(1)
+
+ERROR 2025-08-19 11:37:53,833 log 48668 24440 Internal Server Error: /api/v1/auth/signup/
+ERROR 2025-08-19 11:37:53,833 basehttp 48668 24440 "POST /api/v1/auth/signup/ HTTP/1.1" 500 157
+INFO 2025-08-19 11:45:26,917 autoreload 48668 29052 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 11:45:34,556 autoreload 6168 4700 Watching for file changes with StatReloader
+ERROR 2025-08-19 11:45:40,041 views 6168 51056 Error creating user: bit string length 0 does not match type bit(1)
+
+ERROR 2025-08-19 11:45:40,044 log 6168 51056 Internal Server Error: /api/v1/auth/signup/
+ERROR 2025-08-19 11:45:40,044 basehttp 6168 51056 "POST /api/v1/auth/signup/ HTTP/1.1" 500 157
+INFO 2025-08-19 11:48:46,218 autoreload 6168 4700 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 11:48:54,338 autoreload 48372 47828 Watching for file changes with StatReloader
+INFO 2025-08-19 11:48:59,347 basehttp 48372 34716 "POST /api/v1/auth/signup/ HTTP/1.1" 201 324
+INFO 2025-08-19 12:35:15,747 autoreload 48372 47828 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 12:35:25,148 autoreload 45004 22532 Watching for file changes with StatReloader
+INFO 2025-08-19 12:37:13,906 autoreload 45004 22532 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 12:37:20,542 autoreload 38896 33680 Watching for file changes with StatReloader
+INFO 2025-08-19 12:38:03,309 autoreload 38896 33680 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 12:38:09,869 autoreload 36816 43036 Watching for file changes with StatReloader
+ERROR 2025-08-19 12:39:03,936 log 36816 41752 Internal Server Error: /api/v1/auth/signup/
+Traceback (most recent call last):
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\navy\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py", line 686, in post
+    if UserDetails.objects.filter(userlogin=data["userlogin"]).exists():
+                                            ~~~~^^^^^^^^^^^^^
+KeyError: 'userlogin'
+ERROR 2025-08-19 12:39:03,953 basehttp 36816 41752 "POST /api/v1/auth/signup/ HTTP/1.1" 500 101120
+INFO 2025-08-19 12:39:47,579 autoreload 36816 43036 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\views.py changed, reloading.
+INFO 2025-08-19 12:39:53,837 autoreload 45620 27152 Watching for file changes with StatReloader
+INFO 2025-08-19 12:39:58,336 basehttp 45620 48136 "POST /api/v1/auth/signup/ HTTP/1.1" 201 300
+INFO 2025-08-19 14:20:30,242 basehttp 45620 48136 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+INFO 2025-08-19 14:20:48,946 views 45620 48136 Token 17874771908e414b8745b44d7c0895d6 blacklisted successfully
