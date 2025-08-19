@@ -754,20 +754,22 @@ class SignUpAPIView(APIView):
         return ip
 
 class HomePageView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        tab_type = request.data.get('tab_type')
+        tab_type = request.data.get('header_name')
         if not tab_type:
             return Response({"error": "tab_type is required"}, status=status.HTTP_400_BAD_REQUEST)
-        queryset = HomePageInformation.objects.filter(tab_type=tab_type)
-        if tab_type == 'Instructions':
+        queryset = HomePageInformation.objects.filter(header_name=tab_type)
+        
+        if tab_type == 'INSTRUCTIONS':
             serializer = InstructionsSerializer(queryset, many=True)
-        elif tab_type == 'CMMS Offline':
+        elif tab_type == 'CMMS OFFLINE':
             serializer = OfflineSerializer(queryset, many=True)
-        elif tab_type == 'Downloads':
+        elif tab_type == 'DOWNLOADS':
             serializer = DownloadsSerializer(queryset, many=True)
-        elif tab_type == 'Publications':
+        elif tab_type == 'PUBLICATIONS':
             serializer = PublicationsSerializer(queryset, many=True)
         else:
             return Response({"error": "Invalid tab_type"}, status=status.HTTP_400_BAD_REQUEST)
