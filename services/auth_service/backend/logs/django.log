@@ -1009,3 +1009,6 @@ INFO 2025-08-19 11:44:56,499 autoreload 20976 30612 D:\Phoenix\Defense_POC\POC4\
 INFO 2025-08-19 11:45:01,460 autoreload 26184 27592 Watching for file changes with StatReloader
 INFO 2025-08-19 11:45:15,005 autoreload 26184 27592 D:\Phoenix\Defense_POC\POC4\services\auth_service\backend\apps\users\models.py changed, reloading.
 INFO 2025-08-19 11:45:20,031 autoreload 30540 9712 Watching for file changes with StatReloader
+INFO 2025-08-19 12:35:46,876 autoreload 30540 9712 D:\Phoenix\Defense_POC\POC4\services\auth_service\backend\apps\users\models.py changed, reloading.
+INFO 2025-08-19 12:35:51,922 autoreload 22084 30284 Watching for file changes with StatReloader
+INFO 2025-08-19 12:36:47,031 autoreload 22084 30284 D:\Phoenix\Defense_POC\POC4\services\auth_service\backend\apps\users\views.py changed, reloading.
