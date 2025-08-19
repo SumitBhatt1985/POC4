@@ -786,7 +786,8 @@ class HomePageView(APIView):
         return Response(serializer.data)
     
 class FeedbackAPIView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         feedbacks = Feedback.objects.all()
