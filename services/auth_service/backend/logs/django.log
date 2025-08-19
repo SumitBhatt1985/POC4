@@ -2173,3 +2173,6 @@ AttributeError: 'UserDetails' object has no attribute 'is_authenticated'
 ERROR 2025-08-19 17:18:38,008 basehttp 47004 49696 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 500 109214
 INFO 2025-08-19 17:19:48,491 autoreload 47004 12772 D:\OneDrive - Xcaliber Infotech\WORKSPACE\Products\Project-NAVY\POC4-sumit\services\auth_service\backend\apps\users\models.py changed, reloading.
 INFO 2025-08-19 17:19:55,767 autoreload 27900 5772 Watching for file changes with StatReloader
+INFO 2025-08-19 17:20:03,070 basehttp 27900 46280 "POST /api/v1/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-08-19 17:20:20,517 middleware 27900 46280 Slow request: PUT /api/v1/auth/users/manage/ took 2.18s
+INFO 2025-08-19 17:20:20,519 basehttp 27900 46280 "PUT /api/v1/auth/users/manage/ HTTP/1.1" 200 389
