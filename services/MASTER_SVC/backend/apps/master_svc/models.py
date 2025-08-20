@@ -1,9 +1,11 @@
 from django.db import models
 
 class CommandMaster(models.Model):
+	command_id = models.CharField(max_length=10)
 	command = models.CharField(max_length=255)
 	hq = models.CharField(max_length=255)
 	code = models.CharField(max_length=50)
+	is_active = models.SmallIntegerField(default=1)
 	class Meta:
 		db_table = 'tbl_command_master'
 
