@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from .authentication import CustomJWTAuthentication
 
 # import all master models
+
 from .models import (
 	CommandMaster, DepartmentMaster, EquipmentCategoryMaster,
 	ShipCategoryMaster, RoleMaster, ShipStateMaster,
@@ -16,10 +17,12 @@ from .models import (
 	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster
+	ManufacturerMaster, EquipmentMaster, ShipMaster,
+	VwSfdSectionAdd
 )
 
 # import all master serializers
+
 from .serializers import (
 	CommandMasterSerializer, DepartmentMasterSerializer, EquipmentCategoryMasterSerializer,
 	ShipCategoryMasterSerializer, RoleMasterSerializer, ShipStateMasterSerializer,
@@ -27,7 +30,8 @@ from .serializers import (
 	LubricantMasterSerializer, SectionMasterSerializer, GroupMasterSerializer, CountryMasterSerializer,
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
-	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer
+	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
+	VwSfdSectionAddSerializer
 )
 
 
@@ -64,7 +68,15 @@ ALLOWED_TABLES = {
 	'tbl_manufacturer_master': (ManufacturerMaster, ManufacturerMasterSerializer),
 	'tbl_equipment_master': (EquipmentMaster, EquipmentMasterSerializer),
 	'tbl_ship_master': (ShipMaster, ShipMasterSerializer),
+	# --- PostgreSQL Views --- 
+	'vw_sfd_section_add': (VwSfdSectionAdd, VwSfdSectionAddSerializer),
 }
+
+# ALLOWED_Table_Col = {
+# 	'tbl_section_master': {name:(dropdown, table_department_master), col2:(dropdown, table), col3:(dropdown, table)},
+# 	'tbl_group_master': {col1:(dropdown, table), col2:(dropdown, table), col3:(dropdown, table)},
+# 	'tbl_country_master': {col1:(dropdown, table), col2:(dropdown, table), col3:(dropdown, table)},
+# }
 
 # Audit logger
 audit_logger = logging.getLogger('audit')
