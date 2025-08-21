@@ -312,3 +312,1343 @@ INFO 2025-08-19 16:07:52,359 autoreload 19504 7376 Watching for file changes wit
 INFO 2025-08-19 16:08:33,001 autoreload 19504 7376 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
 INFO 2025-08-19 16:08:38,179 autoreload 12760 24972 Watching for file changes with StatReloader
 INFO 2025-08-19 16:10:09,507 basehttp 12760 29164 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 70
+INFO 2025-08-19 18:44:10,328 autoreload 9944 28768 Watching for file changes with StatReloader
+WARNING 2025-08-19 18:44:37,435 log 9944 26300 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 18:44:37,435 basehttp 9944 26300 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-19 18:51:37,551 autoreload 9944 28768 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\config\settings.py changed, reloading.
+INFO 2025-08-19 19:08:08,087 autoreload 27328 26752 Watching for file changes with StatReloader
+INFO 2025-08-19 19:12:48,090 autoreload 28452 30288 Watching for file changes with StatReloader
+INFO 2025-08-19 19:41:08,604 autoreload 29484 21492 Watching for file changes with StatReloader
+INFO 2025-08-19 19:42:58,623 autoreload 29484 21492 D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py changed, reloading.
+WARNING 2025-08-19 19:45:46,215 log 29484 24376 Unauthorized: /api/v1/master/wrapper/
+INFO 2025-08-19 19:46:07,720 autoreload 26668 20400 Watching for file changes with StatReloader
+WARNING 2025-08-19 19:46:54,257 log 26668 5804 Forbidden: /api/v1/master/wrapper/
+WARNING 2025-08-19 19:46:54,258 basehttp 26668 5804 "POST /api/v1/master/wrapper/ HTTP/1.1" 403 50
+INFO 2025-08-19 19:53:40,343 autoreload 26668 20400 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 19:53:45,073 autoreload 26068 4580 Watching for file changes with StatReloader
+ERROR 2025-08-19 19:56:49,416 log 26068 30512 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "command_id" of relation "tbl_command_master" violates not-null constraint
+DETAIL:  Failing row contains (null, North010-demo010, NNC008, Northen, 2025-08-19 14:28:11.334589, 2025-08-19 14:28:11.334589, 10, 1, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 169, in post
+    return crud_create(request.user, table_name, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 65, in crud_create
+    instance = serializer.save()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "command_id" of relation "tbl_command_master" violates not-null constraint
+DETAIL:  Failing row contains (null, North010-demo010, NNC008, Northen, 2025-08-19 14:28:11.334589, 2025-08-19 14:28:11.334589, 10, 1, null).
+
+ERROR 2025-08-19 19:56:49,433 basehttp 26068 30512 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 198484
+ERROR 2025-08-19 20:00:55,365 log 26068 2032 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "command_id" of relation "tbl_command_master" violates not-null constraint
+DETAIL:  Failing row contains (null, North010-demo010, NNC008, Northen, 2025-08-19 14:32:17.42619, 2025-08-19 14:32:17.42619, 11, 1, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 169, in post
+    return crud_create(request.user, table_name, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 65, in crud_create
+    instance = serializer.save()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "command_id" of relation "tbl_command_master" violates not-null constraint
+DETAIL:  Failing row contains (null, North010-demo010, NNC008, Northen, 2025-08-19 14:32:17.42619, 2025-08-19 14:32:17.42619, 11, 1, null).
+
+ERROR 2025-08-19 20:00:55,376 basehttp 26068 2032 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 198366
+INFO 2025-08-19 20:10:27,252 autoreload 26068 4580 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+WARNING 2025-08-19 20:10:48,866 log 26068 27452 Forbidden: /api/v1/master/wrapper/
+INFO 2025-08-19 20:11:11,666 autoreload 1272 22540 Watching for file changes with StatReloader
+INFO 2025-08-19 20:11:27,561 autoreload 29644 31348 Watching for file changes with StatReloader
+WARNING 2025-08-19 20:11:46,257 log 29644 868 Forbidden: /api/v1/master/wrapper/
+WARNING 2025-08-19 20:11:46,258 basehttp 29644 868 "POST /api/v1/master/wrapper/ HTTP/1.1" 403 50
+INFO 2025-08-19 20:22:45,066 autoreload 29644 31348 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:22:50,232 autoreload 19300 24888 Watching for file changes with StatReloader
+INFO 2025-08-19 20:23:13,054 autoreload 19300 24888 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:23:18,297 autoreload 20604 28192 Watching for file changes with StatReloader
+INFO 2025-08-19 20:23:31,256 autoreload 20604 28192 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:23:36,701 autoreload 16260 23512 Watching for file changes with StatReloader
+INFO 2025-08-19 20:23:42,910 basehttp 16260 26516 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 37
+INFO 2025-08-19 20:25:22,032 basehttp 16260 9532 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 37
+INFO 2025-08-19 20:30:27,160 autoreload 16260 23512 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:30:32,323 autoreload 17612 20300 Watching for file changes with StatReloader
+INFO 2025-08-19 20:30:40,897 autoreload 17612 20300 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:30:46,175 autoreload 24060 30944 Watching for file changes with StatReloader
+INFO 2025-08-19 20:32:17,328 autoreload 24060 30944 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:32:22,526 autoreload 28092 30476 Watching for file changes with StatReloader
+INFO 2025-08-19 20:32:36,743 autoreload 28092 30476 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:32:42,048 autoreload 27952 28316 Watching for file changes with StatReloader
+INFO 2025-08-19 20:34:09,552 autoreload 27952 28316 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:34:14,776 autoreload 28656 29996 Watching for file changes with StatReloader
+INFO 2025-08-19 20:34:45,317 autoreload 28656 29996 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 20:34:50,602 autoreload 28684 20804 Watching for file changes with StatReloader
+WARNING 2025-08-19 20:35:51,598 log 28684 11180 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-19 20:35:51,599 basehttp 28684 11180 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 83
+INFO 2025-08-19 21:09:14,588 autoreload 28684 20804 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:09:19,914 autoreload 10012 1736 Watching for file changes with StatReloader
+INFO 2025-08-19 21:09:54,780 autoreload 10012 1736 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:09:59,996 autoreload 23732 22020 Watching for file changes with StatReloader
+INFO 2025-08-19 21:10:59,198 autoreload 23732 22020 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:11:04,653 autoreload 9976 29504 Watching for file changes with StatReloader
+INFO 2025-08-19 21:11:16,569 autoreload 9976 29504 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:11:21,950 autoreload 28808 19652 Watching for file changes with StatReloader
+INFO 2025-08-19 21:12:39,493 autoreload 28808 19652 D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 21:12:44,603 autoreload 2564 10700 Watching for file changes with StatReloader
+INFO 2025-08-19 21:12:53,464 autoreload 2564 10700 D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 21:12:58,672 autoreload 21428 29984 Watching for file changes with StatReloader
+INFO 2025-08-19 21:13:10,659 autoreload 21428 29984 D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py changed, reloading.
+INFO 2025-08-19 21:13:15,835 autoreload 10516 23640 Watching for file changes with StatReloader
+INFO 2025-08-19 21:14:03,682 autoreload 10516 23640 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 21:14:09,192 autoreload 19400 12552 Watching for file changes with StatReloader
+WARNING 2025-08-19 21:14:46,809 log 19400 29956 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 21:14:46,809 basehttp 19400 29956 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+ERROR 2025-08-19 21:15:20,987 log 19400 29956 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.DatatypeMismatch: column "is_active" is of type bit but expression is of type integer
+LINE 1: ...hq" = 'Northen', "code" = 'NNC123', "is_active" = 0 WHERE "t...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 317, in post
+    return crud_delete(request.user, table_name, pk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 134, in crud_delete
+    instance.save()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "is_active" is of type bit but expression is of type integer
+LINE 1: ...hq" = 'Northen', "code" = 'NNC123', "is_active" = 0 WHERE "t...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+ERROR 2025-08-19 21:15:21,008 basehttp 19400 29956 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 179040
+INFO 2025-08-19 21:17:41,688 autoreload 19400 12552 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:17:49,461 autoreload 156 19532 Watching for file changes with StatReloader
+INFO 2025-08-19 21:18:10,163 autoreload 156 19532 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:18:15,397 autoreload 25572 16852 Watching for file changes with StatReloader
+ERROR 2025-08-19 21:19:27,361 log 25572 27092 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.DatatypeMismatch: column "is_active" is of type bit but expression is of type integer
+LINE 1: ...hq" = 'Northen', "code" = 'NNC123', "is_active" = 0 WHERE "t...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 317, in post
+    return crud_delete(request.user, table_name, pk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 134, in crud_delete
+    instance.save()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "is_active" is of type bit but expression is of type integer
+LINE 1: ...hq" = 'Northen', "code" = 'NNC123', "is_active" = 0 WHERE "t...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+ERROR 2025-08-19 21:19:27,379 basehttp 25572 27092 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 179711
+INFO 2025-08-19 21:21:08,941 autoreload 25572 16852 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:21:14,246 autoreload 9664 27636 Watching for file changes with StatReloader
+INFO 2025-08-19 21:21:17,430 autoreload 9664 27636 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 21:21:22,590 autoreload 9112 30536 Watching for file changes with StatReloader
+ERROR 2025-08-19 21:22:04,666 log 9112 9656 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.DatatypeMismatch: column "is_active" is of type bit but expression is of type boolean
+LINE 1: ...hq" = 'Northen', "code" = 'NNC123', "is_active" = false WHER...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 317, in post
+    return crud_delete(request.user, table_name, pk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 134, in crud_delete
+    instance.save()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "is_active" is of type bit but expression is of type boolean
+LINE 1: ...hq" = 'Northen', "code" = 'NNC123', "is_active" = false WHER...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+ERROR 2025-08-19 21:22:04,683 basehttp 9112 9656 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 179689
+WARNING 2025-08-19 21:27:05,436 log 9112 10696 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-19 21:27:05,436 basehttp 9112 10696 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 93
+ERROR 2025-08-19 21:28:13,524 log 9112 27328 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.DatatypeMismatch: column "is_active" is of type bit but expression is of type boolean
+LINE 1: ...M00011', 'North011-demo011', 'Northen', 'NNC011', true) RETU...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 293, in post
+    return crud_create(request.user, table_name, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 66, in crud_create
+    instance = serializer.save()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "is_active" is of type bit but expression is of type boolean
+LINE 1: ...M00011', 'North011-demo011', 'Northen', 'NNC011', true) RETU...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+ERROR 2025-08-19 21:28:13,538 basehttp 9112 27328 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 201051
+INFO 2025-08-19 22:09:26,083 autoreload 9112 30536 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:09:33,307 autoreload 25120 30512 Watching for file changes with StatReloader
+INFO 2025-08-19 22:10:52,775 autoreload 25120 30512 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:10:57,942 autoreload 27948 26592 Watching for file changes with StatReloader
+INFO 2025-08-19 22:11:03,860 autoreload 27948 26592 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:11:08,809 autoreload 26896 23644 Watching for file changes with StatReloader
+INFO 2025-08-19 22:11:45,715 autoreload 26896 23644 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:11:50,733 autoreload 28052 26012 Watching for file changes with StatReloader
+INFO 2025-08-19 22:12:07,208 autoreload 28464 14452 Watching for file changes with StatReloader
+ERROR 2025-08-19 22:14:20,626 log 28464 14640 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py", line 38, in authenticate
+    user = UserDetails.objects.get(userlogin=userlogin, status='1')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 619, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1493, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1511, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1518, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1526, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1333, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1805, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'status' into field. Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, outstandingtoken, password, user_permissions, username
+ERROR 2025-08-19 22:14:20,640 basehttp 28464 14640 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 167201
+WARNING 2025-08-19 22:15:22,931 log 28464 9752 Forbidden: /api/v1/master/wrapper/
+WARNING 2025-08-19 22:15:22,932 basehttp 28464 9752 "POST /api/v1/master/wrapper/ HTTP/1.1" 403 26
+ERROR 2025-08-19 22:16:32,593 log 28464 9752 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py", line 38, in authenticate
+    user = UserDetails.objects.get(userlogin=userlogin, status='1')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 619, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1493, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1511, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1518, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1526, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1333, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1805, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'status' into field. Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, outstandingtoken, password, user_permissions, username
+ERROR 2025-08-19 22:16:32,597 basehttp 28464 9752 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 167201
+INFO 2025-08-19 22:18:38,085 autoreload 28464 14452 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:18:43,177 autoreload 28484 31488 Watching for file changes with StatReloader
+ERROR 2025-08-19 22:18:46,735 log 28484 21480 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.DatatypeMismatch: argument of WHERE must be type boolean, not type bit
+LINE 1: ...ster"."is_active" FROM "tbl_command_master" WHERE "tbl_comma...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 295, in post
+    return crud_list(request.user, table_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 91, in crud_list
+    'data': serializer.data
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+                                                   ^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: argument of WHERE must be type boolean, not type bit
+LINE 1: ...ster"."is_active" FROM "tbl_command_master" WHERE "tbl_comma...
+                                                             ^
+
+ERROR 2025-08-19 22:18:46,748 basehttp 28484 21480 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 172990
+INFO 2025-08-19 22:19:33,110 autoreload 28484 31488 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 22:19:38,164 autoreload 13828 25000 Watching for file changes with StatReloader
+INFO 2025-08-19 22:19:43,200 basehttp 13828 31116 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 639
+INFO 2025-08-19 22:20:13,956 autoreload 13828 25000 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:20:19,029 autoreload 14792 844 Watching for file changes with StatReloader
+ERROR 2025-08-19 22:20:28,581 log 14792 23624 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py", line 38, in authenticate
+    user = UserDetails.objects.get(userlogin=userlogin, status='1')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 619, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1493, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1511, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1518, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1526, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1333, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1805, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'status' into field. Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, outstandingtoken, password, user_permissions, username
+ERROR 2025-08-19 22:20:28,590 basehttp 14792 23624 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 167201
+INFO 2025-08-19 22:37:03,432 autoreload 14792 844 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-19 22:37:10,759 autoreload 29740 7064 Watching for file changes with StatReloader
+INFO 2025-08-19 22:37:50,712 autoreload 29740 7064 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:37:55,949 autoreload 5824 17172 Watching for file changes with StatReloader
+INFO 2025-08-19 22:37:57,776 autoreload 5824 17172 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:38:02,798 autoreload 13800 2468 Watching for file changes with StatReloader
+INFO 2025-08-19 22:38:35,489 autoreload 13800 2468 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:38:40,667 autoreload 29472 29404 Watching for file changes with StatReloader
+ERROR 2025-08-19 22:38:44,586 log 29472 26676 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py", line 38, in authenticate
+    user = UserDetails.objects.get(userlogin=userlogin, status='1')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 619, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1493, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1511, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1518, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1526, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1333, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\query.py", line 1805, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'status' into field. Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, outstandingtoken, password, user_permissions, username
+ERROR 2025-08-19 22:38:44,599 basehttp 29472 26676 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 167201
+INFO 2025-08-19 22:39:14,376 autoreload 29472 29404 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-19 22:39:19,672 autoreload 29200 13592 Watching for file changes with StatReloader
+INFO 2025-08-19 22:39:29,404 basehttp 29200 2900 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 723
+INFO 2025-08-19 22:39:48,785 basehttp 29200 2900 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 723
+WARNING 2025-08-19 22:40:06,674 log 29200 2900 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 22:40:06,675 basehttp 29200 2900 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-19 22:41:19,044 basehttp 29200 2900 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 74
+INFO 2025-08-19 22:42:45,550 basehttp 29200 12612 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 171
+WARNING 2025-08-19 22:44:43,061 log 29200 14316 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 22:44:43,062 basehttp 29200 14316 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-19 22:59:37,481 log 29200 23672 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 22:59:37,482 basehttp 29200 23672 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-19 23:01:48,391 log 29200 26928 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 23:01:48,391 basehttp 29200 26928 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-19 23:04:14,175 log 29200 9980 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 23:04:14,175 basehttp 29200 9980 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-19 23:06:17,568 basehttp 29200 25996 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 171
+INFO 2025-08-19 23:06:39,106 basehttp 29200 25996 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 838
+INFO 2025-08-19 23:06:51,913 basehttp 29200 25996 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 74
+INFO 2025-08-19 23:07:03,640 basehttp 29200 25996 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 173
+INFO 2025-08-19 23:07:34,966 basehttp 29200 25996 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 171
+INFO 2025-08-19 23:23:05,014 basehttp 29200 9656 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:23:31,234 basehttp 29200 9656 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:24:47,924 basehttp 29200 31476 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:25:22,989 autoreload 31268 29784 Watching for file changes with StatReloader
+INFO 2025-08-19 23:25:30,553 basehttp 31268 13688 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:26:14,680 autoreload 31268 29784 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:26:19,928 autoreload 15052 28008 Watching for file changes with StatReloader
+INFO 2025-08-19 23:26:22,195 basehttp 15052 13072 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:27:49,960 autoreload 15052 28008 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:27:55,030 autoreload 7184 30868 Watching for file changes with StatReloader
+INFO 2025-08-19 23:27:56,932 autoreload 7184 30868 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:28:02,092 autoreload 21264 28052 Watching for file changes with StatReloader
+INFO 2025-08-19 23:28:14,629 basehttp 21264 1256 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:34:46,558 autoreload 21264 28052 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:34:51,849 autoreload 19348 2800 Watching for file changes with StatReloader
+ERROR 2025-08-19 23:35:01,625 log 19348 27240 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 9, in get_user
+    print(dict(validated_token))
+     ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\tokens.py", line 88, in __getitem__
+    return self.payload[key]
+           ~~~~~~~~~~~~^^^^^
+KeyError: 0
+ERROR 2025-08-19 23:35:01,634 basehttp 19348 27240 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 123386
+INFO 2025-08-19 23:35:45,243 autoreload 19348 2800 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:35:50,752 autoreload 6468 7244 Watching for file changes with StatReloader
+ERROR 2025-08-19 23:35:52,879 log 6468 24328 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 9, in get_user
+    print(dict(validated_token))
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\tokens.py", line 88, in __getitem__
+    return self.payload[key]
+           ~~~~~~~~~~~~^^^^^
+KeyError: 0
+ERROR 2025-08-19 23:35:52,888 basehttp 6468 24328 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 123383
+INFO 2025-08-19 23:36:33,785 autoreload 6468 7244 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:36:38,986 autoreload 16284 16364 Watching for file changes with StatReloader
+ERROR 2025-08-19 23:36:47,868 log 16284 16484 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 74, in wrap_attributeerrors
+    yield
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 9, in get_user
+    print(validated_token.items())
+         ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AccessToken' object has no attribute 'items'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 231, in user
+    with wrap_attributeerrors():
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 78, in wrap_attributeerrors
+    raise exc.with_traceback(info[2])
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 74, in wrap_attributeerrors
+    yield
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 9, in get_user
+    print(validated_token.items())
+         ^^^^^^^^^^^^^^^^^^^^^
+rest_framework.request.WrappedAttributeError: 'AccessToken' object has no attribute 'items'
+ERROR 2025-08-19 23:36:47,877 basehttp 16284 16484 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 157908
+INFO 2025-08-19 23:38:25,824 autoreload 16284 16364 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:38:31,434 autoreload 26904 25656 Watching for file changes with StatReloader
+WARNING 2025-08-19 23:38:34,959 log 26904 18096 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-19 23:38:34,960 basehttp 26904 18096 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-19 23:41:16,874 autoreload 26904 25656 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:41:21,956 autoreload 31020 12804 Watching for file changes with StatReloader
+INFO 2025-08-19 23:41:24,867 basehttp 31020 29660 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:42:15,862 autoreload 31020 12804 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:42:20,952 autoreload 5828 26188 Watching for file changes with StatReloader
+INFO 2025-08-19 23:42:22,002 basehttp 5828 15932 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:43:10,963 autoreload 5828 26188 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:43:16,093 autoreload 29856 23368 Watching for file changes with StatReloader
+ERROR 2025-08-19 23:43:18,327 log 29856 24928 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 74, in wrap_attributeerrors
+    yield
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 14, in get_user
+    for key, value in validated_token.items():
+                      ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AccessToken' object has no attribute 'items'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 231, in user
+    with wrap_attributeerrors():
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 78, in wrap_attributeerrors
+    raise exc.with_traceback(info[2])
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 74, in wrap_attributeerrors
+    yield
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 14, in get_user
+    for key, value in validated_token.items():
+                      ^^^^^^^^^^^^^^^^^^^^^
+rest_framework.request.WrappedAttributeError: 'AccessToken' object has no attribute 'items'
+ERROR 2025-08-19 23:43:18,336 basehttp 29856 24928 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 158851
+INFO 2025-08-19 23:43:44,876 autoreload 29856 23368 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:43:50,212 autoreload 3804 27280 Watching for file changes with StatReloader
+ERROR 2025-08-19 23:43:53,063 log 3804 24800 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py", line 14, in get_user
+    for key, value in dict(validated_token).items():
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework_simplejwt\tokens.py", line 88, in __getitem__
+    return self.payload[key]
+           ~~~~~~~~~~~~^^^^^
+KeyError: 0
+ERROR 2025-08-19 23:43:53,074 basehttp 3804 24800 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 123870
+INFO 2025-08-19 23:44:48,489 autoreload 3804 27280 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:44:53,613 autoreload 13788 24960 Watching for file changes with StatReloader
+INFO 2025-08-19 23:44:58,842 autoreload 13788 24960 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:45:04,010 autoreload 27932 17476 Watching for file changes with StatReloader
+INFO 2025-08-19 23:45:12,265 autoreload 27932 17476 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\authentication.py changed, reloading.
+INFO 2025-08-19 23:45:17,680 autoreload 13356 25456 Watching for file changes with StatReloader
+INFO 2025-08-19 23:45:18,673 basehttp 13356 22732 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 945
+INFO 2025-08-19 23:53:17,269 autoreload 13356 25456 D:\Phoenix\Defense_POC\POC4\services\common_auth\authentication.py changed, reloading.
+WARNING 2025-08-20 16:13:43,615 log 13356 26080 Unauthorized: /api/v1/master/wrapper/
+INFO 2025-08-20 16:14:00,222 autoreload 27828 32648 Watching for file changes with StatReloader
+WARNING 2025-08-20 16:14:04,236 log 27828 9476 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-20 16:14:04,237 basehttp 27828 9476 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-20 16:33:14,563 log 27828 33728 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-20 16:33:14,563 basehttp 27828 33728 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-20 16:33:52,669 log 27828 33728 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-20 16:33:52,670 basehttp 27828 33728 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-20 16:35:30,156 log 27828 27960 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-20 16:35:30,156 basehttp 27828 27960 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-20 16:35:55,325 basehttp 27828 27960 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 163
+INFO 2025-08-20 16:38:02,976 autoreload 27828 32648 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-20 16:38:11,009 autoreload 22548 33512 Watching for file changes with StatReloader
+INFO 2025-08-20 17:25:08,105 autoreload 22548 33512 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-20 17:25:13,500 autoreload 18592 32252 Watching for file changes with StatReloader
+INFO 2025-08-20 17:26:34,163 autoreload 18592 32252 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-20 17:26:39,384 autoreload 12376 27804 Watching for file changes with StatReloader
+INFO 2025-08-20 17:43:24,957 autoreload 12376 27804 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-20 17:43:32,739 autoreload 23412 32388 Watching for file changes with StatReloader
+INFO 2025-08-20 17:43:59,167 autoreload 23412 32388 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-20 17:44:04,851 autoreload 29536 3076 Watching for file changes with StatReloader
+INFO 2025-08-20 17:44:10,526 autoreload 29536 3076 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-20 17:44:17,197 autoreload 5184 23480 Watching for file changes with StatReloader
+INFO 2025-08-20 17:55:24,778 autoreload 5184 23480 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-20 17:55:31,323 autoreload 33360 13668 Watching for file changes with StatReloader
+WARNING 2025-08-20 17:56:59,073 log 33360 31916 Unauthorized: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 17:56:59,074 basehttp 33360 31916 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-20 18:00:12,221 log 33360 22100 Unauthorized: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 18:00:12,222 basehttp 33360 22100 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 401 58
+INFO 2025-08-20 18:00:59,108 basehttp 33360 22100 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 201 163
+WARNING 2025-08-20 18:03:47,962 log 33360 4608 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-20 18:03:47,963 basehttp 33360 4608 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-20 18:03:55,347 basehttp 33360 4608 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 74
+WARNING 2025-08-20 18:05:26,815 log 33360 13892 Bad Request: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 18:05:26,816 basehttp 33360 13892 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 400 89
+INFO 2025-08-20 18:07:18,626 basehttp 33360 23512 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 200 74
+WARNING 2025-08-20 18:13:55,125 log 33360 27464 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-20 18:13:55,126 basehttp 33360 27464 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 94
+WARNING 2025-08-20 18:14:08,648 log 33360 27464 Not Found: /api/v1/master/primary-wrapper/
+WARNING 2025-08-20 18:14:08,649 basehttp 33360 27464 "POST /api/v1/master/primary-wrapper/ HTTP/1.1" 404 4237
+WARNING 2025-08-20 18:14:29,148 log 33360 27464 Bad Request: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 18:14:29,150 basehttp 33360 27464 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 400 120
+INFO 2025-08-20 18:14:49,027 basehttp 33360 27464 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 200 205
+WARNING 2025-08-20 18:16:40,787 log 33360 3052 Not Found: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 18:16:40,788 basehttp 33360 3052 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 404 89
+INFO 2025-08-20 18:17:54,005 basehttp 33360 33384 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 200 217
+INFO 2025-08-20 18:19:25,853 basehttp 33360 29536 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1056
+INFO 2025-08-20 18:27:12,581 autoreload 33360 13668 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-20 18:27:17,809 autoreload 22448 31312 Watching for file changes with StatReloader
+INFO 2025-08-20 18:27:41,200 autoreload 22448 31312 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-20 18:27:46,188 autoreload 32888 33428 Watching for file changes with StatReloader
+INFO 2025-08-20 18:28:28,929 autoreload 32888 33428 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-20 18:28:33,971 autoreload 21192 31736 Watching for file changes with StatReloader
+INFO 2025-08-20 18:38:04,658 autoreload 21192 31736 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
+INFO 2025-08-20 18:38:09,662 autoreload 20456 28484 Watching for file changes with StatReloader

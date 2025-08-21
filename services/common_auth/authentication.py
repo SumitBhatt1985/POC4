@@ -1,39 +1,60 @@
 import jwt
+import logging
 from rest_framework import authentication, exceptions
 from django.conf import settings
-from apps.users.models import UserDetails
+from django.contrib.auth import get_user_model
 
+logger = logging.getLogger(__name__)
+UserDetails = get_user_model()
 
-# class CustomJWTAuthentication(JWTAuthentication):
-#     def get_user(self, validated_token):
-#         userlogin = validated_token.get("userlogin", None)
-#         if not userlogin:
-#             raise InvalidToken("Token missing 'userlogin' claim")
-
-#         try:
-#             user = UserDetails.objects.get(userlogin=userlogin, status='1')
-#             user.is_authenticated = True
-#             return user
-#         except UserDetails.DoesNotExist:
-#             raise InvalidToken("User not found for given userlogin")
+# Constants
+ACTIVE_USER_STATUS = '1'
+BEARER_PREFIX = 'Bearer '
 
 class CustomJWTAuthentication(authentication.BaseAuthentication):
+    """
+    Custom JWT Authentication class for microservices.
+    
+    Validates JWT tokens and authenticates users based on the 'userlogin' claim.
+    """
+    
     def authenticate(self, request):
+        """
+        Authenticate the request and return a two-tuple of (user, token_payload).
+        
+        Returns None if authentication is not attempted.
+        Raises AuthenticationFailed for explicit authentication failures.
+        """
         auth_header = request.headers.get('Authorization')
-        if not auth_header or not auth_header.startswith('Bearer '):
+        if not auth_header or not auth_header.startswith(BEARER_PREFIX):
             return None
-        token = auth_header.split(' ')[1]
+            
+        # Safely extract token from Authorization header
+        parts = auth_header.split(' ')
+        if len(parts) != 2:
+            logger.warning(f"Malformed Authorization header received")
+            return None
+        token = parts[1]
+        
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
-            raise exceptions.AuthenticationFailed('Token expired')
+            logger.warning("Expired token used for authentication")
+            raise exceptions.AuthenticationFailed('Authentication credentials have expired')
         except jwt.InvalidTokenError:
-            raise exceptions.AuthenticationFailed('Invalid token')
+            logger.warning("Invalid token used for authentication")
+            raise exceptions.AuthenticationFailed('Invalid authentication credentials')
+            
         userlogin = payload.get('userlogin')
         if not userlogin:
-            raise exceptions.AuthenticationFailed('Token missing userlogin')
+            logger.warning("Token missing userlogin claim")
+            raise exceptions.AuthenticationFailed('Invalid authentication credentials')
+            
         try:
-            user = UserDetails.objects.get(userlogin=userlogin, status='1')
+            user = UserDetails.objects.get(userlogin=userlogin, status=ACTIVE_USER_STATUS)
+            logger.info(f"Successful authentication for user: {userlogin}")
         except UserDetails.DoesNotExist:
-            raise exceptions.AuthenticationFailed('User not found')
+            logger.warning(f"Authentication failed - user not found or inactive")
+            raise exceptions.AuthenticationFailed('Authentication credentials are invalid')
+            
         return (user, payload)
