@@ -17,8 +17,7 @@ from .models import (
 	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster,
-	VwSfdSectionAdd
+	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd
 )
 
 # import all master serializers

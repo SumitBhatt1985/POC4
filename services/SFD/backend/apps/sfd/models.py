@@ -186,6 +186,17 @@ class ShipMaster(models.Model):
     is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_ship_master'
+        
+class VwSfdSectionAdd(models.Model):
+	section_id = models.CharField(db_column='section_id', max_length=50, primary_key=True)
+	section_name = models.CharField(db_column='section_name', max_length=255)
+	department_id = models.CharField(db_column='department_id', max_length=50)
+	department_name = models.CharField(db_column='department_name', max_length=255)
+	is_active = models.SmallIntegerField(db_column='is_active', default=1)
+
+	class Meta:
+		managed = False  # No migrations, read-only
+		db_table = 'vw_sfd_section_add'
 
 
 

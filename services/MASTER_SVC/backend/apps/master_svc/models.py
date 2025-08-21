@@ -257,16 +257,16 @@ class ShipMaster(models.Model):
         db_table = 'tbl_ship_master'
 
         # Model for PostgreSQL view vw_sfd_section_add
-    class VwSfdSectionAdd(models.Model):
-        section_id = models.IntegerField(db_column='section_id', primary_key=True)
-        section_name = models.CharField(db_column='section_name', max_length=255)
-        department_id = models.IntegerField(db_column='department_id')
-        department_name = models.CharField(db_column='department_name', max_length=255)
-        is_active = models.BooleanField(db_column='is_active')
+class VwSfdSectionAdd(models.Model):
+	section_id = models.IntegerField(db_column='section_id', primary_key=True)
+	section_name = models.CharField(db_column='section_name', max_length=255)
+	department_id = models.IntegerField(db_column='department_id')
+	department_name = models.CharField(db_column='department_name', max_length=255)
+	is_active = models.BooleanField(db_column='is_active')
 
-        class Meta:
-            managed = False  # No migrations, read-only
-            db_table = 'vw_sfd_section_add'
+	class Meta:
+		managed = False  # No migrations, read-only
+		db_table = 'vw_sfd_section_add'
 
 
 
