@@ -19,7 +19,7 @@ from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 from rest_framework_simplejwt.settings import api_settings
-from common_auth.authentication import CustomJWTAuthentication
+from .authentication import CustomJWTAuthentication
 from datetime import datetime, timedelta
 import logging
 import secrets
@@ -1147,7 +1147,7 @@ class PendingUserAPIView(APIView):
     """
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request, *args, **kwargs):
         # Logic to retrieve pending users
         pending_users = UserDetails.objects.filter(status=2)

@@ -4,9 +4,15 @@ import requests
 from msal import ConfidentialClientApplication
 import os
 from django.conf import settings
+from dotenv import load_dotenv
+import os
+
+
 
 logger = logging.getLogger(__name__)
 
+load_dotenv()
+AZURE_CLIENT_SECRET = os.getenv("AZURE_CLIENT_SECRET")
 
 
 
@@ -15,7 +21,7 @@ def get_access_token():
     AUTHORITY = f"https://login.microsoftonline.com/{settings.TENANT_ID}" 
     CLIENT_CREDENTIALS = ConfidentialClientApplication(
         client_id=settings.CLIENT_ID, # type: ignore
-        client_credential=settings.CLIENT_SECRET, # type: ignore
+        client_credential=AZURE_CLIENT_SECRET, # type: ignore
         authority=AUTHORITY,
     )
     token = CLIENT_CREDENTIALS.acquire_token_for_client(scopes=settings.SCOPE) # type: ignore

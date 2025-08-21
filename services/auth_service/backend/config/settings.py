@@ -386,7 +386,6 @@ EMAIL_FROM_ADDRESS = "support@phoenix.tech"
 
 TENANT_ID = "5363435f-388d-4449-8893-aa1fa2617d6e"
 CLIENT_ID = "06aca9e5-02be-41cf-9343-3037532e12f1"
-CLIENT_SECRET = 'Kr18Q~bkmbNB_67txzJUv.pREQqZpZVqR14zQcuE'
 SCOPE = ["https://graph.microsoft.com/.default"]
 
 
