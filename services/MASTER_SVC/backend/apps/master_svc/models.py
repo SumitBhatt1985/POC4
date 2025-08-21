@@ -78,6 +78,7 @@ class SectionMaster(models.Model):
     section_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
     department_id = models.CharField(max_length=50)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_section_master'
 
@@ -86,6 +87,7 @@ class GroupMaster(models.Model):
     name = models.CharField(max_length=255)
     section_id = models.CharField(max_length=50)
     generic_id = models.CharField(max_length=50)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_group_master'
 
@@ -93,6 +95,7 @@ class CountryMaster(models.Model):
     country_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
     iso_code = models.CharField(max_length=10)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_country_master'
 
@@ -100,6 +103,7 @@ class ClassMaster(models.Model):
     class_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=100)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_class_master'
 
@@ -116,6 +120,7 @@ class SupplierMaster(models.Model):
     country_id = models.CharField(max_length=50)
     state = models.CharField(max_length=100)
     equipment_supplied = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_supplier_master'
 
@@ -124,6 +129,7 @@ class OpsAuthorityMaster(models.Model):
     ops_authority = models.CharField(max_length=255)
     command = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_opsauthority_master'
 
@@ -131,6 +137,7 @@ class GenericMaster(models.Model):
     generic_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
     description = models.TextField()
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_generic_master'
 
@@ -141,6 +148,7 @@ class EstablishmentMaster(models.Model):
     opsauthority_id = models.CharField(max_length=50)
     category_id = models.CharField(max_length=50)
     category_name = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_establishment_master'
 
@@ -148,6 +156,7 @@ class PropulsionMaster(models.Model):
     propulsion_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
     category = models.CharField(max_length=100)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_propulsion_master'
 
@@ -164,6 +173,7 @@ class ManufacturerMaster(models.Model):
     country_id = models.CharField(max_length=50)
     state = models.CharField(max_length=100)
     equipment_manufactured = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_manufacturer_master'
 
@@ -194,6 +204,7 @@ class EquipmentMaster(models.Model):
     assembly = models.CharField(max_length=100)
     department_id = models.CharField(max_length=50)
     obsolete = models.CharField(max_length=10)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_equipment_master'
 
@@ -241,6 +252,7 @@ class ShipMaster(models.Model):
     origin = models.CharField(max_length=100)
     commission_date = models.CharField(max_length=50)
     decommission = models.CharField(max_length=50)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_ship_master'
 
