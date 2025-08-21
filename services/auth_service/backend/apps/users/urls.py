@@ -16,7 +16,8 @@ from .views import (LoginAPIView,
                     RoleMasterAPIView,
                     EditRoleAPIView,
                     DeleteRoleAPIView,
-                    UserManagementAPIView)
+                    UserManagementAPIView,
+                    PendingUserAPIView)
 
 app_name = 'users'
 
@@ -34,6 +35,8 @@ urlpatterns = [
 
     # User management endpoints
     path('users/manage/', UserManagementAPIView.as_view(), name='user-management'),
+
+    path('pending/', PendingUserAPIView.as_view(), name='pending-users'),
 
     # JWT token refresh endpoint (provided by SimpleJWT)
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

@@ -4,10 +4,8 @@ Django settings for auth_service project.
 Production-ready settings with JWT authentication support.
 """
 
-import os
 from datetime import timedelta
 from decouple import config
-
 import sys
 import os
 
@@ -380,3 +378,28 @@ CORS_ALLOWED_ORIGINS = config(
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)
+
+# Email sending & graph API configuration
+EMAIL_SUBJECT = "User Login Credentials"
+EMAIL_CC = ["support@phoenix.tech"]
+EMAIL_FROM_ADDRESS = "support@phoenix.tech"
+
+TENANT_ID = "5363435f-388d-4449-8893-aa1fa2617d6e"
+CLIENT_ID = "06aca9e5-02be-41cf-9343-3037532e12f1"
+CLIENT_SECRET = 'Kr18Q~bkmbNB_67txzJUv.pREQqZpZVqR14zQcuE'
+SCOPE = ["https://graph.microsoft.com/.default"]
+
+
+EMAIL_BODY = """
+Hello {username},
+
+Your login credentials are as follows:
+
+Username: {userlogin}
+Password: {password}
+
+Please keep this information secure.
+
+Best regards,
+Your Company
+"""
