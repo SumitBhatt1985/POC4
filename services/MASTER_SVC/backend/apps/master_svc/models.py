@@ -29,7 +29,7 @@ class ShipCategoryMaster(models.Model):
 class RoleMaster(models.Model):
 	status = models.IntegerField()
 	level = models.CharField(max_length=50)
-	role_id = models.AutoField(primary_key=True)
+	role_id = models.CharField(max_length=10)
 	name = models.CharField(max_length=100)
 	class Meta:
 		db_table = 'tbl_role_master'

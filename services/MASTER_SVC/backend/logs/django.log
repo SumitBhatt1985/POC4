@@ -1652,3 +1652,75 @@ INFO 2025-08-20 18:28:28,929 autoreload 32888 33428 D:\Phoenix\Defense_POC\POC4\
 INFO 2025-08-20 18:28:33,971 autoreload 21192 31736 Watching for file changes with StatReloader
 INFO 2025-08-20 18:38:04,658 autoreload 21192 31736 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\urls.py changed, reloading.
 INFO 2025-08-20 18:38:09,662 autoreload 20456 28484 Watching for file changes with StatReloader
+INFO 2025-08-20 18:38:27,247 basehttp 20456 26816 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1056
+WARNING 2025-08-20 18:39:11,994 log 20456 26816 Not Found: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 18:39:11,995 basehttp 20456 26816 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 404 2813
+INFO 2025-08-20 18:39:30,979 basehttp 20456 26816 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 163
+INFO 2025-08-20 18:39:50,114 basehttp 20456 26816 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1155
+INFO 2025-08-20 18:40:37,116 basehttp 20456 26816 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 74
+INFO 2025-08-20 18:40:46,028 basehttp 20456 26816 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1044
+WARNING 2025-08-20 18:42:15,563 log 20456 29584 Not Found: /api/v1/master/flexible-wrapper/
+WARNING 2025-08-20 18:42:15,564 basehttp 20456 29584 "POST /api/v1/master/flexible-wrapper/ HTTP/1.1" 404 2813
+WARNING 2025-08-20 18:42:35,012 log 20456 29584 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-20 18:42:35,012 basehttp 20456 29584 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 95
+INFO 2025-08-20 18:43:17,016 basehttp 20456 29584 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 216
+INFO 2025-08-20 18:43:25,531 basehttp 20456 29584 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1055
+WARNING 2025-08-21 14:25:03,459 log 20456 28496 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-21 14:25:03,460 basehttp 20456 28496 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-21 14:25:15,937 log 20456 28496 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-21 14:25:15,938 basehttp 20456 28496 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-21 14:27:03,269 log 20456 23480 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-21 14:27:03,270 basehttp 20456 23480 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-21 14:27:25,280 basehttp 20456 23480 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1055
+ERROR 2025-08-21 14:27:45,899 log 20456 23480 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 533, in post
+    return crud_list(request.user, table_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 98, in crud_list
+    'data': serializer.data
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\fields.py", line 921, in to_representation
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'RO-00001'
+ERROR 2025-08-21 14:27:45,910 basehttp 20456 23480 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 133956
+INFO 2025-08-21 14:30:02,889 autoreload 20456 28484 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-21 14:30:24,814 autoreload 32560 34268 Watching for file changes with StatReloader
+INFO 2025-08-21 14:31:02,151 basehttp 32560 30776 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1753
+INFO 2025-08-21 14:35:04,651 autoreload 32560 34268 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-21 14:35:09,889 autoreload 8536 13556 Watching for file changes with StatReloader
