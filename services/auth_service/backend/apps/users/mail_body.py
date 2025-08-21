@@ -8,8 +8,8 @@ def Email_body(username, userlogin, temppassword):
         Hello {username},<br><br>
         Your login credentials are as follows:
         <br><br>
-        Username: {userlogin}<br>
-        Password: {temppassword}<br><br>
+        Username: {userlogin} <br>
+        Password: {temppassword} <br><br>
         Please keep this information secure.<br><br>
         Thanks.
         </span></div></div><div></div></div></div></div>

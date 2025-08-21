@@ -22,8 +22,7 @@ from rest_framework_simplejwt.settings import api_settings
 from .authentication import CustomJWTAuthentication
 from datetime import datetime, timedelta
 import logging
-import secrets
-import string
+
 from .serializers import (LoginSerializer, 
                           UserSerializer, 
                           UserProfileSerializer, 
@@ -36,6 +35,8 @@ from .serializers import (LoginSerializer,
 from .models import (HomePageInformation, Feedback, UserDetails, RoleMaster)
 from django.db import transaction
 from .send_email import Send_Email
+import secrets
+import string
 
 logger = logging.getLogger(__name__)
 
@@ -756,20 +757,22 @@ class SignUpAPIView(APIView):
         return ip
 
 class HomePageView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        tab_type = request.data.get('tab_type')
+        tab_type = request.data.get('header_name')
         if not tab_type:
             return Response({"error": "tab_type is required"}, status=status.HTTP_400_BAD_REQUEST)
-        queryset = HomePageInformation.objects.filter(tab_type=tab_type)
-        if tab_type == 'Instructions':
+        queryset = HomePageInformation.objects.filter(header_name=tab_type)
+        
+        if tab_type == 'INSTRUCTIONS':
             serializer = InstructionsSerializer(queryset, many=True)
-        elif tab_type == 'CMMS Offline':
+        elif tab_type == 'CMMS OFFLINE':
             serializer = OfflineSerializer(queryset, many=True)
-        elif tab_type == 'Downloads':
+        elif tab_type == 'DOWNLOADS':
             serializer = DownloadsSerializer(queryset, many=True)
-        elif tab_type == 'Publications':
+        elif tab_type == 'PUBLICATIONS':
             serializer = PublicationsSerializer(queryset, many=True)
         else:
             return Response({"error": "Invalid tab_type"}, status=status.HTTP_400_BAD_REQUEST)
@@ -1031,6 +1034,7 @@ class UserManagementAPIView(APIView):
 
 
     def put(self, request, *args, **kwargs):
+        
         user_id = request.data.get('id')
         generated_password = None
         if not user_id:
@@ -1041,6 +1045,7 @@ class UserManagementAPIView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
         try:
             profile = UserDetails.objects.get(id=user_id)
+
         except UserDetails.DoesNotExist:
             return Response({
                 "success": False,
@@ -1063,14 +1068,16 @@ class UserManagementAPIView(APIView):
             profile.update_date = timezone.now()
             profile.save()
         else:
-            if profile.password is None or profile.confirm_password is None:
+            # check password is present or not in db.
+            if not profile.password or not profile.confirm_password:
                 generated_password, hashed_password = self.generate_password()
 
                 profile.password = hashed_password
                 profile.confirm_password = hashed_password
                 profile.update_date = timezone.now()
                 profile.save()
-
+                Send_Email(username=profile.name, userlogin=profile.userlogin, password=generated_password, email_to=[profile.designation_email])
+            
 
         for field in [
                 "role", "rank", "name", "userlogin", "personal_no", "designation", "ship_name",
@@ -1079,9 +1086,6 @@ class UserManagementAPIView(APIView):
             if field in data:
                 setattr(profile, field, data[field])
         profile.save()
-        
-        Send_Email(username=profile.name, userlogin=profile.userlogin, password=generated_password, email_to=[profile.designation_email])
-
         return Response({
             "success": True,
             "message": "User updated successfully",
@@ -1103,7 +1107,7 @@ class UserManagementAPIView(APIView):
             "H": profile.H,
             "L": profile.L,
             "E": profile.E,
-            "E": profile.X,
+            "X": profile.X,
             "status": profile.status,
         }
         }, status=status.HTTP_200_OK)
