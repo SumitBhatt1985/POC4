@@ -22,8 +22,7 @@ from rest_framework_simplejwt.settings import api_settings
 from .authentication import CustomJWTAuthentication
 from datetime import datetime, timedelta
 import logging
-import secrets
-import string
+
 from .serializers import (LoginSerializer, 
                           UserSerializer, 
                           UserProfileSerializer, 
@@ -35,7 +34,6 @@ from .serializers import (LoginSerializer,
 
 from .models import (HomePageInformation, Feedback, UserDetails, RoleMaster)
 from django.db import transaction
-from .send_email import Send_Email
 
 logger = logging.getLogger(__name__)
 
@@ -756,20 +754,22 @@ class SignUpAPIView(APIView):
         return ip
 
 class HomePageView(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        tab_type = request.data.get('tab_type')
+        tab_type = request.data.get('header_name')
         if not tab_type:
             return Response({"error": "tab_type is required"}, status=status.HTTP_400_BAD_REQUEST)
-        queryset = HomePageInformation.objects.filter(tab_type=tab_type)
-        if tab_type == 'Instructions':
+        queryset = HomePageInformation.objects.filter(header_name=tab_type)
+        
+        if tab_type == 'INSTRUCTIONS':
             serializer = InstructionsSerializer(queryset, many=True)
-        elif tab_type == 'CMMS Offline':
+        elif tab_type == 'CMMS OFFLINE':
             serializer = OfflineSerializer(queryset, many=True)
-        elif tab_type == 'Downloads':
+        elif tab_type == 'DOWNLOADS':
             serializer = DownloadsSerializer(queryset, many=True)
-        elif tab_type == 'Publications':
+        elif tab_type == 'PUBLICATIONS':
             serializer = PublicationsSerializer(queryset, many=True)
         else:
             return Response({"error": "Invalid tab_type"}, status=status.HTTP_400_BAD_REQUEST)
@@ -866,84 +866,38 @@ class UserManagementAPIView(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def generate_password(self):
-        global generated_password, hashed_password
-        alphabet = string.ascii_letters + string.digits
-        generated_password = ''.join(secrets.choice(alphabet) for _ in range(16))
-        hashed_password = make_password(generated_password)
-        return generated_password, hashed_password
 
     def get(self, request, *args, **kwargs):
         try:
             # details = UserDetails.objects.all()
-            user_id = request.query_params.get('id')
-            # password_value = self.generate_password()
-            if user_id:
-                try:
-                    detail = UserDetails.objects.get(id=user_id, status=1)
-                    data = {
-                        "id": detail.id,
-                        "user_login": detail.userlogin,
-                        "role": detail.role,
-                        "rank": detail.rank,
-                        "name": detail.name,
-                        # "password": password_value,
-                        # "confirm_password": password_value,
-                        "personal_no": detail.personal_no,
-                        "designation": detail.designation,
-                        "ship": detail.ship_name,
-                        "employee_type": detail.employee_type,
-                        "establishment": detail.establishment,
-                        "designation_email": detail.designation_email,
-                        "phone_no": detail.phone_no,
-                        "mobile_no": detail.mobile_no,
-                        "sso_user": detail.sso_user,
-                        "H": detail.H,
-                        "L": detail.L,
-                        "E": detail.E,
-                        "X": detail.X,
-                        "status": detail.status
-                    }
-                    return Response({
-                        "success": True,
-                        "message": "User fetched successfully",
-                        "data": data
-                    }, status=status.HTTP_200_OK)
-                except UserDetails.DoesNotExist:
-                    return Response({
-                        "success": False,
-                        "message": "User not found",
-                        "errors": {"id": ["User does not exist."]}
-                    }, status=status.HTTP_404_NOT_FOUND)
-            else:
-                details = UserDetails.objects.filter(status=1)
-                data = []
-                for detail in details:
-                    data.append({
-                        "id": detail.id,
-                        "user_login": detail.userlogin,
-                        "role": detail.role,
-                        "rank": detail.rank,
-                        "name": detail.name,
-                        "personal_no": detail.personal_no,
-                        "designation": detail.designation,
-                        "ship": detail.ship_name,
-                        "employee_type": detail.employee_type,
-                        "establishment": detail.establishment,
-                        "designation_email": detail.designation_email,
-                        "phone_no": detail.phone_no,
-                        "sso_user": detail.sso_user,
-                        "H": detail.H,
-                        "L": detail.L,
-                        "E": detail.E,
-                        "X": detail.X,
-                        "status": detail.status
-                    })
-                return Response({
-                    "success": True,
-                    "message": "Users fetched successfully",
-                    "data": data
-                }, status=status.HTTP_200_OK)
+            details = UserDetails.objects.filter(status=1)
+            data = []
+            for detail in details:
+                data.append({
+                    "id": detail.id,
+                    "user_login": detail.userlogin,
+                    "role": detail.role,
+                    "rank": detail.rank,
+                    "name": detail.name,
+                    "personal_no": detail.personal_no,
+                    "designation": detail.designation,
+                    "ship": detail.ship_name,
+                    "employee_type": detail.employee_type,
+                    "establishment": detail.establishment,
+                    "nudemail": detail.nudemail,
+                    "phone_no": detail.phone_no,
+                    "sso_user": detail.sso_user,
+                    "H": detail.H,
+                    "L": detail.L,
+                    "E": detail.E,
+                    "X": detail.X,
+                    "status": detail.status
+                })
+            return Response({
+                "success": True,
+                "message": "Users fetched successfully",
+                "data": data
+            }, status=status.HTTP_200_OK)
         except Exception as e:
             logger.error(f"Error fetching users: {str(e)}")
             return Response({
@@ -955,9 +909,9 @@ class UserManagementAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         required_fields = ["role", "rank", "name", "personal_no", "designation",
-            "ship_name", "password", "confirm_password", "employee_type", "establishment", "designation_email", "phone_no","sso_user", "H", "L", "E", "X",
+            "ship_name", "password", "confirm_password", "employee_type", "establishment", "nudemail", "phone_no","sso_user", "H", "L", "E", "X",
             ]
-        generated_password, hashed_password = self.generate_password()
+
         data = request.data
         missing = [f for f in required_fields if f not in data]
         if missing:
@@ -974,19 +928,23 @@ class UserManagementAPIView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
         try:
             with transaction.atomic():
+                user = User.objects.create_user(
+                    name=data["name"],
+                    password=data["password"]
+                )
                 profile = UserDetails.objects.create(
                     role=data["role"],
                     rank=data["rank"],
                     name=data["name"],
                     userlogin=data["personal_no"],
-                    password=hashed_password,
-                    confirm_password=hashed_password,
+                    password=make_password(data["password"]),
+                    confirm_password=make_password(data["confirm_password"]),
                     personal_no=data["personal_no"],
                     designation=data["designation"],
                     ship_name=data["ship_name"],
                     employee_type=data["employee_type"],
                     establishment=data["establishment"],
-                    designation_email=data["designation_email"],
+                    nudemail=data["nudemail"],
                     phone_no=data["phone_no"],
                     H=data["H"],
                     L=data["L"],
@@ -994,8 +952,6 @@ class UserManagementAPIView(APIView):
                     X=data["X"],
                     sso_user=data["sso_user"]
                 )
-            Send_Email(username=data["name"], userlogin=data["personal_no"], password=generated_password, email_to=data["designation_email"])
-            
             return Response({
                 "success": True,
                 "message": "User created successfully",
@@ -1010,7 +966,7 @@ class UserManagementAPIView(APIView):
                     "ship": profile.ship_name,
                     "employee_type": profile.employee_type,
                     "establishment": profile.establishment,
-                    "designation_email": profile.designation_email,
+                    "nudemail": profile.nudemail,
                     "phone_no": profile.phone_no,
                     "H": profile.H,
                     "L": profile.L,
@@ -1032,7 +988,6 @@ class UserManagementAPIView(APIView):
 
     def put(self, request, *args, **kwargs):
         user_id = request.data.get('id')
-        generated_password = None
         if not user_id:
             return Response({
                 "success": False,
@@ -1057,31 +1012,17 @@ class UserManagementAPIView(APIView):
                     "message": "Passwords do not match",
                     "errors": {"password": ["Passwords do not match."], "confirm_password": ["Passwords do not match."]}
                 }, status=status.HTTP_400_BAD_REQUEST)
-            
             profile.password = make_password(data["password"])
             profile.confirm_password = make_password(data["confirm_password"])
             profile.update_date = timezone.now()
             profile.save()
-        else:
-            if profile.password is None or profile.confirm_password is None:
-                generated_password, hashed_password = self.generate_password()
-
-                profile.password = hashed_password
-                profile.confirm_password = hashed_password
-                profile.update_date = timezone.now()
-                profile.save()
-
-
         for field in [
                 "role", "rank", "name", "userlogin", "personal_no", "designation", "ship_name",
-                "employee_type", "establishment", "designation_email", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
+                "employee_type", "establishment", "nudemail", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
         ]:
-            if field in data:
-                setattr(profile, field, data[field])
+                if field in data:
+                    setattr(profile, field, data[field])
         profile.save()
-        
-        Send_Email(username=profile.name, userlogin=profile.userlogin, password=generated_password, email_to=[profile.designation_email])
-
         return Response({
             "success": True,
             "message": "User updated successfully",
@@ -1147,7 +1088,7 @@ class PendingUserAPIView(APIView):
     """
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
-
+    
     def get(self, request, *args, **kwargs):
         # Logic to retrieve pending users
         pending_users = UserDetails.objects.filter(status=2)

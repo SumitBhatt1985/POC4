@@ -93,7 +93,7 @@ class UserDetails(models.Model):
     L = models.CharField(max_length=1, default='0')
     E = models.CharField(max_length=1, default='0')
     X = models.CharField(max_length=1, default='0')
-    status = models.CharField(max_length=1, default='2')
+    status = models.CharField(max_length=1, default='1')
     
     
     class Meta:

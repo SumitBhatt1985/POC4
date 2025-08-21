@@ -4,8 +4,10 @@ Django settings for auth_service project.
 Production-ready settings with JWT authentication support.
 """
 
+import os
 from datetime import timedelta
 from decouple import config
+
 import sys
 import os
 
@@ -378,6 +380,7 @@ CORS_ALLOWED_ORIGINS = config(
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)
+<<<<<<< HEAD
 
 # Email sending & graph API configuration
 EMAIL_SUBJECT = "User Login Credentials"
@@ -402,3 +405,5 @@ Please keep this information secure.
 Best regards,
 Your Company
 """
+=======
+>>>>>>> parent of 5a9ccf8 (Change Log:)
