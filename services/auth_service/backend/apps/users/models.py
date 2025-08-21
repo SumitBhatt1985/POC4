@@ -93,14 +93,14 @@ class UserDetails(models.Model):
     L = models.CharField(max_length=1, default='0')
     E = models.CharField(max_length=1, default='0')
     X = models.CharField(max_length=1, default='0')
-    status = models.CharField(max_length=1, default='1')
+    status = models.CharField(max_length=1, default='2')
     
     
     class Meta:
         db_table = 'tbl_user_details'
 
     def __str__(self):
-        return f"{self.user_login} ({self.name})"
+        return f"{self.userlogin} ({self.name})"
 
     @property
     def is_authenticated(self):
