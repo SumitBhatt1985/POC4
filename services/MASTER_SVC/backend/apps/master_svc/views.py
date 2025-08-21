@@ -13,7 +13,10 @@ from .models import (
 	CommandMaster, DepartmentMaster, EquipmentCategoryMaster,
 	ShipCategoryMaster, RoleMaster, ShipStateMaster,
 	ShipLocationMaster, ActivityTypeMaster, ActivityDetailsMaster,
-	LubricantMaster
+	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
+	ClassMaster, SupplierMaster, OpsAuthorityMaster,
+	GenericMaster, EstablishmentMaster, PropulsionMaster,
+	ManufacturerMaster, EquipmentMaster, ShipMaster
 )
 
 # import all master serializers
@@ -21,7 +24,10 @@ from .serializers import (
 	CommandMasterSerializer, DepartmentMasterSerializer, EquipmentCategoryMasterSerializer,
 	ShipCategoryMasterSerializer, RoleMasterSerializer, ShipStateMasterSerializer,
 	ShipLocationMasterSerializer, ActivityTypeMasterSerializer, ActivityDetailsMasterSerializer,
-	LubricantMasterSerializer
+	LubricantMasterSerializer, SectionMasterSerializer, GroupMasterSerializer, CountryMasterSerializer,
+	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
+	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
+	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer
 )
 
 
@@ -44,6 +50,20 @@ ALLOWED_TABLES = {
 	'tbl_activity_type_master': (ActivityTypeMaster, ActivityTypeMasterSerializer),
 	'tbl_activity_details_master': (ActivityDetailsMaster, ActivityDetailsMasterSerializer),
 	'tbl_lubricant_master': (LubricantMaster, LubricantMasterSerializer),
+
+	# --- SFD Master Tables ---
+	'tbl_section_master' : (SectionMaster, SectionMasterSerializer),
+	'tbl_group_master' : (GroupMaster, GroupMasterSerializer),
+	'tbl_country_master' : (CountryMaster, CountryMasterSerializer),
+	'tbl_class_master' : (ClassMaster, ClassMasterSerializer),
+	'tbl_supplier_master' :(SupplierMaster, SupplierMasterSerializer),
+	'tbl_ops_authority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
+	'tbl_generic_master': (GenericMaster, GenericMasterSerializer),
+	'tbl_establishment_master': (EstablishmentMaster, EstablishmentMasterSerializer),
+	'tbl_propulsion_master': (PropulsionMaster, PropulsionMasterSerializer),
+	'tbl_manufacturer_master': (ManufacturerMaster, ManufacturerMasterSerializer),
+	'tbl_equipment_master': (EquipmentMaster, EquipmentMasterSerializer),
+	'tbl_ship_master': (ShipMaster, ShipMasterSerializer),
 }
 
 # Audit logger
