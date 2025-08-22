@@ -2395,3 +2395,16 @@ INFO 2025-08-22 17:25:21,269 autoreload 28320 2952 D:\Phoenix\Defense_POC\POC4\s
 INFO 2025-08-22 17:25:27,317 autoreload 33068 7400 Watching for file changes with StatReloader
 INFO 2025-08-22 17:25:48,222 autoreload 33068 7400 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
 INFO 2025-08-22 17:25:54,588 autoreload 22928 5584 Watching for file changes with StatReloader
+INFO 2025-08-22 17:25:59,878 basehttp 22928 31844 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 1759
+INFO 2025-08-22 17:42:11,948 autoreload 22928 5584 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:42:17,044 autoreload 25168 13828 Watching for file changes with StatReloader
+INFO 2025-08-22 17:43:53,891 autoreload 25168 13828 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:43:59,120 autoreload 32552 29988 Watching for file changes with StatReloader
+INFO 2025-08-22 17:45:19,134 autoreload 32552 29988 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:45:24,117 autoreload 33660 5776 Watching for file changes with StatReloader
+INFO 2025-08-22 17:46:27,514 autoreload 33660 5776 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:46:32,588 autoreload 27884 13828 Watching for file changes with StatReloader
+INFO 2025-08-22 17:46:53,953 autoreload 27884 13828 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 17:47:10,669 autoreload 24512 28792 Watching for file changes with StatReloader
+INFO 2025-08-22 17:47:55,157 autoreload 24512 28792 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 17:48:15,879 autoreload 26576 30880 Watching for file changes with StatReloader

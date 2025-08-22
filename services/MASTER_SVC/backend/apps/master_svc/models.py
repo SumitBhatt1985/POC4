@@ -1,4 +1,16 @@
+# Model for PostgreSQL view vw_activity_type_details
 from django.db import models
+
+class VwActivityTypeDetails(models.Model):
+    activity_type_id = models.CharField(db_column='activity_type_id', max_length=10)
+    activity_type = models.CharField(db_column='activity_type', max_length=50)
+    activity_id = models.CharField(db_column='activity_id', max_length=10, primary_key=True)
+    activity_detail = models.CharField(db_column='activity_detail', max_length=100)
+    is_active = models.SmallIntegerField(db_column='is_active', default=True)	
+
+    class Meta:
+        managed = False
+        db_table = 'vw_activity_type_details'
 
 # Model for PostgreSQL view vw_country_supplier_details
 class VwCountrySupplierDetails(models.Model):
