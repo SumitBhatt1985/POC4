@@ -7,11 +7,16 @@ Production-ready settings with JWT authentication support.
 # ...copied and adapted from auth_service settings.py...
 # Change SERVICE_NAME and any app-specific settings as needed
 
-import os
+import os, sys
 from datetime import timedelta
 from decouple import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SERVICES_DIR = os.path.abspath(os.path.join(BASE_DIR, '../..'))
+
+if SERVICES_DIR not in sys.path:
+    sys.path.insert(0, SERVICES_DIR)
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
@@ -37,7 +42,6 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # Add SRAR-specific middleware here if needed
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,6 +76,7 @@ DATABASES = {
         'PORT': config('DATABASE_PORT', default='5432', cast=int),
         'OPTIONS': {
             'application_name': 'django_srar',
+            'options': '-c search_path=srar',
         },
         'CONN_MAX_AGE': 600,
         'CONN_HEALTH_CHECKS': True,
@@ -92,7 +97,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'common_auth.authentication.CustomJWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -140,6 +145,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
 try:
     import redis
     redis_client = redis.Redis.from_url(config('REDIS_URL', default='redis://localhost:6379/1'))

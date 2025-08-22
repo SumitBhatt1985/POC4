@@ -1,5 +1,3 @@
-
-
 from django.db import models
 
 from rest_framework import permissions, status
@@ -9,6 +7,7 @@ from rest_framework.response import Response
 from .authentication import CustomJWTAuthentication
 
 # import all master models
+
 from .models import (
 	CommandMaster, DepartmentMaster, EquipmentCategoryMaster,
 	ShipCategoryMaster, RoleMaster, ShipStateMaster,
@@ -16,10 +15,13 @@ from .models import (
 	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster
+	ManufacturerMaster, EquipmentMaster, ShipMaster, 
+ 	
+  	VwSectionDepartment #remove if not needed
 )
 
 # import all master serializers
+
 from .serializers import (
 	CommandMasterSerializer, DepartmentMasterSerializer, EquipmentCategoryMasterSerializer,
 	ShipCategoryMasterSerializer, RoleMasterSerializer, ShipStateMasterSerializer,
@@ -27,7 +29,9 @@ from .serializers import (
 	LubricantMasterSerializer, SectionMasterSerializer, GroupMasterSerializer, CountryMasterSerializer,
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
-	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer
+	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
+
+	VwSectionDepartmentSerializer   #remove if not needed
 )
 
 
@@ -64,6 +68,9 @@ ALLOWED_TABLES = {
 	'tbl_manufacturer_master': (ManufacturerMaster, ManufacturerMasterSerializer),
 	'tbl_equipment_master': (EquipmentMaster, EquipmentMasterSerializer),
 	'tbl_ship_master': (ShipMaster, ShipMasterSerializer),
+
+ 	# --- PostgreSQL Views  Remove if not needed ---
+	'vw_section_department_details': (VwSectionDepartment, VwSectionDepartmentSerializer),
 }
 
 # Audit logger
@@ -99,24 +106,79 @@ def crud_create(user, table_name, data):
 		'data': serializer.errors
 	}, status=status.HTTP_400_BAD_REQUEST)
 
-def crud_list(user, table_name):
-	check_permission(user, table_name, 'view')
-	model, serializer_class = ALLOWED_TABLES[table_name]
-	# Only return active records if is_active field exists
-	if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
-		field = model._meta.get_field('is_active')
-		if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
-			queryset = model.objects.filter(is_active=1)
-		else:
-			queryset = model.objects.filter(is_active=True)
-	else:
-		queryset = model.objects.all()
-	serializer = serializer_class(queryset, many=True)
-	return Response({
-		'success': True,
-		'message': 'Records fetched successfully.',
-		'data': serializer.data
-	})
+def crud_list(user, table_name, get_max_id, column_name):
+    check_permission(user, table_name, 'view')
+    model, serializer_class = ALLOWED_TABLES[table_name]
+    # Only return active records if is_active field exists, unless get_max_id is True
+    if get_max_id and column_name:
+        queryset = model.objects.all()  # Do not filter by is_active
+    else:
+        if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
+            field = model._meta.get_field('is_active')
+            if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
+                queryset = model.objects.filter(is_active=1)
+            else:
+                queryset = model.objects.filter(is_active=True)
+        else:
+            queryset = model.objects.all()
+    serializer = serializer_class(queryset, many=True)
+    if get_max_id and column_name:
+        print(f"Fetching max ID for column '{column_name}' in table '{table_name}'")
+        # Validate that the column exists in the model
+        try:
+            field = model._meta.get_field(column_name)
+        except:
+            return Response({
+                'success': False,
+                'message': f'Invalid column name: {column_name}',
+                'data': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Fetch max value of the specified column (from all records)
+        try:
+            max_value = model.objects.aggregate(max_id=models.Max(column_name))['max_id']
+            if max_value is None:
+                return Response({
+                    'success': True,
+                    'message': 'No records found to determine max ID.',
+                    'data': None
+                })
+            if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
+                next_id = max_value + 1
+                formatted_id = f"{next_id:05d}"
+            elif isinstance(field, models.CharField):
+                prefix = ''.join(filter(str.isalpha, max_value))
+                num_part = ''.join(filter(str.isdigit, max_value))
+                if num_part:
+                    next_num = int(num_part) + 1
+                else:
+                    next_num = 1
+                formatted_id = f"{prefix}-{next_num:05d}"
+            else:
+                return Response({
+                    'success': False,
+                    'message': 'Unsupported column type for max ID generation.',
+                    'data': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+            return Response({
+                'success': True,
+                'message': 'Max ID fetched successfully.',
+                'data': {
+                    'next_id': formatted_id
+                }
+            })
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error fetching max ID: {str(e)}',
+                'data': None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response({
+            'success': True,
+            'message': 'Records fetched successfully.',
+            'data': serializer.data
+        })
 
 # def crud_update(user, table_name, pk, data):
 # 	check_permission(user, table_name, 'update')
@@ -286,6 +348,73 @@ def flexible_crud_delete(user, table_name, column_name, column_value):
 			'message': 'Soft delete not supported for this table (no is_active field).',
 			'data': None
 		}, status=status.HTTP_400_BAD_REQUEST)
+  
+from django.db.models import F
+
+def crud_list_col_values(user, table_name, column_list):
+	# Validate table_name
+	if not table_name or table_name not in ALLOWED_TABLES:
+		return Response({
+			'success': False,
+			'message': 'Invalid or missing table_name.',
+			'data': None
+		}, status=status.HTTP_400_BAD_REQUEST)
+
+	# Validate column_list
+	if not column_list or not isinstance(column_list, list) or not all(isinstance(col, str) for col in column_list):
+		return Response({
+			'success': False,
+			'message': 'Invalid or missing column_list. Must be a list of column names.',
+			'data': None
+		}, status=status.HTTP_400_BAD_REQUEST)
+
+	model, _ = ALLOWED_TABLES[table_name]
+	model_fields = [f.name for f in model._meta.get_fields()]
+	for col in column_list:
+		if col not in model_fields:
+			return Response({
+				'success': False,
+				'message': f'Column "{col}" does not exist in table "{table_name}".',
+				'data': None
+			}, status=status.HTTP_400_BAD_REQUEST)
+
+	# Query and process for unique dropdown options
+	try:
+		if len(column_list) != 2:
+			return Response({
+				'success': False,
+				'message': 'column_list must contain exactly two columns: [id_column, name_column] for dropdown.',
+				'data': None
+			}, status=status.HTTP_400_BAD_REQUEST)
+
+		id_col, name_col = column_list
+		queryset = model.objects.values(id_col, name_col)
+		if 'is_active' in model_fields:
+			queryset = queryset.filter(is_active=True)
+		# Build a mapping: name_col -> first id_col (ignore duplicates)
+		name_to_id = {}
+		for row in queryset:
+			name = row[name_col]
+			id_val = row[id_col]
+			if name not in name_to_id:
+				name_to_id[name] = id_val
+		# Prepare response: one entry per unique name_col, with its id, ordered by id_col
+		result = [
+			{'id': id_val, 'name': name}
+			for name, id_val in name_to_id.items()
+		]
+		result.sort(key=lambda x: x['id'])
+		return Response({
+			'success': True,
+			'message': f'Distinct dropdown options for {name_col} from {table_name}.',
+			'data': result
+		}, status=status.HTTP_200_OK)
+	except Exception as e:
+		return Response({
+			'success': False,
+			'message': f'Error fetching distinct values: {str(e)}',
+			'data': None
+		}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # def crud_delete(user, table_name, pk):
 # 	check_permission(user, table_name, 'delete')
@@ -506,6 +635,7 @@ class FlexibleWrapperAPIView(APIView):
 	def post(self, request):
 		table_name = request.data.get('table_name')
 		method_name = request.data.get('method_name')
+		get_max_id = request.data.get('get_max_id', False)  # NEW: flag to get max ID
 		column_name = request.data.get('column_name')  # NEW: column to use for identification
 		column_value = request.data.get('column_value')  # NEW: value to search for
 		data = request.data.get('data', {})
@@ -532,10 +662,10 @@ class FlexibleWrapperAPIView(APIView):
 				'data': None
 			}, status=status.HTTP_400_BAD_REQUEST)
 		
-		if method_name not in ['create', 'list', 'view', 'update', 'delete']:
+		if method_name not in ['create', 'list', 'view', 'update', 'delete', 'list_col_values']:
 			return Response({
 				'success': False,
-				'message': 'Invalid method name. Allowed: create, list, view, update, delete',
+				'message': 'Invalid method name. Allowed: create, list, view, update, delete, list_col_values',
 				'data': None
 			}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -550,7 +680,7 @@ class FlexibleWrapperAPIView(APIView):
 			return crud_create(request.user, table_name, data)
 		
 		elif method_name in ['list', 'view']:
-			return crud_list(request.user, table_name)
+			return crud_list(request.user, table_name, get_max_id, column_name)
 		
 		elif method_name == 'update':
 			# For update, require column_name and column_value
@@ -594,6 +724,10 @@ class FlexibleWrapperAPIView(APIView):
 				}, status=status.HTTP_400_BAD_REQUEST)
 			
 			return flexible_crud_delete(request.user, table_name, column_name, column_value)
+		
+		elif method_name == 'list_col_values':
+			column_list = request.data.get('column_list')
+			return crud_list_col_values(request.user, table_name, column_list)
 		
 		else:
 			return Response({

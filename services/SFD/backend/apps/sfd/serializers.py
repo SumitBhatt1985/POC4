@@ -97,6 +97,13 @@ class ShipMasterSerializer(serializers.ModelSerializer):
             'endurance_in_days', 'economic_speed', 'opsauthority_id', 'port_id',
             'origin', 'commission_date', 'decommission'
         ]
+        
+# Serializer for PostgreSQL view vw_sfd_section_add
+from .models import VwSfdSectionAdd
+class VwSfdSectionAddSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwSfdSectionAdd
+        fields = ['section_id', 'section_name', 'department_id', 'department_name', 'is_active']
 
 
 

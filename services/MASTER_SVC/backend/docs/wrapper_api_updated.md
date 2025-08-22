@@ -2,8 +2,8 @@
 
 ## Overview
 The Master Service provides two main API endpoints for CRUD operations on master tables:
-1. **Standard Wrapper API** - For basic CRUD operations using `id` field
-2. **Flexible Wrapper API** - For advanced CRUD operations using any column for identification
+
+**Flexible Wrapper API** - For advanced CRUD operations using any column for identification
 
 ---
 
@@ -50,6 +50,7 @@ All operations support these master tables:
 
 #### Standard Wrapper API
 **URL:** `http://127.0.0.1:8001/api/v1/master/wrapper/`
+**Method:** `POST`
 
 **Request:**
 ```json
@@ -92,6 +93,7 @@ All operations support these master tables:
 
 #### Standard Wrapper API
 **URL:** `http://127.0.0.1:8001/api/v1/master/wrapper/`
+**Method:** `POST`
 
 **Request:**
 ```json
@@ -147,6 +149,7 @@ All operations support these master tables:
 
 #### Flexible Wrapper API (`flexible_crud_update`)
 **URL:** `http://127.0.0.1:8001/api/v1/master/wrapper/`
+**Method:** `POST`
 
 **Request:**
 ```json
@@ -196,8 +199,9 @@ All operations support these master tables:
 
 ---
 
-#### Flexible Wrapper API (`flexible_crud_delete`)
+#### 4. Flexible Wrapper API (`flexible_crud_delete`)
 **URL:** `http://your-domain/api/master-service/flexible-wrapper/`
+**Method:** `POST`
 
 **Request:**
 ```json
@@ -227,6 +231,41 @@ All operations support these master tables:
 - Both APIs perform soft delete only
 - Records are never physically deleted
 - Can use any column name for identification
+
+---
+
+### 5. LIST DISTINCT COLUMN VALUES (`crud_col_values`)
+
+**Flexible Wrapper API**
+**URL:** `http://127.0.0.1:8001/api/v1/master/wrapper/`
+**Method:** `POST`
+
+**Request:**
+```json
+{
+  "table_name": "vw_sfd_section_add",
+  "method_name": "col_values",
+  "column_list": ["department_id", "department_name"]
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Distinct values for columns ['department_id', 'department_name'] from vw_sfd_section_add.",
+  "data": [
+    {"department_id": 1, "department_name": "Engineering"},
+    {"department_id": 2, "department_name": "Logistics"},
+    {"department_id": 3, "department_name": "Medical"}
+  ]
+}
+```
+
+**Notes:**
+- Returns all unique combinations of the requested columns.
+- Works for any allowed table or view.
+- Returns validation errors for missing/invalid columns or tables.
 
 ---
 

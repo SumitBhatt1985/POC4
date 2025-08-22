@@ -1,5 +1,5 @@
 """
-URL configuration for SRAR backend service.
+URL configuration for MASTER_SVC backend service.
 """
 
 from django.contrib import admin

@@ -77,6 +77,7 @@ DATABASES = {
         'PORT': config('DATABASE_PORT', default='5432', cast=int),
         'OPTIONS': {
             'application_name': 'django_master_svc',
+            'options': '-c search_path=global',
         },
         'CONN_MAX_AGE': 600,
         'CONN_HEALTH_CHECKS': True,
