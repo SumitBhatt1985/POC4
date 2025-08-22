@@ -1,5 +1,98 @@
 from django.db import models
 
+# Model for PostgreSQL view vw_country_supplier_details
+class VwCountrySupplierDetails(models.Model):
+    country_name = models.CharField(db_column='country_name', max_length=200)
+    supplier_id = models.CharField(db_column='supplier_id', max_length=10, primary_key=True)
+    supplier_name = models.CharField(db_column='supplier_name', max_length=50)
+    address = models.CharField(db_column='address', max_length=50)
+    city = models.CharField(db_column='city', max_length=50)
+    state = models.CharField(db_column='state', max_length=50)
+    contanct_number = models.CharField(db_column='contanct_number', max_length=50)
+    email = models.CharField(db_column='email', max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_country_supplier_details'
+
+# Model for PostgreSQL view vw_command_opsauthority_details
+class VwCommandOpsauthorityDetails(models.Model):
+    ops_authority = models.CharField(db_column='ops_authority', max_length=100)
+    command = models.CharField(db_column='command', max_length=50)
+    address = models.CharField(db_column='address', max_length=200)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_command_opsauthority_details'
+
+# Model for PostgreSQL view vw_command_opsauthority_establishment_details
+class VwCommandOpsauthorityEstablishmentDetails(models.Model):
+    establishment_name = models.CharField(db_column='establishment_name', max_length=50)
+    command = models.CharField(db_column='command', max_length=50)
+    ops_authority = models.CharField(db_column='ops_authority', max_length=100)
+    establishment_category = models.CharField(db_column='establishment_category', max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_command_opsauthority_establishment_details'
+
+# Model for PostgreSQL view vw_country_manufacturer_details
+class VwCountryManufacturerDetails(models.Model):
+    country_name = models.CharField(db_column='country_name', max_length=200)
+    manufacturer_id = models.CharField(db_column='manufacturer_id', max_length=10, primary_key=True)
+    manufacturer_name = models.CharField(db_column='manufacturer_name', max_length=50)
+    address = models.CharField(db_column='address', max_length=100)
+    city = models.CharField(db_column='city', max_length=50)
+    state = models.CharField(db_column='state', max_length=50)
+    contact_number = models.CharField(db_column='contact_number', max_length=50)
+    email = models.CharField(db_column='email', max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_country_manufacturer_details'
+
+# Model for PostgreSQL view vw_section_equipment_group_details
+class VwSectionEquipmentGroupDetails(models.Model):
+    section_id = models.CharField(db_column='section_id', max_length=10)
+    section_name = models.CharField(db_column='section_name', max_length=50)
+    equipment_id = models.CharField(db_column='equipment_id', max_length=10, primary_key=True)
+    equipment_model = models.CharField(db_column='equipment_model', max_length=50)
+    group_id = models.CharField(db_column='group_id', max_length=10)
+    group_name = models.CharField(db_column='group_name', max_length=50)
+    category_id = models.CharField(db_column='category_id', max_length=10)
+    equipment_type = models.CharField(db_column='equipment_type', max_length=100)
+    equipment_name = models.CharField(db_column='equipment_name', max_length=50)
+    location_on_board = models.CharField(db_column='location_on_board', max_length=100)
+    maintop_number = models.CharField(db_column='maintop_number', max_length=50)
+    authority = models.CharField(db_column='authority', max_length=50)
+    total_fits = models.IntegerField(db_column='total_fits')
+    is_active = models.SmallIntegerField(db_column='is_active', default=True)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_section_equipment_group_details'
+
+# Model for PostgreSQL view vw_sfd_section_add
+class VwSectionDepartment(models.Model):
+	section_id = models.CharField(db_column='section_id', max_length=10, primary_key=True)
+	section_name = models.CharField(db_column='section_name', max_length=5)
+	department_id = models.CharField(db_column='department_id', max_length=10)
+	department_name = models.CharField(db_column='department_name', max_length=50)
+	# is_active = models.BooleanField(db_column='is_active')
+
+	class Meta:
+		managed = False  # No migrations, read-only
+		db_table = 'vw_section_department_details'
+  
+class VwSectionGroupDetails(models.Model):
+    section_name = models.CharField(db_column='section_name', max_length=50)
+    group_id = models.CharField(db_column='group_id', max_length=10, primary_key=True)
+    group_name = models.CharField(db_column='group_name', max_length=50)
+
+    class Meta:
+        managed = False  # No migrations, read-only
+        db_table = 'vw_section_group_details'
+
 class CommandMaster(models.Model):
 	command_id = models.CharField(max_length=10)
 	command = models.CharField(max_length=255)
@@ -278,17 +371,7 @@ class ShipMaster(models.Model):
     class Meta:
         db_table = 'tbl_ship_master'
 
-        # Model for PostgreSQL view vw_sfd_section_add
-class VwSectionDepartment(models.Model):
-	section_id = models.CharField(db_column='section_id', max_length=10, primary_key=True)
-	section_name = models.CharField(db_column='section_name', max_length=5)
-	department_id = models.CharField(db_column='department_id', max_length=10)
-	department_name = models.CharField(db_column='department_name', max_length=50)
-	# is_active = models.BooleanField(db_column='is_active')
 
-	class Meta:
-		managed = False  # No migrations, read-only
-		db_table = 'vw_section_department_details'
 
 
 
