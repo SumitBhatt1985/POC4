@@ -90,7 +90,7 @@ class VwSectionEquipmentGroupDetails(models.Model):
 # Model for PostgreSQL view vw_sfd_section_add
 class VwSectionDepartment(models.Model):
 	section_id = models.CharField(db_column='section_id', max_length=10, primary_key=True)
-	name = models.CharField(db_column='section_name', max_length=5)
+	name = models.CharField(db_column='name', max_length=5)
 	department_id = models.CharField(db_column='department_id', max_length=10)
 	department_name = models.CharField(db_column='department_name', max_length=50)
 	# is_active = models.BooleanField(db_column='is_active')
