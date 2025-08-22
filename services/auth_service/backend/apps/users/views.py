@@ -797,13 +797,27 @@ class FeedbackAPIView(APIView):
 class RoleMasterAPIView(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
+   
 
     def get(self, request):
-        roles = RoleMaster.objects.filter(is_active=1)
+        roles = RoleMaster.objects.filter(is_active=1)  # Do not filter by is_active
         serializer = RoleMasterSerializer(roles, many=True)
         return Response(serializer.data)
 
     def post(self, request):
+        #  add "role_id": next_role_id in request.data
+        max_role = RoleMaster.objects.all().order_by('-role_id').first()
+        if max_role and max_role.role_id:
+            num_part = ''.join(filter(str.isdigit, max_role.role_id))
+            prefix = ''.join(filter(str.isalpha, max_role.role_id))
+            next_num = int(num_part) + 1 if num_part else 1
+            next_role_id = f"{prefix}-{next_num:05d}"
+        else:
+            next_role_id = "RO-00001"
+        print("Next Role ID:", next_role_id)
+
+        request.data['role_id'] = next_role_id
+        print("Creating Role with ID:", request.data['role_id'])
         serializer = RoleMasterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -853,7 +867,7 @@ class DeleteRoleAPIView(APIView):
         except RoleMaster.DoesNotExist:
             return Response({'error': 'Role not found'}, status=status.HTTP_404_NOT_FOUND)
         
-        role.status = 0
+        role.is_active = 0
         role.save()
         return Response({'message': 'Role deleted (status set to 0)'}, status=status.HTTP_200_OK)
 
