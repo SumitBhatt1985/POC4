@@ -93,7 +93,7 @@ class VwSectionDepartment(models.Model):
 	name = models.CharField(db_column='name', max_length=5)
 	department_id = models.CharField(db_column='department_id', max_length=10)
 	department_name = models.CharField(db_column='department_name', max_length=50)
-	is_active = models.BooleanField(db_column='is_active', default=1)
+	is_active = models.SmallIntegerField(db_column='is_active', default=1)
 
 	class Meta:
 		managed = False  # No migrations, read-only
