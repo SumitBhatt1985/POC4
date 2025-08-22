@@ -25,7 +25,6 @@ import logging
 
 from .serializers import (LoginSerializer, 
                           UserSerializer, 
-                          UserProfileSerializer, 
                           UserDetailsSerializer,
                           SignUpSerializer, 
                           InstructionsSerializer, OfflineSerializer, DownloadsSerializer, PublicationsSerializer, 
