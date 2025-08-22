@@ -37,7 +37,7 @@ class SupplierMasterSerializer(serializers.ModelSerializer):
 class OpsAuthorityMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = OpsAuthorityMaster
-        fields = ['opsauthority_id', 'ops_authority', 'command', 'address']
+        fields = ['opsauthority_id', 'ops_authority', 'command_id', 'address']
 
 class GenericMasterSerializer(serializers.ModelSerializer):
     class Meta:
