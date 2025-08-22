@@ -56,7 +56,6 @@ class VwSectionEquipmentGroupDetails(models.Model):
     section_id = models.CharField(db_column='section_id', max_length=10)
     section_name = models.CharField(db_column='section_name', max_length=50)
     equipment_id = models.CharField(db_column='equipment_id', max_length=10, primary_key=True)
-    # equipment_code = models.CharField(db_column='equipment_code', max_length=50)
     equipment_model = models.CharField(db_column='equipment_model', max_length=50)
     group_id = models.CharField(db_column='group_id', max_length=10)
     group_name = models.CharField(db_column='group_name', max_length=50)
@@ -67,8 +66,6 @@ class VwSectionEquipmentGroupDetails(models.Model):
     maintop_number = models.CharField(db_column='maintop_number', max_length=50)
     authority = models.CharField(db_column='authority', max_length=50)
     total_fits = models.IntegerField(db_column='total_fits')
-    # ship_applicable = models.CharField(db_column='ship_applicable', max_length=50)
-    # obsolete = models.CharField(db_column='obsolete', max_length=50)
     is_active = models.SmallIntegerField(db_column='is_active', default=True)
 
     class Meta:

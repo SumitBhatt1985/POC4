@@ -39,7 +39,8 @@ class VwCountryManufacturerDetailsSerializer(serializers.ModelSerializer):
 class VwSectionEquipmentGroupDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwSectionEquipmentGroupDetails
-        fields = ['section_id', 'section_name', 'equipment_id', 'equipment_code', 'equipment_model', 'group_id', 'group_name', 'category_id', 'equipment_type', 'equipment_name', 'location_on_board', 'maintop_number', 'authority', 'total_fits', 'is_active']
+        fields = ['section_id', 'section_name', 'equipment_id', 'equipment_model', 'group_id', 'group_name', 'category_id', 'equipment_type', 'equipment_name', 'location_on_board', 'maintop_number', 'authority', 'total_fits', 'is_active']
+
 # Serializer for PostgreSQL view vw_section_group_details
 
 class VwSectionDepartmentSerializer(serializers.ModelSerializer):
