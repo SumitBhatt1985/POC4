@@ -91,10 +91,9 @@ class UserDetails(models.Model):
     phone_no = models.CharField(max_length=20)
     mobile_no = models.CharField(max_length=20)
     sso_user = models.CharField(max_length=1, default='0')
-    H = models.CharField(max_length=1, default='0')
-    L = models.CharField(max_length=1, default='0')
-    E = models.CharField(max_length=1, default='0')
-    X = models.CharField(max_length=1, default='0')
+    initiator = models.CharField(max_length=1, default='0')
+    recommendor = models.CharField(max_length=1, default='0')
+    approver = models.CharField(max_length=1, default='0')
     status = models.SmallIntegerField(default=2)  # Default to active (1)
     
     

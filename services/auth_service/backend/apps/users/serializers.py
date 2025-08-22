@@ -618,5 +618,5 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         fields =  [
             "id", "role", "rank", "name", "userlogin", "personal_no",
             "designation", "ship_name", "employee_type", "establishment",
-            "nudemail", "phone_no", "sso_user", "H", "L", "E", "X", "mobile_no", "status",
+            "nudemail", "phone_no", "sso_user", "initiator", "recommendor", "approver", "mobile_no", "status",
         ]
