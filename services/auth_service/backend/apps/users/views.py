@@ -915,10 +915,9 @@ class UserManagementAPIView(APIView):
                         "phone_no": detail.phone_no,
                         "mobile_no": detail.mobile_no,
                         "sso_user": detail.sso_user,
-                        "H": detail.H,
-                        "L": detail.L,
-                        "E": detail.E,
-                        "X": detail.X,
+                        "initiator": detail.initiator,
+                        "recommendor": detail.recommendor,
+                        "approver": detail.approver,
                         "status": detail.status
                     }
                     return Response({
@@ -950,10 +949,9 @@ class UserManagementAPIView(APIView):
                         "designation_email": detail.designation_email,
                         "phone_no": detail.phone_no,
                         "sso_user": detail.sso_user,
-                        "H": detail.H,
-                        "L": detail.L,
-                        "E": detail.E,
-                        "X": detail.X,
+                        "initiator": detail.initiator,
+                        "recommendor": detail.recommendor,
+                        "approver": detail.approver,
                         "status": detail.status
                     })
                 return Response({
@@ -972,7 +970,7 @@ class UserManagementAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         required_fields = ["role", "rank", "name", "personal_no", "designation",
-            "ship_name", "password", "confirm_password", "employee_type", "establishment", "designation_email", "phone_no","sso_user", "H", "L", "E", "X",
+            "ship_name", "password", "confirm_password", "employee_type", "establishment", "designation_email", "phone_no","sso_user", "initiator", "recommendor", "approver",
             ]
         generated_password, hashed_password = self.generate_password()
         data = request.data
@@ -1005,10 +1003,9 @@ class UserManagementAPIView(APIView):
                     establishment=data["establishment"],
                     designation_email=data["designation_email"],
                     phone_no=data["phone_no"],
-                    H=data["H"],
-                    L=data["L"],
-                    E=data["E"],
-                    X=data["X"],
+                    initiator=data["initiator"],
+                    recommendor=data["recommendor"],
+                    approver=data["approver"],
                     sso_user=data["sso_user"]
                 )
             Send_Email(username=data["name"], userlogin=data["personal_no"], password=generated_password, email_to=data["designation_email"])
@@ -1029,10 +1026,9 @@ class UserManagementAPIView(APIView):
                     "establishment": profile.establishment,
                     "designation_email": profile.designation_email,
                     "phone_no": profile.phone_no,
-                    "H": profile.H,
-                    "L": profile.L,
-                    "E": profile.E,
-                    "X": profile.X,
+                    "initiator": profile.initiator,
+                    "recommendor": profile.recommendor,
+                    "approver": profile.approver,
                     "sso_user": profile.sso_user,
                     "status": profile.status,
                 }
@@ -1095,7 +1091,7 @@ class UserManagementAPIView(APIView):
 
         for field in [
                 "role", "rank", "name", "userlogin", "personal_no", "designation", "ship_name",
-                "employee_type", "establishment", "designation_email", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
+                "employee_type", "establishment", "designation_email", "phone_no", "mobile_no", "status","sso_user", "initiator", "recommendor", "approver"
         ]:
             if field in data:
                 setattr(profile, field, data[field])
@@ -1118,10 +1114,9 @@ class UserManagementAPIView(APIView):
             "phone_no": profile.phone_no,
             "mobile_no": profile.mobile_no,
             "sso_user": profile.sso_user,
-            "H": profile.H,
-            "L": profile.L,
-            "E": profile.E,
-            "X": profile.X,
+            "initiator": profile.initiator,
+            "recommendor": profile.recommendor,
+            "approver": profile.approver,
             "status": profile.status,
         }
         }, status=status.HTTP_200_OK)

@@ -160,51 +160,51 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'date_joined', 'last_login')
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    """
-    Enhanced serializer for User Profile operations with validation.
+# class UserProfileSerializer(serializers.ModelSerializer):
+#     """
+#     Enhanced serializer for User Profile operations with validation.
     
-    This serializer handles both reading and updating user profile data
-    with comprehensive validation for Angular 18+ frontend integration.
+#     This serializer handles both reading and updating user profile data
+#     with comprehensive validation for Angular 18+ frontend integration.
     
-    Frontend Usage (Angular 18+):
-    ```typescript
-    // GET Profile
-    getUserProfile(): Observable<ProfileResponse> {
-      return this.http.get<ProfileResponse>('/api/v1/auth/profile/', {
-        headers: { Authorization: `Bearer ${this.getAccessToken()}` }
-      });
-    }
+#     Frontend Usage (Angular 18+):
+#     ```typescript
+#     // GET Profile
+#     getUserProfile(): Observable<ProfileResponse> {
+#       return this.http.get<ProfileResponse>('/api/v1/auth/profile/', {
+#         headers: { Authorization: `Bearer ${this.getAccessToken()}` }
+#       });
+#     }
     
-    // UPDATE Profile
-    updateProfile(profileData: ProfileUpdateRequest): Observable<ProfileResponse> {
-      return this.http.put<ProfileResponse>('/api/v1/auth/profile/', profileData, {
-        headers: { 
-          Authorization: `Bearer ${this.getAccessToken()}`,
-          'Content-Type': 'application/json'
-        }
-      });
-    }
-    ```
-    """
+#     // UPDATE Profile
+#     updateProfile(profileData: ProfileUpdateRequest): Observable<ProfileResponse> {
+#       return this.http.put<ProfileResponse>('/api/v1/auth/profile/', profileData, {
+#         headers: { 
+#           Authorization: `Bearer ${this.getAccessToken()}`,
+#           'Content-Type': 'application/json'
+#         }
+#       });
+#     }
+#     ```
+#     """
     
-    # Add computed fields for better frontend integration
-    full_name = serializers.SerializerMethodField()
-    initials = serializers.SerializerMethodField()
+#     # Add computed fields for better frontend integration
+#     full_name = serializers.SerializerMethodField()
+#     initials = serializers.SerializerMethodField()
     
-    class Meta:
-        model = UserDetails
-        # fields = (
-        #     'id', 'username', 'email', 'first_name', 'last_name',
-        #     'full_name', 'initials', 'is_staff', 'is_active', 
-        #     'date_joined', 'last_login'
-        # )
-        fields = [
-            "id", "role", "rank", "username", "userlogin", "personal_no",
-            "designation", "ship_name", "employee_type", "establishment",
-            "nudemail", "phone_no", "sso_user", "h", "l", "e", "x", "mobile_no", "status",
-        ]
-        read_only_fields = ('id', 'username', 'is_staff', 'is_active', 'date_joined', 'last_login')
+#     class Meta:
+#         model = UserDetails
+#         # fields = (
+#         #     'id', 'username', 'email', 'first_name', 'last_name',
+#         #     'full_name', 'initials', 'is_staff', 'is_active', 
+#         #     'date_joined', 'last_login'
+#         # )
+#         fields = [
+#             "id", "role", "rank", "username", "userlogin", "personal_no",
+#             "designation", "ship_name", "employee_type", "establishment",
+#             "nudemail", "phone_no", "sso_user", "h", "l", "e", "x", "mobile_no", "status",
+#         ]
+#         read_only_fields = ('id', 'username', 'is_staff', 'is_active', 'date_joined', 'last_login')
         
     def get_full_name(self, obj):
         """
