@@ -35,7 +35,7 @@ ALLOWED_TABLES = {
 	'tbl_country_master' : (CountryMaster, CountryMasterSerializer),
 	'tbl_class_master' : (ClassMaster, ClassMasterSerializer),
 	'tbl_supplier_master' :(SupplierMaster, SupplierMasterSerializer),
-	'tbl_ops_authority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
+	'tbl_opsauthority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
 	'tbl_generic_master': (GenericMaster, GenericMasterSerializer),
 	'tbl_establishment_master': (EstablishmentMaster, EstablishmentMasterSerializer),
 	'tbl_propulsion_master': (PropulsionMaster, PropulsionMasterSerializer),
