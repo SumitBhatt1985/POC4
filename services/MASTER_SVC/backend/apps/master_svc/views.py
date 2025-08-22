@@ -61,7 +61,7 @@ ALLOWED_TABLES = {
 	'tbl_country_master' : (CountryMaster, CountryMasterSerializer),
 	'tbl_class_master' : (ClassMaster, ClassMasterSerializer),
 	'tbl_supplier_master' :(SupplierMaster, SupplierMasterSerializer),
-	'tbl_ops_authority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
+	'tbl_opsauthority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
 	'tbl_generic_master': (GenericMaster, GenericMasterSerializer),
 	'tbl_establishment_master': (EstablishmentMaster, EstablishmentMasterSerializer),
 	'tbl_propulsion_master': (PropulsionMaster, PropulsionMasterSerializer),
@@ -169,7 +169,7 @@ def crud_list(user, table_name, get_max_id, column_name):
                 }, status=status.HTTP_400_BAD_REQUEST)
             return Response({
                 'success': True,
-                'message': 'Max ID fetched successfully.',
+                'message': 'Next ID fetched successfully.',
                 'data': {
                     'next_id': formatted_id
                 }
