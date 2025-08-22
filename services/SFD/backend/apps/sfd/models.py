@@ -58,7 +58,7 @@ class SupplierMaster(models.Model):
 class OpsAuthorityMaster(models.Model):
     opsauthority_id = models.CharField(max_length=50)
     ops_authority = models.CharField(max_length=255)
-    command = models.CharField(max_length=255)
+    command_id = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     is_active = models.SmallIntegerField(default=1)
     class Meta:
