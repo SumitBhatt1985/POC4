@@ -19,7 +19,7 @@ from .models import (
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
 	ManufacturerMaster, EquipmentMaster, ShipMaster, 
  	
-  	VwSfdSectionAdd #remove if not needed
+  	VwSectionDepartment #remove if not needed
 )
 
 # import all master serializers
@@ -32,8 +32,8 @@ from .serializers import (
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
-	
-	VwSfdSectionAddSerializer    #remove if not needed
+
+	VwSectionDepartmentSerializer   #remove if not needed
 )
 
 
@@ -72,7 +72,7 @@ ALLOWED_TABLES = {
 	'tbl_ship_master': (ShipMaster, ShipMasterSerializer),
 
  	# --- PostgreSQL Views  Remove if not needed ---
-	'vw_sfd_section_add': (VwSfdSectionAdd, VwSfdSectionAddSerializer),
+	'vw_section_department_details': (VwSectionDepartment, VwSectionDepartmentSerializer),
 }
 
 # Audit logger
