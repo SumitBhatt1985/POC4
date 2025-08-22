@@ -14,7 +14,7 @@ class CommandMasterSerializer(serializers.ModelSerializer):
 class DepartmentMasterSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = DepartmentMaster
-		fields = '__all__'
+		fields = ['department_id', 'name', 'ship_id', 'type', 'status', 'is_active']
 
 class EquipmentCategoryMasterSerializer(serializers.ModelSerializer):
 	class Meta:

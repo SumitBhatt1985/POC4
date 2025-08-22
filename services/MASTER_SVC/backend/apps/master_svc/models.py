@@ -10,10 +10,14 @@ class CommandMaster(models.Model):
 		db_table = 'tbl_command_master'
 
 class DepartmentMaster(models.Model):
-	name = models.CharField(max_length=255)
-	type = models.CharField(max_length=100)
-	class Meta:
-		db_table = 'tbl_department_master'
+    department_id = models.CharField(max_length=10)
+    name = models.CharField(max_length=50) 
+    ship_id = models.CharField(max_length=10)
+    type = models.CharField(max_length=50)
+    status = models.SmallIntegerField()
+    is_active = models.SmallIntegerField(default=1)
+    class Meta:
+        db_table = 'tbl_department_master'
 
 class EquipmentCategoryMaster(models.Model):
 	name = models.CharField(max_length=255)

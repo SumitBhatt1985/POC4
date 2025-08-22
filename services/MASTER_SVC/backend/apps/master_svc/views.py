@@ -17,7 +17,9 @@ from .models import (
 	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd
+	ManufacturerMaster, EquipmentMaster, ShipMaster, 
+ 	
+  	VwSfdSectionAdd #remove if not needed
 )
 
 # import all master serializers
@@ -30,7 +32,8 @@ from .serializers import (
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
-	VwSfdSectionAddSerializer
+	
+	VwSfdSectionAddSerializer    #remove if not needed
 )
 
 
@@ -67,15 +70,10 @@ ALLOWED_TABLES = {
 	'tbl_manufacturer_master': (ManufacturerMaster, ManufacturerMasterSerializer),
 	'tbl_equipment_master': (EquipmentMaster, EquipmentMasterSerializer),
 	'tbl_ship_master': (ShipMaster, ShipMasterSerializer),
-	# --- PostgreSQL Views --- 
+
+ 	# --- PostgreSQL Views  Remove if not needed ---
 	'vw_sfd_section_add': (VwSfdSectionAdd, VwSfdSectionAddSerializer),
 }
-
-# ALLOWED_Table_Col = {
-# 	'tbl_section_master': {name:(dropdown, table_department_master), col2:(dropdown, table), col3:(dropdown, table)},
-# 	'tbl_group_master': {col1:(dropdown, table), col2:(dropdown, table), col3:(dropdown, table)},
-# 	'tbl_country_master': {col1:(dropdown, table), col2:(dropdown, table), col3:(dropdown, table)},
-# }
 
 # Audit logger
 audit_logger = logging.getLogger('audit')
@@ -297,6 +295,73 @@ def flexible_crud_delete(user, table_name, column_name, column_value):
 			'message': 'Soft delete not supported for this table (no is_active field).',
 			'data': None
 		}, status=status.HTTP_400_BAD_REQUEST)
+  
+from django.db.models import F
+
+def crud_list_col_values(user, table_name, column_list):
+	# Validate table_name
+	if not table_name or table_name not in ALLOWED_TABLES:
+		return Response({
+			'success': False,
+			'message': 'Invalid or missing table_name.',
+			'data': None
+		}, status=status.HTTP_400_BAD_REQUEST)
+
+	# Validate column_list
+	if not column_list or not isinstance(column_list, list) or not all(isinstance(col, str) for col in column_list):
+		return Response({
+			'success': False,
+			'message': 'Invalid or missing column_list. Must be a list of column names.',
+			'data': None
+		}, status=status.HTTP_400_BAD_REQUEST)
+
+	model, _ = ALLOWED_TABLES[table_name]
+	model_fields = [f.name for f in model._meta.get_fields()]
+	for col in column_list:
+		if col not in model_fields:
+			return Response({
+				'success': False,
+				'message': f'Column "{col}" does not exist in table "{table_name}".',
+				'data': None
+			}, status=status.HTTP_400_BAD_REQUEST)
+
+	# Query and process for unique dropdown options
+	try:
+		if len(column_list) != 2:
+			return Response({
+				'success': False,
+				'message': 'column_list must contain exactly two columns: [id_column, name_column] for dropdown.',
+				'data': None
+			}, status=status.HTTP_400_BAD_REQUEST)
+
+		id_col, name_col = column_list
+		queryset = model.objects.values(id_col, name_col)
+		if 'is_active' in model_fields:
+			queryset = queryset.filter(is_active=True)
+		# Build a mapping: name_col -> first id_col (ignore duplicates)
+		name_to_id = {}
+		for row in queryset:
+			name = row[name_col]
+			id_val = row[id_col]
+			if name not in name_to_id:
+				name_to_id[name] = id_val
+		# Prepare response: one entry per unique name_col, with its id, ordered by id_col
+		result = [
+			{'id': id_val, 'name': name}
+			for name, id_val in name_to_id.items()
+		]
+		result.sort(key=lambda x: x['id'])
+		return Response({
+			'success': True,
+			'message': f'Distinct dropdown options for {name_col} from {table_name}.',
+			'data': result
+		}, status=status.HTTP_200_OK)
+	except Exception as e:
+		return Response({
+			'success': False,
+			'message': f'Error fetching distinct values: {str(e)}',
+			'data': None
+		}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # def crud_delete(user, table_name, pk):
 # 	check_permission(user, table_name, 'delete')
@@ -543,10 +608,10 @@ class FlexibleWrapperAPIView(APIView):
 				'data': None
 			}, status=status.HTTP_400_BAD_REQUEST)
 		
-		if method_name not in ['create', 'list', 'view', 'update', 'delete']:
+		if method_name not in ['create', 'list', 'view', 'update', 'delete', 'list_col_values']:
 			return Response({
 				'success': False,
-				'message': 'Invalid method name. Allowed: create, list, view, update, delete',
+				'message': 'Invalid method name. Allowed: create, list, view, update, delete, list_col_values',
 				'data': None
 			}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -605,6 +670,10 @@ class FlexibleWrapperAPIView(APIView):
 				}, status=status.HTTP_400_BAD_REQUEST)
 			
 			return flexible_crud_delete(request.user, table_name, column_name, column_value)
+		
+		elif method_name == 'list_col_values':
+			column_list = request.data.get('column_list')
+			return crud_list_col_values(request.user, table_name, column_list)
 		
 		else:
 			return Response({

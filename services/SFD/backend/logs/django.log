@@ -234,3 +234,6 @@ WARNING 2025-08-21 18:57:46,845 basehttp 34280 19240 "POST /api/v1/sfd/wrapper/ 
 WARNING 2025-08-21 18:58:23,205 log 34280 19240 Bad Request: /api/v1/sfd/wrapper/
 WARNING 2025-08-21 18:58:23,205 basehttp 34280 19240 "POST /api/v1/sfd/wrapper/ HTTP/1.1" 400 61
 INFO 2025-08-21 19:00:10,308 autoreload 2968 21192 Watching for file changes with StatReloader
+INFO 2025-08-21 19:00:14,473 basehttp 2968 25884 "POST /api/v1/sfd/wrapper/ HTTP/1.1" 200 3743
+INFO 2025-08-21 19:10:56,794 autoreload 2968 21192 D:\Phoenix\Defense_POC\POC4\services\SFD\backend\apps\sfd\models.py changed, reloading.
+INFO 2025-08-21 19:11:01,734 autoreload 32712 16120 Watching for file changes with StatReloader
