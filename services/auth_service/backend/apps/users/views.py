@@ -724,7 +724,7 @@ class SignUpAPIView(APIView):
                     "userlogin": profile.userlogin,
                     "personal_no": profile.personal_no,
                     "designation": profile.designation,
-                    "ship": profile.ship_name,
+                    "ship_name": profile.ship_name,
                     "designation_email": profile.designation_email,
                     "phone_no": profile.phone_no,
                     "mobile_no": profile.mobile_no,
@@ -894,7 +894,7 @@ class UserManagementAPIView(APIView):
                         # "confirm_password": password_value,
                         "personal_no": detail.personal_no,
                         "designation": detail.designation,
-                        "ship": detail.ship_name,
+                        "ship_name": detail.ship_name,
                         "employee_type": detail.employee_type,
                         "establishment": detail.establishment,
                         "designation_email": detail.designation_email,
@@ -930,7 +930,7 @@ class UserManagementAPIView(APIView):
                         "name": detail.name,
                         "personal_no": detail.personal_no,
                         "designation": detail.designation,
-                        "ship": detail.ship_name,
+                        "ship_name": detail.ship_name,
                         "employee_type": detail.employee_type,
                         "establishment": detail.establishment,
                         "designation_email": detail.designation_email,
@@ -1010,7 +1010,7 @@ class UserManagementAPIView(APIView):
                     "name": profile.name,
                     "personal_no": profile.personal_no,
                     "designation": profile.designation,
-                    "ship": profile.ship_name,
+                    "ship_name": profile.ship_name,
                     "employee_type": profile.employee_type,
                     "establishment": profile.establishment,
                     "designation_email": profile.designation_email,
@@ -1034,6 +1034,7 @@ class UserManagementAPIView(APIView):
 
 
     def put(self, request, *args, **kwargs):
+        
         user_id = request.data.get('id')
         generated_password = None
         if not user_id:
@@ -1044,9 +1045,7 @@ class UserManagementAPIView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
         try:
             profile = UserDetails.objects.get(id=user_id)
-            print("**************************************************************")
-            print(profile.password)
-            print("**************************************************************")
+
         except UserDetails.DoesNotExist:
             return Response({
                 "success": False,
@@ -1070,7 +1069,7 @@ class UserManagementAPIView(APIView):
             profile.save()
         else:
             # check password is present or not in db.
-            if profile.password is None or profile.confirm_password is None:
+            if not profile.password or not profile.confirm_password:
                 generated_password, hashed_password = self.generate_password()
 
                 profile.password = hashed_password
@@ -1080,7 +1079,6 @@ class UserManagementAPIView(APIView):
                 Send_Email(username=profile.name, userlogin=profile.userlogin, password=generated_password, email_to=[profile.designation_email])
             
 
-
         for field in [
                 "role", "rank", "name", "userlogin", "personal_no", "designation", "ship_name",
                 "employee_type", "establishment", "designation_email", "phone_no", "mobile_no", "status","sso_user", "H", "L", "E", "X"
@@ -1088,9 +1086,6 @@ class UserManagementAPIView(APIView):
             if field in data:
                 setattr(profile, field, data[field])
         profile.save()
-        
-        
-
         return Response({
             "success": True,
             "message": "User updated successfully",
@@ -1102,7 +1097,7 @@ class UserManagementAPIView(APIView):
             "name": profile.name,
             "personal_no": profile.personal_no,
             "designation": profile.designation,
-            "ship": profile.ship_name,
+            "ship_name": profile.ship_name,
             "employee_type": profile.employee_type,
             "establishment": profile.establishment,
             "nudemail": profile.nudemail,
@@ -1112,7 +1107,7 @@ class UserManagementAPIView(APIView):
             "H": profile.H,
             "L": profile.L,
             "E": profile.E,
-            "E": profile.X,
+            "X": profile.X,
             "status": profile.status,
         }
         }, status=status.HTTP_200_OK)
