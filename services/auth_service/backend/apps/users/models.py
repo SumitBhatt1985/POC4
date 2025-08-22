@@ -59,10 +59,12 @@ class Feedback(models.Model):
         return f"{self.username} - Avg: {self.avg_feedback}"
 
 class RoleMaster(models.Model):
-    role_id = models.AutoField(primary_key=True)
+    role_id = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     level = models.CharField(max_length=50)
-    status = models.IntegerField(default=1)  # Default to active (1)
+    description = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)  # Default to active (1)
+    is_active = models.SmallIntegerField(default=1)
 
     class Meta:
         db_table = 'tbl_role_master'

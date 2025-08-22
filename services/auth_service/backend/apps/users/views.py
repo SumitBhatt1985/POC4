@@ -799,7 +799,7 @@ class RoleMasterAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        roles = RoleMaster.objects.filter(status=1)
+        roles = RoleMaster.objects.filter(is_active=1)
         serializer = RoleMasterSerializer(roles, many=True)
         return Response(serializer.data)
 

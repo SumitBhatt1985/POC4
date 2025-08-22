@@ -610,7 +610,7 @@ class FeedbackSerializer(serializers.ModelSerializer):
 class RoleMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoleMaster
-        fields = ['role_id', 'name', 'status']
+        fields = '__all__'
 
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
