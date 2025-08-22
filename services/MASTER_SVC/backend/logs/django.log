@@ -2012,3 +2012,9 @@ INFO 2025-08-22 16:23:53,098 autoreload 24916 28668 D:\Phoenix\Defense_POC\POC4\
 INFO 2025-08-22 16:23:58,311 autoreload 32064 15944 Watching for file changes with StatReloader
 INFO 2025-08-22 16:26:27,512 autoreload 32064 15944 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
 INFO 2025-08-22 16:26:32,670 autoreload 24500 29472 Watching for file changes with StatReloader
+INFO 2025-08-22 16:27:46,394 autoreload 24500 29472 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-22 16:27:51,789 autoreload 18788 12100 Watching for file changes with StatReloader
+INFO 2025-08-22 16:30:48,259 autoreload 18788 12100 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-22 16:30:53,493 autoreload 34236 31936 Watching for file changes with StatReloader
+INFO 2025-08-22 16:30:57,468 autoreload 34236 31936 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-22 16:31:02,638 autoreload 32144 9552 Watching for file changes with StatReloader

@@ -59,10 +59,12 @@ class Feedback(models.Model):
         return f"{self.username} - Avg: {self.avg_feedback}"
 
 class RoleMaster(models.Model):
-    role_id = models.AutoField(primary_key=True)
+    role_id = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     level = models.CharField(max_length=50)
-    status = models.IntegerField(default=1)  # Default to active (1)
+    description = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)  # Default to active (1)
+    is_active = models.SmallIntegerField(default=1)
 
     class Meta:
         db_table = 'tbl_role_master'
@@ -89,10 +91,9 @@ class UserDetails(models.Model):
     phone_no = models.CharField(max_length=20)
     mobile_no = models.CharField(max_length=20)
     sso_user = models.CharField(max_length=1, default='0')
-    H = models.CharField(max_length=1, default='0')
-    L = models.CharField(max_length=1, default='0')
-    E = models.CharField(max_length=1, default='0')
-    X = models.CharField(max_length=1, default='0')
+    initiator = models.CharField(max_length=1, default='0')
+    recommendor = models.CharField(max_length=1, default='0')
+    approver = models.CharField(max_length=1, default='0')
     status = models.SmallIntegerField(default=2)  # Default to active (1)
     
     
