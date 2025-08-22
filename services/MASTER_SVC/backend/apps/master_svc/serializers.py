@@ -21,7 +21,7 @@ class VwCountrySupplierDetailsSerializer(serializers.ModelSerializer):
 class VwCommandOpsauthorityDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwCommandOpsauthorityDetails
-        fields = ['ops_authority', 'command', 'address']
+        fields = ['opsauthority_id', 'ops_authority', 'command_id', 'command', 'address', 'is_active']  
 
 # Serializer for PostgreSQL view vw_command_opsauthority_establishment_details
 class VwCommandOpsauthorityEstablishmentDetailsSerializer(serializers.ModelSerializer):

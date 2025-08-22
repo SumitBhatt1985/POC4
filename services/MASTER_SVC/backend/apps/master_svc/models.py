@@ -17,9 +17,12 @@ class VwCountrySupplierDetails(models.Model):
 
 # Model for PostgreSQL view vw_command_opsauthority_details
 class VwCommandOpsauthorityDetails(models.Model):
+    opsauthority_id = models.CharField(db_column='opsauthority_id', max_length=10, primary_key=True)	
     ops_authority = models.CharField(db_column='ops_authority', max_length=100)
+    command_id = models.CharField(db_column='command_id', max_length=10)
     command = models.CharField(db_column='command', max_length=50)
     address = models.CharField(db_column='address', max_length=200)
+    is_active = models.SmallIntegerField(db_column='is_active', default=True)
 
     class Meta:
         managed = False

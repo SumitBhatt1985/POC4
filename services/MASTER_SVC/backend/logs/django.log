@@ -2384,3 +2384,14 @@ django.core.exceptions.ImproperlyConfigured: Field name `equipment_code` is not 
 ERROR 2025-08-22 17:03:52,422 basehttp 12528 32068 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 161572
 INFO 2025-08-22 17:05:43,283 autoreload 12528 34040 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
 INFO 2025-08-22 17:06:07,917 autoreload 20724 13052 Watching for file changes with StatReloader
+INFO 2025-08-22 17:06:13,883 basehttp 20724 16484 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 36420
+INFO 2025-08-22 17:23:48,398 autoreload 20724 13052 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:23:55,230 autoreload 14932 27492 Watching for file changes with StatReloader
+INFO 2025-08-22 17:24:31,459 autoreload 14932 27492 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:24:38,202 autoreload 26700 33128 Watching for file changes with StatReloader
+INFO 2025-08-22 17:25:12,473 autoreload 26700 33128 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 17:25:18,688 autoreload 28320 2952 Watching for file changes with StatReloader
+INFO 2025-08-22 17:25:21,269 autoreload 28320 2952 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 17:25:27,317 autoreload 33068 7400 Watching for file changes with StatReloader
+INFO 2025-08-22 17:25:48,222 autoreload 33068 7400 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 17:25:54,588 autoreload 22928 5584 Watching for file changes with StatReloader
