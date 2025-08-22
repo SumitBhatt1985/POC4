@@ -69,11 +69,11 @@ class GroupMasterSerializer(serializers.ModelSerializer):
         fields = ['group_id', 'name', 'section_id', 'generic_id']
 
 # Serializer for PostgreSQL view vw_sfd_section_add
-from .models import VwSfdSectionAdd
-class VwSfdSectionAddSerializer(serializers.ModelSerializer):
+from .models import VwSectionDepartment
+class VwSectionDepartmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = VwSfdSectionAdd
-        fields = ['section_id', 'section_name', 'department_id', 'department_name', 'is_active']
+        model = VwSectionDepartment
+        fields = ['section_id', 'section_name', 'department_id', 'department_name']
 
 class CountryMasterSerializer(serializers.ModelSerializer):
     class Meta:
