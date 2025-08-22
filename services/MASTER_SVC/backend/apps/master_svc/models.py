@@ -190,13 +190,13 @@ class ActivityDetailsMaster(models.Model):
 
 class LubricantMaster(models.Model):
 	lubricant_id = models.CharField(max_length=100)
-	lubricant_name = models.CharField(max_length=255)
-	lubricant_code = models.CharField(max_length=100)
-	lubricant_type = models.CharField(max_length=100)
-	unit = models.CharField(max_length=50)
+	lubricant_name = models.CharField(max_length=255, null=True, blank=True)
+	lubricant_code = models.CharField(max_length=100, null=True, blank=True)
+	lubricant_type = models.CharField(max_length=100, null=True, blank=True)
+	unit = models.CharField(max_length=50, null=True, blank=True)
 	ship_id = models.CharField(max_length=100, null=True, blank=True)
-	application = models.CharField(max_length=255)
-	specification = models.CharField(max_length=255)
+	application = models.CharField(max_length=255, null=True, blank=True)
+	specification = models.CharField(max_length=255, null=True, blank=True)
 	status = models.CharField(max_length=50, null=True, blank=True)
 	is_active = models.SmallIntegerField(default=True)
 	class Meta:
