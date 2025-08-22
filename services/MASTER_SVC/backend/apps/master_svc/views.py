@@ -1,15 +1,13 @@
-
-
-from django.db import models
-
-from rest_framework import permissions, status
+import logging
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.views import APIView
+from django.db import models
+from rest_framework import permissions, status
 from rest_framework.response import Response
-
 from .authentication import CustomJWTAuthentication
+# from django.db.models import F  
 
 # import all master models
-
 from .models import (
 	CommandMaster, DepartmentMaster, EquipmentCategoryMaster,
 	ShipCategoryMaster, RoleMaster, ShipStateMaster,
@@ -17,13 +15,14 @@ from .models import (
 	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster, 
- 	
-  	VwSectionDepartment #remove if not needed
+	ManufacturerMaster, EquipmentMaster, ShipMaster,
+ 
+	VwSectionDepartment, VwSectionGroupDetails, VwCountrySupplierDetails, 
+ 	VwCommandOpsauthorityDetails, VwCommandOpsauthorityEstablishmentDetails, 
+  	VwCountryManufacturerDetails, VwSectionEquipmentGroupDetails
 )
 
 # import all master serializers
-
 from .serializers import (
 	CommandMasterSerializer, DepartmentMasterSerializer, EquipmentCategoryMasterSerializer,
 	ShipCategoryMasterSerializer, RoleMasterSerializer, ShipStateMasterSerializer,
@@ -32,14 +31,11 @@ from .serializers import (
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
-
-	VwSectionDepartmentSerializer   #remove if not needed
+	
+ 	VwSectionDepartmentSerializer, VwSectionGroupDetailsSerializer, VwCountrySupplierDetailsSerializer, 
+  	VwCommandOpsauthorityDetailsSerializer, VwCommandOpsauthorityEstablishmentDetailsSerializer, 
+    VwCountryManufacturerDetailsSerializer, VwSectionEquipmentGroupDetailsSerializer
 )
-
-
-import logging
-from rest_framework.exceptions import PermissionDenied
-from rest_framework.views import APIView
 
 # Strict whitelist for allowed tables
 ALLOWED_TABLES = {
@@ -73,6 +69,12 @@ ALLOWED_TABLES = {
 
  	# --- PostgreSQL Views  Remove if not needed ---
 	'vw_section_department_details': (VwSectionDepartment, VwSectionDepartmentSerializer),
+	'vw_section_group_details': (VwSectionGroupDetails, VwSectionGroupDetailsSerializer),
+	'vw_country_supplier_details': (VwCountrySupplierDetails, VwCountrySupplierDetailsSerializer),
+	'vw_command_opsauthority_details': (VwCommandOpsauthorityDetails, VwCommandOpsauthorityDetailsSerializer),
+	'vw_command_opsauthority_establishment_details': (VwCommandOpsauthorityEstablishmentDetails, VwCommandOpsauthorityEstablishmentDetailsSerializer),
+	'vw_country_manufacturer_details': (VwCountryManufacturerDetails, VwCountryManufacturerDetailsSerializer),
+	'vw_section_equipment_group_details': (VwSectionEquipmentGroupDetails, VwSectionEquipmentGroupDetailsSerializer),
 }
 
 # Audit logger
@@ -295,8 +297,6 @@ def flexible_crud_delete(user, table_name, column_name, column_value):
 			'message': 'Soft delete not supported for this table (no is_active field).',
 			'data': None
 		}, status=status.HTTP_400_BAD_REQUEST)
-  
-from django.db.models import F
 
 def crud_list_col_values(user, table_name, column_list):
 	# Validate table_name

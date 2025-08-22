@@ -1,11 +1,58 @@
-# --- New Master Serializers ---
-from .models import ShipStateMaster, ShipLocationMaster, ActivityTypeMaster, ActivityDetailsMaster, LubricantMaster
+# Serializer for PostgreSQL view vw_country_supplier_details
 from rest_framework import serializers
+
+from .models import VwCountrySupplierDetails, VwCommandOpsauthorityDetails, VwCommandOpsauthorityEstablishmentDetails, VwCountryManufacturerDetails, VwSectionEquipmentGroupDetails
+from .models import ShipStateMaster, ShipLocationMaster, ActivityTypeMaster, ActivityDetailsMaster, LubricantMaster
+
 from .models import CommandMaster, DepartmentMaster, EquipmentCategoryMaster, ShipCategoryMaster, RoleMaster
 from .models import (SectionMaster, GroupMaster, CountryMaster, ClassMaster, SupplierMaster, OpsAuthorityMaster,
 					GenericMaster, EstablishmentMaster, PropulsionMaster, ManufacturerMaster, EquipmentMaster, 
                     ShipMaster)
 
+from .models import VwSectionGroupDetails, VwSectionDepartment
+
+# Serializer for PostgreSQL view vw_sfd_section_add
+class VwCountrySupplierDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwCountrySupplierDetails
+        fields = ['country_name', 'supplier_id', 'supplier_name', 'address', 'city', 'state', 'contanct_number', 'email']
+
+# Serializer for PostgreSQL view vw_command_opsauthority_details
+class VwCommandOpsauthorityDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwCommandOpsauthorityDetails
+        fields = ['ops_authority', 'command', 'address']
+
+# Serializer for PostgreSQL view vw_command_opsauthority_establishment_details
+class VwCommandOpsauthorityEstablishmentDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwCommandOpsauthorityEstablishmentDetails
+        fields = ['establishment_name', 'command', 'ops_authority', 'establishment_category']
+
+# Serializer for PostgreSQL view vw_country_manufacturer_details
+class VwCountryManufacturerDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwCountryManufacturerDetails
+        fields = ['country_name', 'manufacturer_id', 'manufacturer_name', 'address', 'city', 'state', 'contact_number', 'email']
+
+# Serializer for PostgreSQL view vw_section_equipment_group_details
+class VwSectionEquipmentGroupDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwSectionEquipmentGroupDetails
+        fields = ['section_id', 'section_name', 'equipment_id', 'equipment_code', 'equipment_model', 'group_id', 'group_name', 'category_id', 'equipment_type', 'equipment_name', 'location_on_board', 'maintop_number', 'authority', 'total_fits', 'is_active']
+# Serializer for PostgreSQL view vw_section_group_details
+
+class VwSectionDepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwSectionDepartment
+        fields = ['section_id', 'section_name', 'department_id', 'department_name']
+        
+class VwSectionGroupDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwSectionGroupDetails
+        fields = ['section_name', 'group_id', 'group_name']
+
+# master serializers
 class CommandMasterSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = CommandMaster
@@ -67,13 +114,6 @@ class GroupMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroupMaster
         fields = ['group_id', 'name', 'section_id', 'generic_id']
-
-# Serializer for PostgreSQL view vw_sfd_section_add
-from .models import VwSectionDepartment
-class VwSectionDepartmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = VwSectionDepartment
-        fields = ['section_id', 'section_name', 'department_id', 'department_name']
 
 class CountryMasterSerializer(serializers.ModelSerializer):
     class Meta:
