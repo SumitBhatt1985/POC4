@@ -2408,3 +2408,119 @@ INFO 2025-08-22 17:46:53,953 autoreload 27884 13828 D:\Phoenix\Defense_POC\POC4\
 INFO 2025-08-22 17:47:10,669 autoreload 24512 28792 Watching for file changes with StatReloader
 INFO 2025-08-22 17:47:55,157 autoreload 24512 28792 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
 INFO 2025-08-22 17:48:15,879 autoreload 26576 30880 Watching for file changes with StatReloader
+INFO 2025-08-22 17:48:28,317 basehttp 26576 24912 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 6700
+WARNING 2025-08-22 18:42:24,357 log 26576 22348 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-22 18:42:24,358 basehttp 26576 22348 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 880
+WARNING 2025-08-22 18:49:11,329 log 26576 27476 Bad Request: /api/v1/master/wrapper/
+WARNING 2025-08-22 18:49:11,334 basehttp 26576 27476 "POST /api/v1/master/wrapper/ HTTP/1.1" 400 117
+INFO 2025-08-22 18:49:44,226 basehttp 26576 27476 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 195
+INFO 2025-08-22 18:56:12,428 autoreload 26576 30880 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 18:56:19,932 autoreload 27624 32700 Watching for file changes with StatReloader
+INFO 2025-08-22 18:56:38,935 autoreload 27624 32700 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 18:56:44,060 autoreload 19764 34332 Watching for file changes with StatReloader
+INFO 2025-08-22 19:00:30,871 autoreload 19764 34332 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 19:00:35,832 autoreload 21192 21580 Watching for file changes with StatReloader
+INFO 2025-08-22 19:00:42,043 autoreload 21192 21580 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 19:00:46,972 autoreload 6668 33536 Watching for file changes with StatReloader
+INFO 2025-08-22 19:04:29,679 autoreload 6668 33536 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 19:04:34,690 autoreload 33572 2308 Watching for file changes with StatReloader
+INFO 2025-08-22 19:04:42,843 autoreload 33572 2308 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 19:04:47,848 autoreload 25192 14676 Watching for file changes with StatReloader
+INFO 2025-08-22 19:05:49,709 autoreload 25192 14676 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 19:05:54,735 autoreload 28340 27580 Watching for file changes with StatReloader
+INFO 2025-08-22 19:05:59,832 autoreload 28340 27580 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 19:06:04,807 autoreload 31124 34372 Watching for file changes with StatReloader
+INFO 2025-08-22 19:06:19,200 autoreload 31124 34372 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 19:06:24,071 autoreload 32112 7308 Watching for file changes with StatReloader
+INFO 2025-08-22 19:06:30,150 autoreload 32112 7308 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 19:06:35,090 autoreload 18788 13228 Watching for file changes with StatReloader
+INFO 2025-08-22 19:07:57,012 autoreload 18788 13228 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 19:08:02,064 autoreload 26268 13520 Watching for file changes with StatReloader
+INFO 2025-08-22 19:08:20,806 autoreload 26268 13520 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\serializers.py changed, reloading.
+INFO 2025-08-22 19:08:25,703 autoreload 15144 33264 Watching for file changes with StatReloader
+WARNING 2025-08-22 19:09:07,725 log 15144 11976 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-22 19:09:07,725 basehttp 15144 11976 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+ERROR 2025-08-22 19:09:32,030 log 15144 11976 Internal Server Error: /api/v1/master/wrapper/
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.DatatypeMismatch: argument of WHERE must be type boolean, not type smallint
+LINE 1: ...ctive" FROM "vw_section_department_details" WHERE "vw_sectio...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 688, in post
+    return crud_list(request.user, table_name, get_max_id, column_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py", line 187, in crud_list
+    'data': serializer.data
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+                                                   ^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sthombare\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: argument of WHERE must be type boolean, not type smallint
+LINE 1: ...ctive" FROM "vw_section_department_details" WHERE "vw_sectio...
+                                                             ^
+
+ERROR 2025-08-22 19:09:32,041 basehttp 15144 11976 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 174762
+INFO 2025-08-22 19:10:08,494 autoreload 15144 33264 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
+INFO 2025-08-22 19:10:13,510 autoreload 24560 7044 Watching for file changes with StatReloader

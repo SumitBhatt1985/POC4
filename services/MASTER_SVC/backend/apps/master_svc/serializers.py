@@ -51,7 +51,7 @@ class VwSectionEquipmentGroupDetailsSerializer(serializers.ModelSerializer):
 class VwSectionDepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwSectionDepartment
-        fields = ['section_id', 'section_name', 'department_id', 'department_name']
+        fields = ['section_id', 'name', 'department_id', 'department_name', 'is_active']
         
 class VwSectionGroupDetailsSerializer(serializers.ModelSerializer):
     class Meta:
