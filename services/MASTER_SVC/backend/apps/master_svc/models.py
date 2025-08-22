@@ -1,4 +1,16 @@
+# Model for PostgreSQL view vw_activity_type_details
 from django.db import models
+
+class VwActivityTypeDetails(models.Model):
+    activity_type_id = models.CharField(db_column='activity_type_id', max_length=10)
+    activity_type = models.CharField(db_column='activity_type', max_length=50)
+    activity_id = models.CharField(db_column='activity_id', max_length=10, primary_key=True)
+    activity_detail = models.CharField(db_column='activity_detail', max_length=100)
+    is_active = models.SmallIntegerField(db_column='is_active', default=True)	
+
+    class Meta:
+        managed = False
+        db_table = 'vw_activity_type_details'
 
 # Model for PostgreSQL view vw_country_supplier_details
 class VwCountrySupplierDetails(models.Model):
@@ -17,9 +29,12 @@ class VwCountrySupplierDetails(models.Model):
 
 # Model for PostgreSQL view vw_command_opsauthority_details
 class VwCommandOpsauthorityDetails(models.Model):
+    opsauthority_id = models.CharField(db_column='opsauthority_id', max_length=10, primary_key=True)	
     ops_authority = models.CharField(db_column='ops_authority', max_length=100)
+    command_id = models.CharField(db_column='command_id', max_length=10)
     command = models.CharField(db_column='command', max_length=50)
     address = models.CharField(db_column='address', max_length=200)
+    is_active = models.SmallIntegerField(db_column='is_active', default=True)
 
     class Meta:
         managed = False

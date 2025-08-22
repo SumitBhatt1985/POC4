@@ -19,7 +19,7 @@ from .models import (
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
 	ManufacturerMaster, EquipmentMaster, ShipMaster,
  
-	VwSectionDepartment, VwSectionGroupDetails, VwCountrySupplierDetails, 
+	VwSectionDepartment, VwSectionGroupDetails, VwCountrySupplierDetails, VwActivityTypeDetails, 
  	VwCommandOpsauthorityDetails, VwCommandOpsauthorityEstablishmentDetails, 
   	VwCountryManufacturerDetails, VwSectionEquipmentGroupDetails
 )
@@ -34,7 +34,7 @@ from .serializers import (
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
 	
- 	VwSectionDepartmentSerializer, VwSectionGroupDetailsSerializer, VwCountrySupplierDetailsSerializer, 
+	VwSectionDepartmentSerializer, VwSectionGroupDetailsSerializer, VwCountrySupplierDetailsSerializer, VwActivityTypeDetailsSerializer, 
   	VwCommandOpsauthorityDetailsSerializer, VwCommandOpsauthorityEstablishmentDetailsSerializer, 
     VwCountryManufacturerDetailsSerializer, VwSectionEquipmentGroupDetailsSerializer
 )
@@ -72,6 +72,7 @@ ALLOWED_TABLES = {
  	# --- PostgreSQL Views  Remove if not needed ---
 	'vw_section_department_details': (VwSectionDepartment, VwSectionDepartmentSerializer),
 	'vw_section_group_details': (VwSectionGroupDetails, VwSectionGroupDetailsSerializer),
+	'vw_activity_type_details': (VwActivityTypeDetails, VwActivityTypeDetailsSerializer),
 	'vw_country_supplier_details': (VwCountrySupplierDetails, VwCountrySupplierDetailsSerializer),
 	'vw_command_opsauthority_details': (VwCommandOpsauthorityDetails, VwCommandOpsauthorityDetailsSerializer),
 	'vw_command_opsauthority_establishment_details': (VwCommandOpsauthorityEstablishmentDetails, VwCommandOpsauthorityEstablishmentDetailsSerializer),
