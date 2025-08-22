@@ -182,7 +182,6 @@ class ActivityDetailsMaster(models.Model):
 	activity_id = models.CharField(max_length=100)
 	activity_type_id = models.CharField(max_length=100)
 	activity_detail = models.CharField(max_length=255)
-	department_id = models.CharField(max_length=100)
 	status = models.CharField(max_length=50, null=True, blank=True)
 	is_active = models.SmallIntegerField(default=True)
 	class Meta:
