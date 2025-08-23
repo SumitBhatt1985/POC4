@@ -841,11 +841,14 @@ class EditRoleAPIView(APIView):
         # fields to update
         name = request.data.get('name')
         level = request.data.get('level')
+        description = request.data.get('description')
 
         if name is not None:
             role.name = name
         if level is not None:
             role.level = level
+        if description is not None:
+            role.description = description
 
         role.save()
         serializer = RoleMasterSerializer(role)

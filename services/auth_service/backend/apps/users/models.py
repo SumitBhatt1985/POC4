@@ -62,7 +62,7 @@ class RoleMaster(models.Model):
     role_id = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     level = models.CharField(max_length=50, null=True, blank=True)
-    description = models.CharField(max_length=50)
+    description = models.CharField(max_length=255)
     status = models.CharField(max_length=50, null=True, blank=True)  # Default to active (1)
     is_active = models.SmallIntegerField(default=1)
 
