@@ -170,8 +170,8 @@ class ShipLocationMaster(models.Model):
 class ActivityTypeMaster(models.Model):
 	activity_type_id = models.CharField(max_length=255)
 	activity_type = models.CharField(max_length=255)
-	ship_location_id = models.ForeignKey(ShipLocationMaster, on_delete=models.CASCADE, related_name='activity_types')
-	remark = models.CharField(max_length=255, null=True, blank=True)
+	ship_location_id = models.CharField(max_length=100)
+	remarks = models.CharField(max_length=255, null=True, blank=True)
 	status = models.CharField(max_length=50, null=True, blank=True)
 	is_active = models.SmallIntegerField(default=True)
 	class Meta:
