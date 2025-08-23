@@ -128,15 +128,17 @@ class DepartmentMaster(models.Model):
         db_table = 'tbl_department_master'
 
 class EquipmentCategoryMaster(models.Model):
-	name = models.CharField(max_length=255)
-	class Meta:
-		db_table = 'tbl_equipment_category_master'
+    category_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
+    class Meta:
+        db_table = 'tbl_equipment_category_master'
 
 class ShipCategoryMaster(models.Model):
-	name = models.CharField(max_length=255)
-	description = models.TextField()
-	class Meta:
-		db_table = 'tbl_ship_category_master'
+    ship_cat_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    class Meta:
+        db_table = 'tbl_ship_category_master'
 
 class RoleMaster(models.Model):
 	status = models.IntegerField()
