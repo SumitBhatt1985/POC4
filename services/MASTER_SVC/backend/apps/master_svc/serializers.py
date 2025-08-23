@@ -210,7 +210,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         model = UserDetails
         fields =  [
             "id", "role", "name", "userlogin",
-            "designation", "status",
+            "designation", "is_active",
         ]
 
 

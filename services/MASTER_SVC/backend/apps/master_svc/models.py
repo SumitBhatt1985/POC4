@@ -412,7 +412,8 @@ class UserDetails(models.Model):
     # initiator = models.CharField(max_length=1, default='0')
     # recommendor = models.CharField(max_length=1, default='0')
     # approver = models.CharField(max_length=1, default='0')
-    status = models.SmallIntegerField(default=2)  # Default to active (1)
+    is_active = models.SmallIntegerField(default=2)  # Default to active (1)
+    
     
     
     class Meta:
