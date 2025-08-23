@@ -390,6 +390,41 @@ class ShipMaster(models.Model):
     class Meta:
         db_table = 'tbl_ship_master'
 
+class UserDetails(models.Model):
+
+    # update_date = models.DateTimeField(null=True, blank=True)
+    role = models.CharField(max_length=50)
+    # rank = models.CharField(max_length=50)
+    name = models.CharField(max_length=150)
+    userlogin = models.CharField(max_length=150, unique=True)
+    # password = models.CharField(max_length=510)
+    # confirm_password = models.CharField(max_length=510)
+    # personal_no = models.CharField(max_length=50)
+    designation = models.CharField(max_length=100)
+    # designation_email = models.EmailField(max_length=150)
+    # ship_name = models.CharField(max_length=100)
+    # employee_type = models.CharField(max_length=50)
+    # establishment = models.CharField(max_length=100)
+    # nudemail = models.EmailField(max_length=150)
+    # phone_no = models.CharField(max_length=20)
+    # mobile_no = models.CharField(max_length=20)
+    # sso_user = models.CharField(max_length=1, default='0')
+    # initiator = models.CharField(max_length=1, default='0')
+    # recommendor = models.CharField(max_length=1, default='0')
+    # approver = models.CharField(max_length=1, default='0')
+    status = models.SmallIntegerField(default=2)  # Default to active (1)
+    
+    
+    class Meta:
+        db_table = 'tbl_user_master'
+
+    def __str__(self):
+        return f"{self.userlogin} ({self.name})"
+
+    @property
+    def is_authenticated(self):
+        return True
+
 
 
 

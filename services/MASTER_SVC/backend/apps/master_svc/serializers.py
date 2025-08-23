@@ -10,6 +10,7 @@ from .models import (SectionMaster, GroupMaster, CountryMaster, ClassMaster, Sup
                     ShipMaster)
 
 from .models import VwSectionGroupDetails, VwSectionDepartment
+from .models import UserDetails
 
 class VwActivityTypeDetailsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -202,6 +203,14 @@ class ShipMasterSerializer(serializers.ModelSerializer):
             'full_load_draft', 'max_continuous_speed', 'engine_each_rating',
             'endurance_in_days', 'economic_speed', 'opsauthority_id', 'port_id',
             'origin', 'commission_date', 'decommission', 'is_active'
+        ]
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserDetails
+        fields =  [
+            "id", "role", "name", "userlogin",
+            "designation", "status",
         ]
 
 
