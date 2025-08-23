@@ -130,23 +130,26 @@ class DepartmentMaster(models.Model):
 class EquipmentCategoryMaster(models.Model):
     category_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_equipment_category_master'
 
 class ShipCategoryMaster(models.Model):
     ship_cat_id = models.CharField(max_length=50)
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_ship_category_master'
 
 class RoleMaster(models.Model):
-	status = models.IntegerField()
-	level = models.CharField(max_length=50)
-	role_id = models.CharField(max_length=50)
-	name = models.CharField(max_length=100)
-	class Meta:
-		db_table = 'tbl_role_master'
+    status = models.IntegerField()
+    level = models.CharField(max_length=50)
+    role_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    is_active = models.SmallIntegerField(default=1)
+    class Meta:
+        db_table = 'tbl_role_master'
   
   
 # --- New Master Tables ---

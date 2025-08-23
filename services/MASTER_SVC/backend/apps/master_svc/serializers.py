@@ -114,22 +114,22 @@ class LubricantMasterSerializer(serializers.ModelSerializer):
 class SectionMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = SectionMaster
-        fields = ['section_id', 'name', 'department_id']
+        fields = ['section_id', 'name', 'department_id', 'is_active']
 
 class GroupMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroupMaster
-        fields = ['group_id', 'name', 'section_id', 'generic_id']
+        fields = ['group_id', 'name', 'section_id', 'generic_id', 'is_active']
 
 class CountryMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CountryMaster
-        fields = ['country_id', 'name', 'iso_code']
+        fields = ['country_id', 'name', 'iso_code', 'is_active']
 
 class ClassMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClassMaster
-        fields = ['class_id', 'name', 'type']
+        fields = ['class_id', 'name', 'type', 'is_active']
 
 class SupplierMasterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -137,31 +137,31 @@ class SupplierMasterSerializer(serializers.ModelSerializer):
         fields = [
             'supplier_id', 'name', 'address', 'contact_number', 'code',
             'contact_person', 'email', 'city', 'area', 'country_id', 'state',
-            'equipment_supplied'
+            'equipment_supplied', 'is_active'
         ]
 
 class OpsAuthorityMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = OpsAuthorityMaster
-        fields = ['opsauthority_id', 'ops_authority', 'command_id', 'address']
+        fields = ['opsauthority_id', 'ops_authority', 'command_id', 'address', 'is_active']
 
 class GenericMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = GenericMaster
-        fields = ['generic_id', 'name', 'description']
+        fields = ['generic_id', 'name', 'description', 'is_active']
 
 class EstablishmentMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = EstablishmentMaster
         fields = [
             'establishment_id', 'name', 'command', 'opsauthority_id',
-            'category_id', 'category_name'
+            'category_id', 'category_name', 'is_active'
         ]
 
 class PropulsionMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropulsionMaster
-        fields = ['propulsion_id', 'name', 'category']
+        fields = ['propulsion_id', 'name', 'category', 'is_active']
 
 class ManufacturerMasterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -169,7 +169,7 @@ class ManufacturerMasterSerializer(serializers.ModelSerializer):
         fields = [
             'manufacturer_id', 'name', 'address', 'contact_number', 'code',
             'contact_person', 'email', 'city', 'area', 'country_id', 'state',
-            'equipment_manufactured'
+            'equipment_manufactured', 'is_active'
         ]
 
 class EquipmentMasterSerializer(serializers.ModelSerializer):
@@ -182,7 +182,7 @@ class EquipmentMasterSerializer(serializers.ModelSerializer):
             'ilms_equipment_code', 'total_fits', 'ship_applicable',
             'location_on_board', 'equipment_type', 'ship_id', 'removal_date',
             'description', 'srar_equipment', 'system', 'sub_system', 'assembly',
-            'department_id', 'obsolete'
+            'department_id', 'obsolete', 'is_active'
         ]
 
 class ShipMasterSerializer(serializers.ModelSerializer):
@@ -201,7 +201,7 @@ class ShipMasterSerializer(serializers.ModelSerializer):
             'standard_draft', 'full_load_displacement', 'depth_of_main_deck',
             'full_load_draft', 'max_continuous_speed', 'engine_each_rating',
             'endurance_in_days', 'economic_speed', 'opsauthority_id', 'port_id',
-            'origin', 'commission_date', 'decommission'
+            'origin', 'commission_date', 'decommission', 'is_active'
         ]
 
 
