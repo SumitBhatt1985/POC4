@@ -3,7 +3,7 @@
 from rest_framework import serializers
 from .models import (SectionMaster, GroupMaster, CountryMaster, ClassMaster, SupplierMaster, OpsAuthorityMaster,
 					GenericMaster, EstablishmentMaster, PropulsionMaster, ManufacturerMaster, EquipmentMaster, 
-                    ShipMaster)
+                    ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails)
 
 class SectionMasterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -99,11 +99,15 @@ class ShipMasterSerializer(serializers.ModelSerializer):
         ]
         
 # Serializer for PostgreSQL view vw_sfd_section_add
-from .models import VwSfdSectionAdd
 class VwSfdSectionAddSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwSfdSectionAdd
         fields = ['section_id', 'section_name', 'department_id', 'department_name', 'is_active']
+
+class sfdShipEquipmentDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = sfdShipEquipmentDetails
+        fields = '__all__'
 
 
 
