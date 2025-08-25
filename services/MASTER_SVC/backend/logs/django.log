@@ -2524,3 +2524,4 @@ LINE 1: ...ctive" FROM "vw_section_department_details" WHERE "vw_sectio...
 ERROR 2025-08-22 19:09:32,041 basehttp 15144 11976 "POST /api/v1/master/wrapper/ HTTP/1.1" 500 174762
 INFO 2025-08-22 19:10:08,494 autoreload 15144 33264 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
 INFO 2025-08-22 19:10:13,510 autoreload 24560 7044 Watching for file changes with StatReloader
+INFO 2025-08-25 12:54:29,363 autoreload 21268 2764 Watching for file changes with StatReloader
