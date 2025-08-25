@@ -61,7 +61,7 @@ ALLOWED_TABLES = {
 	'tbl_country_master' : (CountryMaster, CountryMasterSerializer),
 	'tbl_class_master' : (ClassMaster, ClassMasterSerializer),
 	'tbl_supplier_master' :(SupplierMaster, SupplierMasterSerializer),
-	'tbl_opsauthority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
+	'tbl_ops_authority_master': (OpsAuthorityMaster, OpsAuthorityMasterSerializer),
 	'tbl_generic_master': (GenericMaster, GenericMasterSerializer),
 	'tbl_establishment_master': (EstablishmentMaster, EstablishmentMasterSerializer),
 	'tbl_propulsion_master': (PropulsionMaster, PropulsionMasterSerializer),
@@ -124,7 +124,10 @@ def crud_list(user, table_name, get_max_id, column_name):
     else:
         if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
             field = model._meta.get_field('is_active')
-            queryset = model.objects.all()
+            # if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
+            queryset = model.objects.all()     #.filter(is_active=1)
+            # else:
+                # queryset = model.objects.all()     #.filter(is_active=True)
         else:
             queryset = model.objects.all()
     serializer = serializer_class(queryset, many=True)
@@ -168,7 +171,7 @@ def crud_list(user, table_name, get_max_id, column_name):
                 }, status=status.HTTP_400_BAD_REQUEST)
             return Response({
                 'success': True,
-                'message': 'Next ID fetched successfully.',
+                'message': 'Max ID fetched successfully.',
                 'data': {
                     'next_id': formatted_id
                 }
@@ -272,8 +275,8 @@ def flexible_crud_update(user, table_name, column_name, column_value, data):
 		field = model._meta.get_field('is_active')
 		if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
 			new_data['is_active'] = 1
-		else:
-			new_data['is_active'] = True
+		# else:
+		# 	new_data['is_active'] = True
 	
 	# Step 3: Create new record with updated data
 	serializer = serializer_class(data=new_data)
