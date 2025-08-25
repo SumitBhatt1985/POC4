@@ -234,7 +234,7 @@ class VwSfdAttachRefernce(models.Model):
     class_id = models.CharField(max_length=50)
     sfd_ship_name = models.CharField(max_length=255)
     sfd_ship_id = models.CharField(max_length=255)
-    is_active = models.SmallIntegerField(db_column='is_active', default=1)
+    # is_active = models.SmallIntegerField(db_column='is_active', default=1)
 
     class Meta:
         managed = False

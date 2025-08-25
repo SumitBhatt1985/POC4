@@ -112,7 +112,7 @@ class sfdShipEquipmentDetailsSerializer(serializers.ModelSerializer):
 class VwSfdAttachRefernceSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwSfdAttachRefernce
-        fields = ['section_name', 'section_id', 'class_name', 'class_id', 'sfd_ship_name', 'sfd_ship_id', 'is_active']
+        fields = ['section_name', 'section_id', 'class_name', 'class_id', 'sfd_ship_name', 'sfd_ship_id']
 
 
 
