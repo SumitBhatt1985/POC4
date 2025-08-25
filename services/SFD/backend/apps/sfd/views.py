@@ -640,7 +640,71 @@ class FlexibleWrapperAPIView(APIView):
 				'data': None
 			}, status=status.HTTP_400_BAD_REQUEST)
 
+from django.db import transaction
 
+class ShipDataCopyAPIView(APIView):
+	authentication_classes = [CustomJWTAuthentication]
+	permission_classes = [permissions.IsAuthenticated]
+
+	def post(self, request):
+		table_name = 'tbl_sfd_ship_equipment_details'
+		source_ship_id = request.data.get('source_ship_id')
+		target_ship_id = request.data.get('target_ship_id')
+		section_id = request.data.get('section_id')
+		class_id = request.data.get('class_id')
+
+		# Validate required params
+		if not all([source_ship_id, target_ship_id, section_id, class_id]):
+			return Response({
+				'success': False,
+				'message': 'Missing required parameters.',
+				'data': None
+			}, status=status.HTTP_400_BAD_REQUEST)
+
+		try:
+			with transaction.atomic():
+				# Step 1: Filter source rows
+				source_rows = sfdShipEquipmentDetails.objects.filter(
+					ship_id=source_ship_id,
+					section_id=section_id,
+					class_id=class_id,
+					is_active=1
+				)
+				if not source_rows.exists():
+					return Response({
+						'success': False,
+						'message': 'No matching rows found for source ship.',
+						'data': None
+					}, status=status.HTTP_404_NOT_FOUND)
+
+				# Step 2: Soft delete target rows
+				sfdShipEquipmentDetails.objects.filter(
+					ship_id=target_ship_id,
+					section_id=section_id,
+					class_id=class_id,
+					is_active=1
+				).update(is_active=0)
+
+				# Step 3: Copy rows to target ship
+				copied_count = 0
+				for row in source_rows:
+					row.pk = None  # Create new record
+					row.ship_id = target_ship_id
+					row.is_active = 1
+					row.save()
+					copied_count += 1
+
+				return Response({
+					'success': True,
+					'message': f'{copied_count} rows copied to target ship.',
+					'data': {'copied_count': copied_count}
+				}, status=status.HTTP_200_OK)
+		except Exception as e:
+			return Response({
+				'success': False,
+				'message': f'Error during copy: {str(e)}',
+				'data': None
+			}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 

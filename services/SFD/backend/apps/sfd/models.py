@@ -111,7 +111,7 @@ class ManufacturerMaster(models.Model):
 class EquipmentMaster(models.Model):
     equipment_id = models.CharField(max_length=50)
     equipment_name = models.CharField(max_length=255)
-    generic_id = models.CharField(max_length=50)
+    # generic_id = models.CharField(max_length=50)
     category_id = models.CharField(max_length=50)
     section_id = models.CharField(max_length=50)
     group_id = models.CharField(max_length=50)
@@ -133,9 +133,10 @@ class EquipmentMaster(models.Model):
     system = models.CharField(max_length=100)
     sub_system = models.CharField(max_length=100)
     assembly = models.CharField(max_length=100)
-    department_id = models.CharField(max_length=50)
+    # department_id = models.CharField(max_length=50)
     obsolete = models.CharField(max_length=10)
     is_active = models.SmallIntegerField(default=1)
+    manufacturer_id = models.CharField(max_length=50, null=True, blank=True)
     class Meta:
         db_table = 'tbl_equipment_master'
 
@@ -198,35 +199,6 @@ class VwSfdSectionAdd(models.Model):
 		managed = False  # No migrations, read-only
 		db_table = 'vw_sfd_section_add'
 
-class sfdShipEquipmentDetails(models.Model):
-    ship_id = models.CharField(max_length=50)
-    equipment_id = models.CharField(max_length=50)
-    supplier_id = models.CharField(max_length=50)
-    location_onboard_id = models.CharField(max_length=50)
-    installation_date = models.CharField(null=True, blank=True)
-    removal_date = models.CharField(null=True, blank=True)
-    oem_part_no = models.CharField(max_length=100)
-    no_of_fits = models.IntegerField(null=True, blank=True)
-    sfd_group = models.CharField(max_length=100)
-    department_id = models.CharField(max_length=50)
-    remarks = models.TextField(null=True, blank=True)
-    manufacturer_id = models.CharField(max_length=50)
-    parent_equipment = models.CharField(max_length=50)
-    insert_date = models.DateTimeField(auto_now_add=True)
-    update_date = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=50)
-    approved_date = models.CharField(null=True, blank=True)
-    rejected_date = models.CharField(null=True, blank=True)
-    is_active = models.SmallIntegerField(default=1)
-    class_id = models.CharField(max_length=50)
-    group_id = models.CharField(max_length=50)
-    equipment_serial_no = models.CharField(max_length=100)
-    location_id = models.CharField(max_length=50)
-    section_id = models.CharField(max_length=50)
-
-    class Meta:
-        db_table = 'tbl_sfd_ship_equipment_details'
-
 class VwSfdAttachRefernce(models.Model):
     section_name = models.CharField(max_length=255)
     section_id = models.CharField(max_length=50, primary_key=True)
@@ -249,6 +221,35 @@ class VwShipClass(models.Model):
     class Meta:
         managed = False
         db_table = 'vw_ship_class'
+        
+class sfdShipEquipmentDetails(models.Model):
+    ship_id = models.CharField(max_length=50)
+    equipment_id = models.CharField(max_length=50)
+    supplier_id = models.CharField(max_length=50)
+    location_onboard_id = models.CharField(max_length=50)
+    installation_date = models.CharField(null=True, blank=True, max_length=50)
+    removal_date = models.CharField(null=True, blank=True, max_length=50)
+    oem_part_no = models.CharField(max_length=100)
+    no_of_fits = models.IntegerField(null=True, blank=True)
+    sfd_group = models.CharField(max_length=100)
+    department_id = models.CharField(max_length=50)
+    remarks = models.TextField(null=True, blank=True)
+    manufacturer_id = models.CharField(max_length=50)
+    parent_equipment = models.CharField(max_length=50)
+    insert_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=50)
+    approved_date = models.CharField(null=True, blank=True, max_length=50)
+    rejected_date = models.CharField(null=True, blank=True, max_length=50)
+    is_active = models.SmallIntegerField(default=1)
+    class_id = models.CharField(max_length=50)
+    group_id = models.CharField(max_length=50)
+    equipment_serial_no = models.CharField(max_length=100)
+    location_id = models.CharField(max_length=50)
+    section_id = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'tbl_sfd_ship_equipment_details'
 
 
 

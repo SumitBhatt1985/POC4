@@ -3,7 +3,8 @@
 from rest_framework import serializers
 from .models import (SectionMaster, GroupMaster, CountryMaster, ClassMaster, SupplierMaster, OpsAuthorityMaster,
 					GenericMaster, EstablishmentMaster, PropulsionMaster, ManufacturerMaster, EquipmentMaster, 
-                    ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce, VwShipClass)
+                    ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce, VwShipClass,
+                    )
 
 class SectionMasterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -70,13 +71,13 @@ class EquipmentMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = EquipmentMaster
         fields = [
-            'equipment_id', 'equipment_name', 'generic_id', 'category_id',
+            'equipment_id', 'equipment_name', 'category_id',
             'section_id', 'group_id', 'equipment_serial_no', 'equipment_code',
             'equipment_model', 'maintop_number', 'acquiant_issued', 'authority',
             'ilms_equipment_code', 'total_fits', 'ship_applicable',
             'location_on_board', 'equipment_type', 'ship_id', 'removal_date',
             'description', 'srar_equipment', 'system', 'sub_system', 'assembly',
-            'department_id', 'obsolete'
+            'obsolete', 'manufacturer_id'
         ]
 
 class ShipMasterSerializer(serializers.ModelSerializer):
@@ -104,11 +105,6 @@ class VwSfdSectionAddSerializer(serializers.ModelSerializer):
         model = VwSfdSectionAdd
         fields = ['section_id', 'section_name', 'department_id', 'department_name', 'is_active']
 
-class sfdShipEquipmentDetailsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = sfdShipEquipmentDetails
-        fields = '__all__'
-
 class VwSfdAttachRefernceSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwSfdAttachRefernce
@@ -118,5 +114,10 @@ class VwShipClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = VwShipClass
         fields = ['class_name', 'class_id', 'ship_name', 'ship_id']
+
+class sfdShipEquipmentDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = sfdShipEquipmentDetails
+        fields = '__all__'
 
 
