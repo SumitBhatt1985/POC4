@@ -17,7 +17,7 @@ from .models import (
 	LubricantMaster, SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster,
+	ManufacturerMaster, EquipmentMaster, ShipMaster, UserDetails,
  
 	VwSectionDepartment, VwSectionGroupDetails, VwCountrySupplierDetails, VwActivityTypeDetails, 
  	VwCommandOpsauthorityDetails, VwCommandOpsauthorityEstablishmentDetails, 
@@ -32,7 +32,7 @@ from .serializers import (
 	LubricantMasterSerializer, SectionMasterSerializer, GroupMasterSerializer, CountryMasterSerializer,
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
-	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer,
+	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer, UserDetailsSerializer,
 	
 	VwSectionDepartmentSerializer, VwSectionGroupDetailsSerializer, VwCountrySupplierDetailsSerializer, VwActivityTypeDetailsSerializer, 
   	VwCommandOpsauthorityDetailsSerializer, VwCommandOpsauthorityEstablishmentDetailsSerializer, 
@@ -78,6 +78,8 @@ ALLOWED_TABLES = {
 	'vw_command_opsauthority_establishment_details': (VwCommandOpsauthorityEstablishmentDetails, VwCommandOpsauthorityEstablishmentDetailsSerializer),
 	'vw_country_manufacturer_details': (VwCountryManufacturerDetails, VwCountryManufacturerDetailsSerializer),
 	'vw_section_equipment_group_details': (VwSectionEquipmentGroupDetails, VwSectionEquipmentGroupDetailsSerializer),
+
+	'tbl_user_master': (UserDetails, UserDetailsSerializer),
 }
 
 # Audit logger

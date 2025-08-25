@@ -128,23 +128,28 @@ class DepartmentMaster(models.Model):
         db_table = 'tbl_department_master'
 
 class EquipmentCategoryMaster(models.Model):
-	name = models.CharField(max_length=255)
-	class Meta:
-		db_table = 'tbl_equipment_category_master'
+    category_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
+    class Meta:
+        db_table = 'tbl_equipment_category_master'
 
 class ShipCategoryMaster(models.Model):
-	name = models.CharField(max_length=255)
-	description = models.TextField()
-	class Meta:
-		db_table = 'tbl_ship_category_master'
+    ship_cat_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(default=1)
+    class Meta:
+        db_table = 'tbl_ship_category_master'
 
 class RoleMaster(models.Model):
-	status = models.IntegerField()
-	level = models.CharField(max_length=50)
-	role_id = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=100)
-	class Meta:
-		db_table = 'tbl_role_master'
+    status = models.IntegerField()
+    level = models.CharField(max_length=50)
+    role_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    is_active = models.SmallIntegerField(default=1)
+    class Meta:
+        db_table = 'tbl_role_master'
   
   
 # --- New Master Tables ---
@@ -170,8 +175,8 @@ class ShipLocationMaster(models.Model):
 class ActivityTypeMaster(models.Model):
 	activity_type_id = models.CharField(max_length=255)
 	activity_type = models.CharField(max_length=255)
-	ship_location_id = models.ForeignKey(ShipLocationMaster, on_delete=models.CASCADE, related_name='activity_types')
-	remark = models.CharField(max_length=255, null=True, blank=True)
+	ship_location_id = models.CharField(max_length=100)
+	remarks = models.CharField(max_length=255, null=True, blank=True)
 	status = models.CharField(max_length=50, null=True, blank=True)
 	is_active = models.SmallIntegerField(default=True)
 	class Meta:
@@ -182,7 +187,6 @@ class ActivityDetailsMaster(models.Model):
 	activity_id = models.CharField(max_length=100)
 	activity_type_id = models.CharField(max_length=100)
 	activity_detail = models.CharField(max_length=255)
-	department_id = models.CharField(max_length=100)
 	status = models.CharField(max_length=50, null=True, blank=True)
 	is_active = models.SmallIntegerField(default=True)
 	class Meta:
@@ -348,8 +352,8 @@ class ShipMaster(models.Model):
     displacement = models.CharField(max_length=100)
     base_port = models.CharField(max_length=100)
     ship_builder = models.CharField(max_length=255)
-    decommission_date = models.DateField(null=True, blank=True)
-    scheduled_decommission_date = models.DateField(null=True, blank=True)
+    decommission_date = models.CharField(null=True, blank=True)
+    scheduled_decommission_date = models.CharField(null=True, blank=True)
     propulsion_id = models.CharField(max_length=50)
     refit_authority = models.CharField(max_length=100)
     signal_name = models.CharField(max_length=100)
@@ -380,11 +384,47 @@ class ShipMaster(models.Model):
     opsauthority_id = models.CharField(max_length=50)
     port_id = models.CharField(max_length=50)
     origin = models.CharField(max_length=100)
-    commission_date = models.DateField(null=True, blank=True)
+    commission_date = models.CharField(null=True, blank=True)
     decommission = models.CharField(max_length=50)
     is_active = models.SmallIntegerField(default=1)
     class Meta:
         db_table = 'tbl_ship_master'
+
+class UserDetails(models.Model):
+
+    # update_date = models.DateTimeField(null=True, blank=True)
+    role = models.CharField(max_length=50)
+    # rank = models.CharField(max_length=50)
+    name = models.CharField(max_length=150)
+    userlogin = models.CharField(max_length=150, unique=True)
+    # password = models.CharField(max_length=510)
+    # confirm_password = models.CharField(max_length=510)
+    # personal_no = models.CharField(max_length=50)
+    designation = models.CharField(max_length=100)
+    # designation_email = models.EmailField(max_length=150)
+    # ship_name = models.CharField(max_length=100)
+    # employee_type = models.CharField(max_length=50)
+    # establishment = models.CharField(max_length=100)
+    # nudemail = models.EmailField(max_length=150)
+    # phone_no = models.CharField(max_length=20)
+    # mobile_no = models.CharField(max_length=20)
+    # sso_user = models.CharField(max_length=1, default='0')
+    # initiator = models.CharField(max_length=1, default='0')
+    # recommendor = models.CharField(max_length=1, default='0')
+    # approver = models.CharField(max_length=1, default='0')
+    is_active = models.SmallIntegerField(default=2)  # Default to active (1)
+    
+    
+    
+    class Meta:
+        db_table = 'tbl_user_master'
+
+    def __str__(self):
+        return f"{self.userlogin} ({self.name})"
+
+    @property
+    def is_authenticated(self):
+        return True
 
 
 

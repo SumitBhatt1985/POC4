@@ -72,76 +72,75 @@ def crud_create(user, table_name, data):
 	}, status=status.HTTP_400_BAD_REQUEST)
 
 def crud_list(user, table_name, get_max_id, column_name):
-	check_permission(user, table_name, 'view')
-	model, serializer_class = ALLOWED_TABLES[table_name]
-	# Only return active records if is_active field exists
-	if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
-		field = model._meta.get_field('is_active')
-		if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
-			queryset = model.objects.filter(is_active=1)
-		else:
-			queryset = model.objects.filter(is_active=True)
-	else:
-		queryset = model.objects.all()
-	serializer = serializer_class(queryset, many=True)
-	if get_max_id and column_name:
-		print(f"Fetching max ID for column '{column_name}' in table '{table_name}'")
-		# Validate that the column exists in the model
-		try:
-			field = model._meta.get_field(column_name)
-		except:
-			return Response({
-				'success': False,
-				'message': f'Invalid column name: {column_name}',
-				'data': None
-			}, status=status.HTTP_400_BAD_REQUEST)
+    check_permission(user, table_name, 'view')
+    model, serializer_class = ALLOWED_TABLES[table_name]
+    # Only return active records if is_active field exists, unless get_max_id is True
+    if get_max_id and column_name:
+        queryset = model.objects.all()  # Do not filter by is_active
+    else:
+        if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
+            field = model._meta.get_field('is_active')
+            queryset = model.objects.all()
+        else:
+            queryset = model.objects.all()
+    serializer = serializer_class(queryset, many=True)
+    if get_max_id and column_name:
+        print(f"Fetching max ID for column '{column_name}' in table '{table_name}'")
+        # Validate that the column exists in the model
+        try:
+            field = model._meta.get_field(column_name)
+        except:
+            return Response({
+                'success': False,
+                'message': f'Invalid column name: {column_name}',
+                'data': None
+            }, status=status.HTTP_400_BAD_REQUEST)
 
-		# Fetch max value of the specified column
-		try:
-			max_value = model.objects.aggregate(max_id=models.Max(column_name))['max_id']
-			if max_value is None:
-				return Response({
-					'success': True,
-					'message': 'No records found to determine max ID.',
-					'data': None
-				})
-			if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
-				next_id = max_value + 1
-				formatted_id = f"{next_id:05d}"
-			elif isinstance(field, models.CharField):
-				prefix = ''.join(filter(str.isalpha, max_value))
-				num_part = ''.join(filter(str.isdigit, max_value))
-				if num_part:
-					next_num = int(num_part) + 1
-				else:
-					next_num = 1
-				formatted_id = f"{prefix}-{next_num:05d}"
-			else:
-				return Response({
-					'success': False,
-					'message': 'Unsupported column type for max ID generation.',
-					'data': None
-				}, status=status.HTTP_400_BAD_REQUEST)
-			return Response({
-				'success': True,
-				'message': 'Max ID fetched successfully.',
-				'data': {
-					'max_id': max_value,
-					'next_id': formatted_id
-				}
-			})
-		except Exception as e:
-			return Response({
-				'success': False,
-				'message': f'Error fetching max ID: {str(e)}',
-				'data': None
-			}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-	else:
-		return Response({
-			'success': True,
-			'message': 'Records fetched successfully.',
-			'data': serializer.data
-		})
+        # Fetch max value of the specified column (from all records)
+        try:
+            max_value = model.objects.aggregate(max_id=models.Max(column_name))['max_id']
+            if max_value is None:
+                return Response({
+                    'success': True,
+                    'message': 'No records found to determine max ID.',
+                    'data': None
+                })
+            if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
+                next_id = max_value + 1
+                formatted_id = f"{next_id:05d}"
+            elif isinstance(field, models.CharField):
+                prefix = ''.join(filter(str.isalpha, max_value))
+                num_part = ''.join(filter(str.isdigit, max_value))
+                if num_part:
+                    next_num = int(num_part) + 1
+                else:
+                    next_num = 1
+                formatted_id = f"{prefix}-{next_num:05d}"
+            else:
+                return Response({
+                    'success': False,
+                    'message': 'Unsupported column type for max ID generation.',
+                    'data': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+            return Response({
+                'success': True,
+                'message': 'Next ID fetched successfully.',
+                'data': {
+                    'next_id': formatted_id
+                }
+            })
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'Error fetching max ID: {str(e)}',
+                'data': None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response({
+            'success': True,
+            'message': 'Records fetched successfully.',
+            'data': serializer.data
+        })
 
 # def crud_update(user, table_name, pk, data):
 # 	check_permission(user, table_name, 'update')
