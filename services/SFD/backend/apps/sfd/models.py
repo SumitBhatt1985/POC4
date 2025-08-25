@@ -240,5 +240,15 @@ class VwSfdAttachRefernce(models.Model):
         managed = False
         db_table = 'vw_sfd_attach_refernce'
 
+class VwShipClass(models.Model):
+    class_name = models.CharField(max_length=255)
+    class_id = models.CharField(max_length=50, primary_key=True)
+    ship_name = models.CharField(max_length=255)
+    ship_id = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_ship_class'
+
 
 

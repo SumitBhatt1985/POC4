@@ -12,7 +12,8 @@ from .authentication import CustomJWTAuthentication
 from .models import (SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce
+	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce,
+	VwShipClass
 )
 
 # import all master serializers
@@ -20,7 +21,7 @@ from .serializers import (SectionMasterSerializer, GroupMasterSerializer, Countr
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer, VwSfdSectionAddSerializer,
-	sfdShipEquipmentDetailsSerializer, VwSfdAttachRefernceSerializer
+	sfdShipEquipmentDetailsSerializer, VwSfdAttachRefernceSerializer, VwShipClassSerializer
 )
 
 
@@ -47,6 +48,7 @@ ALLOWED_TABLES = {
 	'vw_sfd_section_add': (VwSfdSectionAdd, VwSfdSectionAddSerializer),
 	'tbl_sfd_ship_equipment_details': (sfdShipEquipmentDetails, sfdShipEquipmentDetailsSerializer),
 	'vw_sfd_attach_refernce': (VwSfdAttachRefernce, VwSfdAttachRefernceSerializer),
+	'vw_ship_class': (VwShipClass, VwShipClassSerializer),
 }
 
 # Audit logger
@@ -637,6 +639,10 @@ class FlexibleWrapperAPIView(APIView):
 				'message': 'Invalid request.',
 				'data': None
 			}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 
 
 
