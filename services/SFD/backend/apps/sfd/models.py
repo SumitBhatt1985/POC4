@@ -227,5 +227,18 @@ class sfdShipEquipmentDetails(models.Model):
     class Meta:
         db_table = 'tbl_sfd_ship_equipment_details'
 
+class VwSfdAttachRefernce(models.Model):
+    section_name = models.CharField(max_length=255)
+    section_id = models.CharField(max_length=50, primary_key=True)
+    class_name = models.CharField(max_length=255)
+    class_id = models.CharField(max_length=50)
+    sfd_ship_name = models.CharField(max_length=255)
+    sfd_ship_id = models.CharField(max_length=255)
+    is_active = models.SmallIntegerField(db_column='is_active', default=1)
+
+    class Meta:
+        managed = False
+        db_table = 'vw_sfd_attach_refernce'
+
 
 

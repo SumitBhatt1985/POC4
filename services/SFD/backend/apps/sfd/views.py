@@ -12,7 +12,7 @@ from .authentication import CustomJWTAuthentication
 from .models import (SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
-	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails
+	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce
 )
 
 # import all master serializers
@@ -20,7 +20,7 @@ from .serializers import (SectionMasterSerializer, GroupMasterSerializer, Countr
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer, VwSfdSectionAddSerializer,
-	sfdShipEquipmentDetailsSerializer
+	sfdShipEquipmentDetailsSerializer, VwSfdAttachRefernceSerializer
 )
 
 
@@ -46,6 +46,7 @@ ALLOWED_TABLES = {
 	# --- PostgreSQL Views --- 
 	'vw_sfd_section_add': (VwSfdSectionAdd, VwSfdSectionAddSerializer),
 	'tbl_sfd_ship_equipment_details': (sfdShipEquipmentDetails, sfdShipEquipmentDetailsSerializer),
+	'vw_sfd_attach_refernce': (VwSfdAttachRefernce, VwSfdAttachRefernceSerializer),
 }
 
 # Audit logger
