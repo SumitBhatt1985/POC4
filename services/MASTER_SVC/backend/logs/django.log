@@ -2525,3 +2525,23 @@ ERROR 2025-08-22 19:09:32,041 basehttp 15144 11976 "POST /api/v1/master/wrapper/
 INFO 2025-08-22 19:10:08,494 autoreload 15144 33264 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\models.py changed, reloading.
 INFO 2025-08-22 19:10:13,510 autoreload 24560 7044 Watching for file changes with StatReloader
 INFO 2025-08-25 12:54:29,363 autoreload 21268 2764 Watching for file changes with StatReloader
+WARNING 2025-08-25 12:54:53,457 log 21268 396 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-25 12:54:53,458 basehttp 21268 396 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-25 12:55:38,942 log 21268 396 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-25 12:55:38,943 basehttp 21268 396 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+WARNING 2025-08-25 12:56:06,085 log 21268 396 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-25 12:56:06,085 basehttp 21268 396 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-25 12:57:38,339 basehttp 21268 396 "POST /api/v1/master/wrapper/ HTTP/1.1" 201 141
+WARNING 2025-08-25 12:59:26,462 log 21268 24896 Unauthorized: /api/v1/master/wrapper/
+WARNING 2025-08-25 12:59:26,463 basehttp 21268 24896 "POST /api/v1/master/wrapper/ HTTP/1.1" 401 172
+INFO 2025-08-25 13:00:00,153 basehttp 21268 24896 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 191
+INFO 2025-08-25 13:01:51,657 basehttp 21268 2168 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 74
+INFO 2025-08-25 13:05:43,485 basehttp 21268 17244 "POST /api/v1/master/wrapper/ HTTP/1.1" 200 792
+INFO 2025-08-25 14:30:04,681 autoreload 21268 2764 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-25 14:30:12,158 autoreload 15724 25096 Watching for file changes with StatReloader
+INFO 2025-08-25 14:34:12,669 autoreload 15724 25096 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-25 14:34:17,612 autoreload 26272 22700 Watching for file changes with StatReloader
+INFO 2025-08-25 14:37:40,282 autoreload 26272 22700 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-25 14:37:45,136 autoreload 21520 25012 Watching for file changes with StatReloader
+INFO 2025-08-25 14:39:00,644 autoreload 21520 25012 D:\Phoenix\Defense_POC\POC4\services\MASTER_SVC\backend\apps\master_svc\views.py changed, reloading.
+INFO 2025-08-25 14:39:05,534 autoreload 15620 12996 Watching for file changes with StatReloader

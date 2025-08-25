@@ -124,10 +124,10 @@ def crud_list(user, table_name, get_max_id, column_name):
     else:
         if hasattr(model, 'is_active') or 'is_active' in [f.name for f in model._meta.fields]:
             field = model._meta.get_field('is_active')
-            if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
-                queryset = model.objects.filter(is_active=1)
-            else:
-                queryset = model.objects.filter(is_active=True)
+            # if isinstance(field, (models.SmallIntegerField, models.IntegerField)):
+            queryset = model.objects.all()     #.filter(is_active=1)
+            # else:
+                # queryset = model.objects.all()     #.filter(is_active=True)
         else:
             queryset = model.objects.all()
     serializer = serializer_class(queryset, many=True)
