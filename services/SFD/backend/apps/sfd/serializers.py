@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import (SectionMaster, GroupMaster, CountryMaster, ClassMaster, SupplierMaster, OpsAuthorityMaster,
 					GenericMaster, EstablishmentMaster, PropulsionMaster, ManufacturerMaster, EquipmentMaster, 
                     ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce, VwShipClass,
-                    )
+                    VwSfdEquipmentShipDetails)
 
 class SectionMasterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -119,5 +119,10 @@ class sfdShipEquipmentDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = sfdShipEquipmentDetails
         fields = '__all__'
+
+class VwSfdEquipmentShipDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VwSfdEquipmentShipDetails
+        fields = ['ship_name', 'location_code', 'location_on_board', 'equipment_serial_no', 'no_of_fits']
 
 

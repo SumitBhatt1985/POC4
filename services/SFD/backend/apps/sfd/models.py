@@ -251,5 +251,15 @@ class sfdShipEquipmentDetails(models.Model):
     class Meta:
         db_table = 'tbl_sfd_ship_equipment_details'
 
+class VwSfdEquipmentShipDetails(models.Model):
+    ship_name = models.CharField(max_length=255, primary_key=True)
+    location_code = models.CharField(max_length=100)
+    location_on_board = models.CharField(max_length=255)
+    equipment_serial_no = models.CharField(max_length=100)
+    no_of_fits = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'vw_sfd_equipment_ship_details'
+
 
 

@@ -13,7 +13,7 @@ from .models import (SectionMaster, GroupMaster, CountryMaster,
 	ClassMaster, SupplierMaster, OpsAuthorityMaster,
 	GenericMaster, EstablishmentMaster, PropulsionMaster,
 	ManufacturerMaster, EquipmentMaster, ShipMaster, VwSfdSectionAdd, sfdShipEquipmentDetails, VwSfdAttachRefernce,
-	VwShipClass
+	VwShipClass, VwSfdEquipmentShipDetails
 )
 
 # import all master serializers
@@ -21,7 +21,8 @@ from .serializers import (SectionMasterSerializer, GroupMasterSerializer, Countr
 	ClassMasterSerializer, SupplierMasterSerializer, OpsAuthorityMasterSerializer,
 	GenericMasterSerializer, EstablishmentMasterSerializer, PropulsionMasterSerializer,
 	ManufacturerMasterSerializer, EquipmentMasterSerializer, ShipMasterSerializer, VwSfdSectionAddSerializer,
-	sfdShipEquipmentDetailsSerializer, VwSfdAttachRefernceSerializer, VwShipClassSerializer
+	sfdShipEquipmentDetailsSerializer, VwSfdAttachRefernceSerializer, VwShipClassSerializer,
+	VwSfdEquipmentShipDetailsSerializer
 )
 
 
@@ -49,6 +50,7 @@ ALLOWED_TABLES = {
 	'tbl_sfd_ship_equipment_details': (sfdShipEquipmentDetails, sfdShipEquipmentDetailsSerializer),
 	'vw_sfd_attach_refernce': (VwSfdAttachRefernce, VwSfdAttachRefernceSerializer),
 	'vw_ship_class': (VwShipClass, VwShipClassSerializer),
+	'vw_sfd_equipment_ship_details': (VwSfdEquipmentShipDetails, VwSfdEquipmentShipDetailsSerializer),
 }
 
 # Audit logger
